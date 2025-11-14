@@ -4,105 +4,15 @@
   <FileName></FileName>
   <Children>
     <Node>
-      <Title>Scope Project1</Title>
+      <Title>Scope Project1.tcscopex</Title>
       <Expanded>False</Expanded>
-      <FileName>C:\Users\monet\Documents\MONET\Scope\Scope Project1.tcscopex</FileName>
-      <Children>
-        <Node>
-          <Title>DataPool</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children>
-            <Node>
-              <Title>ActAcc</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>ActPos</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>ActTorque</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>ActVelo</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>PosDiff</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-          </Children>
-        </Node>
-        <Node>
-          <Title>YT Chart</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children>
-            <Node>
-              <Title>Axis Group</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>ActPos</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Axis Group (1)</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>ActVelo</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Axis Group (3)</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>PosDiff</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-          </Children>
-        </Node>
-        <Node>
-          <Title>Trigger</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children />
-        </Node>
-      </Children>
+      <FileName></FileName>
+      <Children />
     </Node>
     <Node>
       <Title>ScopeWizard</Title>
       <Expanded>False</Expanded>
-      <FileName>C:\Users\monet\Documents\MONET\Scope\ScopeWizard.tcscopex</FileName>
+      <FileName>C:\Users\MONET\Documents\MONETS\Scope\ScopeWizard.tcscopex</FileName>
       <Children>
         <Node>
           <Title>DataPool</Title>

@@ -7,7 +7,7 @@ Project("{23D6B0B7-CBAA-4070-A2AF-F2FCE2506A3D}") = "DriveManager", "DriveManage
 EndProject
 Project("{FD9F1D59-E000-42F3-8744-88DE1BE93C06}") = "Scope", "Scope\Scope.tcmproj", "{09790710-EC0C-442E-B215-A80784D9968E}"
 EndProject
-Project("{B1E792BE-AA5F-4E3C-8C82-674BF9C0715B}") = "MONETN", "MONETN\MONETN.tsproj", "{9406D69C-EBA9-4591-A513-578A75D14426}"
+Project("{B1E792BE-AA5F-4E3C-8C82-674BF9C0715B}") = "MONETS", "MONETS\MONETS.tsproj", "{9406D69C-EBA9-4591-A513-578A75D14426}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

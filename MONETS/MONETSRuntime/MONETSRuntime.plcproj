@@ -233,6 +233,18 @@
     </LibraryReference>
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderResolution Include="AstroBROT">
+      <Resolution>AstroBROT, * (BROT)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="BROTLib">
+      <Resolution>BROTLib, * (BROT)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="HalfBROT">
+      <Resolution>HalfBROT, * (BROT)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="MONET Roof">
+      <Resolution>MONET Roof, * (Georg-August-Universitaet Goettingen)</Resolution>
+    </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElemMeter">
       <Resolution>VisuElemMeter, * (System)</Resolution>
     </PlaceholderResolution>
@@ -257,6 +269,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MONETNRuntime.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MONETSRuntime.tmc">
       <SubType>Content</SubType>
     </None>
   </ItemGroup>
