@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TreeItem>
-  <ItemName>Elevation (AX5125-0000-0214)</ItemName>
-  <PathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</PathName>
+  <ItemName>Derotator (AX5206-0000-0215)</ItemName>
+  <PathName>TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)</PathName>
   <ItemType>5</ItemType>
-  <ItemId>10</ItemId>
-  <ObjectId>#x0302000a</ObjectId>
+  <ItemId>12</ItemId>
+  <ObjectId>#x0302000c</ObjectId>
   <ItemSubType>9099</ItemSubType>
-  <ItemSubTypeName>AX5125-0000-0214 EtherCAT Drive (SoE, 1 Ch.)</ItemSubTypeName>
+  <ItemSubTypeName>AX5206-0000-0215 EtherCAT Drive (SoE, 2 Ch.)</ItemSubTypeName>
   <ChildCount>1</ChildCount>
   <Disabled>false</Disabled>
-  <TreeImageData16x14>424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffff0000ff0000ff0000ff0000808080ff00ff000000000000000000000000000000000000000000ff00ffff00ffff00ffff0000c0c0c0c0c0c0c0c0c0808080ff00ff0000000000000000000000000000000000000000000000ff0000ffff00ffc0c0c0ff0000c0c0c0c0c0c0808080ff00ff000000000000000000000000000000000000000000ff00ffff00ffff00ffc0c0c0c0c0c0ff0000c0c0c0808080ff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0ff0000808080ff00ff000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff0000c0c0c0c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000ff0000c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ff</TreeImageData16x14>
+  <TreeImageData16x14>424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c08080800000ff000000000000000000000000000000000000000000ff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c08080800000ff0000000000000000000000000000000000000000000000ff0000ffff00ffc0c0c0c0c0c0c0c0c0c0c0c08080800000ff000000000000000000000000000000000000000000ff00ffff00ffff00ffff0000ff0000ff0000ff00008080800000ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffff00ffff0000c0c0c0c0c0c0c0c0c0808080000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0c0c0c0808080000000ff00ffff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffc0c0c0c0c0c0ff0000c0c0c0808080000000000000000000000000000000000000000000000000ff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0ff00008080800000000000000000000000000000000000000000000000000000ff0000ffff00ffff0000c0c0c0c0c0c0ff0000808080000000000000000000000000000000000000000000000000ff00ffff00ffff00ffc0c0c0ff0000ff0000c0c0c0808080000000ff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080</TreeImageData16x14>
   <BoxDef>
-    <FieldbusAddress>1003</FieldbusAddress>
+    <FieldbusAddress>1005</FieldbusAddress>
     <AmsAddress>
       <AmsPort>0</AmsPort>
       <AmsPortTimeout>5</AmsPortTimeout>
@@ -20,27 +20,27 @@
   <EtherCAT>
     <Slave>
       <Info>
-        <Name><![CDATA[Elevation (AX5125-0000-0214)]]></Name>
-        <PhysAddr>1003</PhysAddr>
-        <AutoIncAddr>65534</AutoIncAddr>
+        <Name><![CDATA[Derotator (AX5206-0000-0215)]]></Name>
+        <PhysAddr>1005</PhysAddr>
+        <AutoIncAddr>65532</AutoIncAddr>
         <Identification Value="0">
           <Ado>#x0134</Ado>
         </Identification>
         <Physics>YY K</Physics>
         <VendorId>2</VendorId>
-        <ProductCode>335896594</ProductCode>
-        <RevisionNo>14024704</RevisionNo>
+        <ProductCode>341205010</ProductCode>
+        <RevisionNo>14090240</RevisionNo>
         <SerialNo>0</SerialNo>
-        <ProductRevision>AX5125-0000-0214</ProductRevision>
+        <ProductRevision>AX5206-0000-0215</ProductRevision>
       </Info>
       <ProcessData>
         <Send>
-          <BitStart>776</BitStart>
-          <BitLength>48</BitLength>
+          <BitStart>976</BitStart>
+          <BitLength>96</BitLength>
         </Send>
         <Recv>
-          <BitStart>776</BitStart>
-          <BitLength>80</BitLength>
+          <BitStart>976</BitStart>
+          <BitLength>160</BitLength>
         </Recv>
         <Sm2>
           <Type>Outputs</Type>
@@ -48,6 +48,7 @@
           <ControlByte>36</ControlByte>
           <Enable>1</Enable>
           <Pdo>24</Pdo>
+          <Pdo>4120</Pdo>
         </Sm2>
         <Sm3>
           <Type>Inputs</Type>
@@ -55,6 +56,7 @@
           <ControlByte>34</ControlByte>
           <Enable>1</Enable>
           <Pdo>16</Pdo>
+          <Pdo>4112</Pdo>
         </Sm3>
         <Sm4>
           <Type>DynamicOutputs</Type>
@@ -70,7 +72,7 @@
         </Sm5>
         <TxPdo Mandatory="true" Sm="3">
           <Index>#x10</Index>
-          <Name>AT</Name>
+          <Name>AT 1</Name>
           <Entry Fixed="true">
             <Index>#x87</Index>
             <SubIndex>0</SubIndex>
@@ -82,7 +84,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483551</IndexOffset>
+              <IndexOffset>-2147483526</IndexOffset>
               <Length>2</Length>
             </AdsInfo>
           </Entry>
@@ -97,7 +99,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483549</IndexOffset>
+              <IndexOffset>-2147483524</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
@@ -112,14 +114,63 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483545</IndexOffset>
+              <IndexOffset>-2147483520</IndexOffset>
+              <Length>4</Length>
+            </AdsInfo>
+          </Entry>
+        </TxPdo>
+        <TxPdo Mandatory="true" Sm="3">
+          <Index>#x1010</Index>
+          <Name>AT 2</Name>
+          <Entry Fixed="true">
+            <Index>#x87</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>16</BitLen>
+            <Name>Drive status word</Name>
+            <DataType>UINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483516</IndexOffset>
+              <Length>2</Length>
+            </AdsInfo>
+          </Entry>
+          <Entry>
+            <Index>#x33</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>32</BitLen>
+            <Name>Position feedback 1 value</Name>
+            <DataType>DINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483514</IndexOffset>
+              <Length>4</Length>
+            </AdsInfo>
+          </Entry>
+          <Entry>
+            <Index>#xbd</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>32</BitLen>
+            <Name>Following distance</Name>
+            <DataType>DINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483510</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
         </TxPdo>
         <RxPdo Mandatory="true" Sm="2">
           <Index>#x18</Index>
-          <Name>MDT</Name>
+          <Name>MDT 1</Name>
           <Entry Fixed="true">
             <Index>#x86</Index>
             <SubIndex>0</SubIndex>
@@ -131,7 +182,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2130706335</IndexOffset>
+              <IndexOffset>-2130706310</IndexOffset>
               <Length>2</Length>
             </AdsInfo>
           </Entry>
@@ -146,7 +197,41 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2130706333</IndexOffset>
+              <IndexOffset>-2130706308</IndexOffset>
+              <Length>4</Length>
+            </AdsInfo>
+          </Entry>
+        </RxPdo>
+        <RxPdo Mandatory="true" Sm="2">
+          <Index>#x1018</Index>
+          <Name>MDT 2</Name>
+          <Entry Fixed="true">
+            <Index>#x86</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>16</BitLen>
+            <Name>Master control word</Name>
+            <DataType>UINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2130706304</IndexOffset>
+              <Length>2</Length>
+            </AdsInfo>
+          </Entry>
+          <Entry>
+            <Index>#x2f</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>32</BitLen>
+            <Name>Position command value</Name>
+            <DataType>DINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2130706302</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
@@ -160,7 +245,7 @@
         <Recv StatusChange="true">
           <Start>6656</Start>
           <Length>128</Length>
-          <StatusBitAddr>2</StatusBitAddr>
+          <StatusBitAddr>4</StatusBitAddr>
         </Recv>
         <Timeout>
           <ReturningRequest>100</ReturningRequest>
@@ -204,10 +289,43 @@
             </InitCmd>
             <InitCmd Fixed="true">
               <Transition>PS</Transition>
+              <Comment><![CDATA[Telegram type]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>15</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0700</Data>
+            </InitCmd>
+            <InitCmd Fixed="true">
+              <Transition>PS</Transition>
+              <Comment><![CDATA[AT list]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>16</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>040004003300bd00</Data>
+            </InitCmd>
+            <InitCmd Fixed="true">
+              <Transition>PS</Transition>
               <Comment><![CDATA[MDT list]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
               <DriveNo>0</DriveNo>
+              <IDN>24</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>020002002f00</Data>
+            </InitCmd>
+            <InitCmd Fixed="true">
+              <Transition>PS</Transition>
+              <Comment><![CDATA[MDT list]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
               <IDN>24</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
@@ -222,7 +340,18 @@
               <IDN>32778</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>fe7ff90300000000</Data>
+              <Data>fe7ff90700000000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>IP</Transition>
+              <Comment><![CDATA[Feature flags]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32778</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>fe7ff90700000000</Data>
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
@@ -258,11 +387,33 @@
               <Data>0b00</Data>
             </InitCmd>
             <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Operation mode]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0b00</Data>
+            </InitCmd>
+            <InitCmd>
               <Transition>IP</Transition>
               <Comment><![CDATA[Report diagnostics information]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
               <DriveNo>0</DriveNo>
+              <IDN>33072</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0100</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>IP</Transition>
+              <Comment><![CDATA[Report diagnostics information]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
               <IDN>33072</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
@@ -324,7 +475,7 @@
           <Comment><![CDATA[set device state to INIT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>288</Ado>
           <Data>1100</Data>
           <Retries>3</Retries>
@@ -336,7 +487,7 @@
           <Comment><![CDATA[clear DC activation]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>2432</Ado>
           <Data>0000</Data>
           <Retries>3</Retries>
@@ -348,7 +499,7 @@
           <Comment><![CDATA[check device state for INIT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>1</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>304</Ado>
           <Data>0000</Data>
           <Retries>3</Retries>
@@ -363,7 +514,7 @@
           <Comment><![CDATA[check device state for INIT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>1</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>304</Ado>
           <Data>0000</Data>
           <Retries>3</Retries>
@@ -379,7 +530,7 @@
           <Comment><![CDATA[set device state to INIT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>288</Ado>
           <Data>1100</Data>
           <Cnt>1</Cnt>
@@ -392,7 +543,7 @@
           <Comment><![CDATA[check device state for INIT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>1</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>304</Ado>
           <Data>0000</Data>
           <Cnt>1</Cnt>
@@ -408,7 +559,7 @@
           <Comment><![CDATA[assign EEPROM to ECAT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1280</Ado>
           <Data>00</Data>
           <Cnt>1</Cnt>
@@ -418,7 +569,7 @@
           <Transition>IP</Transition>
           <Comment><![CDATA[check vendor id]]></Comment>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1282</Ado>
           <Data>000108000000</Data>
           <Cnt>1</Cnt>
@@ -429,7 +580,7 @@
           <Comment><![CDATA[check vendor id]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>1</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1288</Ado>
           <Data>00000000</Data>
           <Cnt>1</Cnt>
@@ -443,7 +594,7 @@
           <Transition>IP</Transition>
           <Comment><![CDATA[check product code]]></Comment>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1282</Ado>
           <Data>00010a000000</Data>
           <Cnt>1</Cnt>
@@ -454,13 +605,13 @@
           <Comment><![CDATA[check product code]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>1</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1288</Ado>
           <Data>00000000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
           <Validate>
-            <Data>12600514</Data>
+            <Data>12605614</Data>
             <Timeout>100</Timeout>
           </Validate>
         </InitCmd>
@@ -468,7 +619,7 @@
           <Transition>IP</Transition>
           <Comment><![CDATA[check revision number (lo word)]]></Comment>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1282</Ado>
           <Data>00010c000000</Data>
           <Cnt>1</Cnt>
@@ -479,7 +630,7 @@
           <Comment><![CDATA[check revision number (lo word)]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>1</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1288</Ado>
           <Data>0000</Data>
           <Cnt>1</Cnt>
@@ -493,7 +644,7 @@
           <Transition>IP</Transition>
           <Comment><![CDATA[check revision number (hi word >=)]]></Comment>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1282</Ado>
           <Data>00010d000000</Data>
           <Cnt>1</Cnt>
@@ -504,13 +655,13 @@
           <Comment><![CDATA[check revision number (hi word >=)]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>1</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1288</Ado>
           <Data>0000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
           <Validate>
-            <Data>d600</Data>
+            <Data>d700</Data>
             <Timeout>100</Timeout>
           </Validate>
         </InitCmd>
@@ -520,9 +671,9 @@
           <Comment><![CDATA[set physical address]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>16</Ado>
-          <Data>eb03</Data>
+          <Data>ed03</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -534,7 +685,7 @@
           <Transition>OI</Transition>
           <Comment><![CDATA[clear sm 0/1 (mailbox out/in)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2048</Ado>
           <Data>00000000000000000000000000000000</Data>
           <Retries>3</Retries>
@@ -543,7 +694,7 @@
           <Transition>BI</Transition>
           <Comment><![CDATA[clear sm 0/1 (mailbox out/in)]]></Comment>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>2048</Ado>
           <Data>00000000000000000000000000000000</Data>
           <Retries>3</Retries>
@@ -552,7 +703,7 @@
           <Transition>IP</Transition>
           <Comment><![CDATA[set sm 0 (mailbox out)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2048</Ado>
           <Data>0018800026000100</Data>
           <Cnt>1</Cnt>
@@ -562,7 +713,7 @@
           <Transition>IP</Transition>
           <Comment><![CDATA[set sm 1 (mailbox in)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2056</Ado>
           <Data>001a800022000100</Data>
           <Cnt>1</Cnt>
@@ -572,7 +723,7 @@
           <Transition>IB</Transition>
           <Comment><![CDATA[set sm 0 (bootstrap out)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2048</Ado>
           <Data>0010140226000100</Data>
           <Cnt>1</Cnt>
@@ -582,7 +733,7 @@
           <Transition>IB</Transition>
           <Comment><![CDATA[set sm 1 (bootstrap in)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2056</Ado>
           <Data>0018140222000100</Data>
           <Cnt>1</Cnt>
@@ -593,7 +744,7 @@
           <Comment><![CDATA[set DC cycle time]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2464</Ado>
           <Data>90d00300f0b31a00</Data>
           <Cnt>1</Cnt>
@@ -604,7 +755,7 @@
           <Comment><![CDATA[set DC start time]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2448</Ado>
           <Data>90d0030000000000</Data>
           <Cnt>1</Cnt>
@@ -615,7 +766,7 @@
           <Comment><![CDATA[set DC activation]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2432</Ado>
           <Data>3007</Data>
           <Cnt>1</Cnt>
@@ -627,7 +778,7 @@
           <Comment><![CDATA[clear DC activation]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2432</Ado>
           <Data>0000</Data>
           <Retries>3</Retries>
@@ -638,7 +789,7 @@
           <Comment><![CDATA[set device state to PREOP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>288</Ado>
           <Data>1200</Data>
           <Retries>300</Retries>
@@ -652,7 +803,7 @@
           <Transition>OI</Transition>
           <Comment><![CDATA[clear sms]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2064</Ado>
           <DataLength>32</DataLength>
           <Retries>3</Retries>
@@ -661,9 +812,9 @@
           <Transition>PS</Transition>
           <Comment><![CDATA[set sm 2 (outputs)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2064</Ado>
-          <Data>0010060024000100</Data>
+          <Data>00100c0024000100</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -671,9 +822,9 @@
           <Transition>PS</Transition>
           <Comment><![CDATA[set sm 3 (inputs)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2072</Ado>
-          <Data>00110a0022000100</Data>
+          <Data>0011140022000100</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -681,9 +832,9 @@
           <Transition>PS</Transition>
           <Comment><![CDATA[set fmmu 0 (outputs)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1536</Ado>
-          <Data>19000001060000070010000201000000</Data>
+          <Data>320000010c0000070010000201000000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -691,9 +842,9 @@
           <Transition>PS</Transition>
           <Comment><![CDATA[set fmmu 1 (inputs)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1552</Ado>
-          <Data>190000010a0000070011000101000000</Data>
+          <Data>32000001140000070011000101000000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -702,9 +853,9 @@
           <Transition>IB</Transition>
           <Comment><![CDATA[set fmmu 2 (mailbox state)]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1568</Ado>
-          <Data>00000009010002020d08000101000000</Data>
+          <Data>00000009010004040d08000101000000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -713,7 +864,7 @@
           <Comment><![CDATA[set device state to SAFEOP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>288</Ado>
           <Data>0400</Data>
           <Retries>3</Retries>
@@ -726,7 +877,7 @@
           <Transition>OI</Transition>
           <Comment><![CDATA[clear fmmu 0]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1536</Ado>
           <Data>00000000000000000000000000000000</Data>
           <Retries>3</Retries>
@@ -738,7 +889,7 @@
           <Transition>OI</Transition>
           <Comment><![CDATA[clear fmmu 1]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1552</Ado>
           <Data>00000000000000000000000000000000</Data>
           <Retries>3</Retries>
@@ -750,7 +901,7 @@
           <Transition>OI</Transition>
           <Comment><![CDATA[clear fmmu 2]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1568</Ado>
           <Data>00000000000000000000000000000000</Data>
           <Retries>3</Retries>
@@ -758,7 +909,7 @@
         <InitCmd>
           <Comment><![CDATA[clear fmmu 3]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1584</Ado>
           <Data>00000000000000000000000000000000</Data>
           <Retries>3</Retries>
@@ -766,7 +917,7 @@
         <InitCmd>
           <Comment><![CDATA[clear fmmu 4]]></Comment>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1600</Ado>
           <Data>00000000000000000000000000000000</Data>
           <Retries>3</Retries>
@@ -777,7 +928,7 @@
           <Comment><![CDATA[clear DC activation]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>2432</Ado>
           <Data>0000</Data>
           <Retries>3</Retries>
@@ -788,7 +939,7 @@
           <Comment><![CDATA[check device state for PREOP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>4</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>304</Ado>
           <Data>000000000000</Data>
           <Retries>3</Retries>
@@ -804,7 +955,7 @@
           <Comment><![CDATA[assign EEPROM to PDI]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>1280</Ado>
           <Data>01</Data>
           <Cnt>1</Cnt>
@@ -815,7 +966,7 @@
           <Comment><![CDATA[assign EEPROM back to ECAT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1280</Ado>
           <Data>00</Data>
           <Retries>3</Retries>
@@ -825,7 +976,7 @@
           <Comment><![CDATA[set device state to PREOP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>288</Ado>
           <Data>1200</Data>
           <Cnt>1</Cnt>
@@ -837,7 +988,7 @@
           <Comment><![CDATA[check device state for PREOP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>4</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>304</Ado>
           <Data>000000000000</Data>
           <Cnt>1</Cnt>
@@ -854,7 +1005,7 @@
           <Comment><![CDATA[assign EEPROM back to ECAT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>2</Cmd>
-          <Adp>65534</Adp>
+          <Adp>65532</Adp>
           <Ado>1280</Ado>
           <Data>00</Data>
           <Retries>3</Retries>
@@ -864,7 +1015,7 @@
           <Comment><![CDATA[set device state to BOOT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>288</Ado>
           <Data>1300</Data>
           <Cnt>1</Cnt>
@@ -876,7 +1027,7 @@
           <Comment><![CDATA[check device state for BOOT]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>4</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>304</Ado>
           <Data>000000000000</Data>
           <Cnt>1</Cnt>
@@ -892,19 +1043,19 @@
           <Comment><![CDATA[set device state to SAFEOP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>288</Ado>
           <Data>0400</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
-          <Timeout>15000</Timeout>
+          <Timeout>20000</Timeout>
         </InitCmd>
         <InitCmd>
           <Transition>PS</Transition>
           <Comment><![CDATA[check device state for SAFEOP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>4</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>304</Ado>
           <Data>000000000000</Data>
           <Cnt>1</Cnt>
@@ -912,7 +1063,7 @@
           <Validate>
             <Data>040000000000</Data>
             <DataMask>1f0000000000</DataMask>
-            <Timeout>15000</Timeout>
+            <Timeout>20000</Timeout>
           </Validate>
         </InitCmd>
         <InitCmd>
@@ -920,7 +1071,7 @@
           <Comment><![CDATA[check device state for SAFEOP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>4</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>304</Ado>
           <Data>000000000000</Data>
           <Retries>3</Retries>
@@ -935,19 +1086,19 @@
           <Comment><![CDATA[set device state to OP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>5</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>288</Ado>
           <Data>0800</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
-          <Timeout>15000</Timeout>
+          <Timeout>20000</Timeout>
         </InitCmd>
         <InitCmd>
           <Transition>SO</Transition>
           <Comment><![CDATA[check device state for OP]]></Comment>
           <Requires>cycle</Requires>
           <Cmd>4</Cmd>
-          <Adp>1003</Adp>
+          <Adp>1005</Adp>
           <Ado>304</Ado>
           <Data>000000000000</Data>
           <Cnt>1</Cnt>
@@ -955,13 +1106,13 @@
           <Validate>
             <Data>080000000000</Data>
             <DataMask>1f0000000000</DataMask>
-            <Timeout>15000</Timeout>
+            <Timeout>20000</Timeout>
           </Validate>
         </InitCmd>
       </InitCmds>
       <PreviousPort Selected="true">
         <Port>B</Port>
-        <PhysAddr>1001</PhysAddr>
+        <PhysAddr>1003</PhysAddr>
       </PreviousPort>
       <DC>
         <PotentialReferenceClock>false</PotentialReferenceClock>
@@ -988,15 +1139,6 @@
           <CycleTimeSync1 Factor="-1">0</CycleTimeSync1>
           <ShiftTimeSync1>0</ShiftTimeSync1>
         </OpMode>
-        <OpMode>
-          <Name>DcSync62.5</Name>
-          <Desc>Sync cycle time: 62.5µs</Desc>
-          <AssignActivate>#x730</AssignActivate>
-          <CycleTimeSync0 Factor="0">62500</CycleTimeSync0>
-          <ShiftTimeSync0>0</ShiftTimeSync0>
-          <CycleTimeSync1 Factor="-1">0</CycleTimeSync1>
-          <ShiftTimeSync1>0</ShiftTimeSync1>
-        </OpMode>
       </DC>
       <Settings>
         <StateMachine>
@@ -1007,7 +1149,7 @@
           <FinalState>SAFEOP_CFGMODE</FinalState>
           <Timeout>
             <I2P>3000</I2P>
-            <P2S2O>15000</P2S2O>
+            <P2S2O>20000</P2S2O>
             <Back2PI>10000</Back2PI>
             <O2S>500</O2S>
           </Timeout>
@@ -1041,24 +1183,25 @@
     </Slave>
     <AmsAddress>
       <AmsNetId>0.0.0.0.5.1</AmsNetId>
-      <AmsPort>1003</AmsPort>
+      <AmsPort>1005</AmsPort>
     </AmsAddress>
-    <SoeChannels>1</SoeChannels>
-    <LinkedAxis>TINC^NC-Task 1 SAF^Axes^Axis 6</LinkedAxis>
+    <SoeChannels>2</SoeChannels>
+    <LinkedAxis Chn="0">TINC^NC-Task 1 SAF^Axes^Axis 7</LinkedAxis>
+    <LinkedAxis Chn="1">TINC^NC-Task 1 SAF^Axes^Axis 8</LinkedAxis>
   </EtherCAT>
   <Xml>
     <TcDMDrive>
-      <SortId>1</SortId>
+      <SortId>2</SortId>
       <DriveModuleType>31</DriveModuleType>
       <TcLink ProtocalType="1">
         <TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
-        <IoItemPathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</IoItemPathName>
-        <ItemId>10</ItemId>
-        <ObjectId>#x0302000a</ObjectId>
+        <IoItemPathName>TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)</IoItemPathName>
+        <ItemId>12</ItemId>
+        <ObjectId>#x0302000c</ObjectId>
       </TcLink>
-      <OrderCode>AX5125-0000-02xx</OrderCode>
-      <Name>Elevation (AX5125-0000-0214)</Name>
-      <ProductRevision>AX5125-0000-0214</ProductRevision>
+      <OrderCode>AX5206-0000-02xx</OrderCode>
+      <Name>Derotator (AX5206-0000-0215)</Name>
+      <ProductRevision>AX5206-0000-0215</ProductRevision>
       <WatchLog UpdateIntervalInMs="500">
         <WatchLogItem>
           <WatchLogParaSoE Index="33092" />
@@ -1147,8 +1290,8 @@
         <Channel ChnId="0">
           <TcLink>
             <TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
-            <IoItemPathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</IoItemPathName>
-            <NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 6</NcItemPathName>
+            <IoItemPathName>TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)</IoItemPathName>
+            <NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 7</NcItemPathName>
           </TcLink>
           <SelectedModifyOptPDOsMode>0</SelectedModifyOptPDOsMode>
           <Block Id="0">
@@ -1176,6 +1319,107 @@
             <Controller />
           </Block>
           <WatchLog ChnId="0" UpdateIntervalInMs="500">
+            <WatchLogItem>
+              <WatchLogParaSoE Index="32821" />
+              <Alias>Motor type</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <DependOn>
+                <WatchLogItem>
+                  <WatchLogParaSoE Index="32866" SubItemPath="eNamePlateType" />
+                </WatchLogItem>
+                <Condition Value="1">
+                  <WatchLogItem>
+                    <WatchLogParaSoE Index="32866" SubItemPath="uData.eNamePlateType.stMotorPara.lSerialNumber" />
+                  </WatchLogItem>
+                </Condition>
+                <Condition Value="2">
+                  <WatchLogItem>
+                    <WatchLogParaSoE Index="32866" SubItemPath="uData.stElecDataSheet.stMotorDataElecDataSheet.strSerialNumber" />
+                  </WatchLogItem>
+                </Condition>
+              </DependOn>
+              <Alias>Motor SN</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="32919" SubItemPath="stParaCh.llSerialNumber" />
+              <Alias>Feedback SN</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="135" />
+              <Alias>Axis state</Alias>
+              <ValueMask>57352</ValueMask>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="135" SubItemPath="ActualOperationMode" />
+              <Alias>Actual operation mode</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="32831" />
+              <Alias>Motor I²T</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="383" />
+              <Alias>Motor temperature</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="32833" />
+              <Alias>Thermistor resistor</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="384" />
+              <Alias>Amplifier temperature</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="33229" />
+              <Alias>Motor current</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="36" />
+              <Alias>Velocity command</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="40" />
+              <Alias>Actual velocity</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="51" />
+              <Alias>Motor ratation angle</Alias>
+            </WatchLogItem>
+          </WatchLog>
+        </Channel>
+        <Channel ChnId="1">
+          <TcLink>
+            <TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+            <IoItemPathName>TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)</IoItemPathName>
+            <NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 8</NcItemPathName>
+          </TcLink>
+          <SelectedModifyOptPDOsMode>0</SelectedModifyOptPDOsMode>
+          <Block Id="0">
+            <Controller />
+          </Block>
+          <Block Id="1">
+            <Controller />
+          </Block>
+          <Block Id="2">
+            <Controller />
+          </Block>
+          <Block Id="3">
+            <Controller />
+          </Block>
+          <Block Id="4">
+            <Controller />
+          </Block>
+          <Block Id="5">
+            <Controller />
+          </Block>
+          <Block Id="6">
+            <Controller />
+          </Block>
+          <Block Id="7">
+            <Controller />
+          </Block>
+          <WatchLog ChnId="1" UpdateIntervalInMs="500">
             <WatchLogItem>
               <WatchLogParaSoE Index="32821" />
               <Alias>Motor type</Alias>

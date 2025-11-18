@@ -2040,7 +2040,7 @@ External Setpoint Generation:
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
 			<BitSize>5</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -2049,7 +2049,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
 			<BitSize>2</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -5024,43 +5024,51 @@ External Setpoint Generation:
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
+								<Entry Name="MAIN.HydraulicsControl.IbOilLow" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[ 2.1]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6010" Sub="#x01">
+								<Entry Name="MAIN.HydraulicsControl.IbOilHigh" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[ ?]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6020" Sub="#x01">
+								<Entry Name="MAIN.HydraulicsControl.IbOilPressureOK" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[ 2.3]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6030" Sub="#x01">
+								<Entry Name="MAIN.HydraulicsControl.IbOilHot" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[ 2.4]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6040" Sub="#x01">
+								<Entry Name="MAIN.HydraulicsControl.IbOilCold" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[ 2.5]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6050" Sub="#x01">
+								<Entry Name="MAIN.HydraulicsControl.IbOilFilterDirty" Index="#x6050" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[ 2.6]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6060" Sub="#x01">
+								<Entry Name="MAIN.HydraulicsControl.IbOilpanMaximum" Index="#x6060" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DIN39 4.6]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6070" Sub="#x01">
+								<Entry Name="MAIN.HydraulicsControl.IbOilReserve" Index="#x6070" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DIN40 4.7]]></Comment>
 								</Entry>
 							</Pdo>
 						</EtherCAT>
@@ -6410,22 +6418,22 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7000" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.OabOpenCover[1]" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7010" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.OabCloseCover[1]" Index="#x7010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7020" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.OabOpenCover[2]" Index="#x7020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7030" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.OabCloseCover[2]" Index="#x7030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -6438,12 +6446,12 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7000" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.OabOpenCover[3]" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7010" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.OabCloseCover[3]" Index="#x7010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -6466,32 +6474,32 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.IabCoverOpen[1]" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6010" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.IabCoverClosed[1]" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6020" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.IabCoverOpen[2]" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6030" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.IabCoverClosed[2]" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6040" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.IabCoverOpen[3]" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6050" Sub="#x01">
+								<Entry Name="MAIN.CoverControl.IabCoverClosed[3]" Index="#x6050" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -6514,28 +6522,33 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
+								<Entry Name="MAIN.CabinetControl.inButtonStart" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DIN4 0.3]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6010" Sub="#x01">
+								<Entry Name="MAIN.CabinetControl.inButtonStop" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DIN5 0.4]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6020" Sub="#x01">
+								<Entry Name="MAIN.CabinetControl.inButtonReset" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DIN8 0.7]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6030" Sub="#x01">
+								<Entry Name="MAIN.CabinetControl.inKeyLocal" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DIN3 0.2]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6040" Sub="#x01">
+								<Entry Name="MAIN.CabinetControl.inKeyClearBrakes" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DIN15 1.6]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
@@ -6562,18 +6575,21 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7000" Sub="#x01">
+								<Entry Name="MAIN.CabinetControl.outLampPower" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DOUT1 0.0]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7010" Sub="#x01">
+								<Entry Name="MAIN.CabinetControl.outLampManual" Index="#x7010" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DOUT2 0.1]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7020" Sub="#x01">
+								<Entry Name="MAIN.CabinetControl.outLampError" Index="#x7020" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DOUT3 0.2	]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
@@ -6590,42 +6606,43 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbBCD0" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[DIN17 2.0]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6010" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbBCD2" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6020" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbBCD4" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6030" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbBCD8" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6040" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbResetButton" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6050" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbDirectionUp" Index="#x6050" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6060" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbDirectionDown" Index="#x6060" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6070" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbEnableKey" Index="#x6070" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -6638,17 +6655,17 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbEnableButton" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6010" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbDirectionLeft" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6020" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.IbDirectionRight" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -6686,27 +6703,27 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7000" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.ObLampUp" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7010" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.ObLampDown" Index="#x7010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7020" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.ObLampRight" Index="#x7020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7030" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.ObLampLeft" Index="#x7030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 5" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7040" Sub="#x01">
+								<Entry Name="MAIN.PendantControl.ObLampError" Index="#x7040" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -6909,6 +6926,206 @@ Bit1: Value smaller than Limit2]]></Comment>
 								</Element>
 							</StatusBar>
 						</AX5XXXDriveTool>
+						<TcDMDrive>
+							<SortId>0</SortId>
+							<DriveModuleType>31</DriveModuleType>
+							<TcLink ProtocalType="1">
+								<TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+								<IoItemPathName>TIID^Device 4 (EtherCAT)^Azimuth (AX5125-0000-0214)</IoItemPathName>
+								<ItemId>8</ItemId>
+								<ObjectId>#x03020008</ObjectId>
+							</TcLink>
+							<OrderCode>AX5125-0000-02xx</OrderCode>
+							<Name>Azimuth (AX5125-0000-0214)</Name>
+							<ProductRevision>AX5125-0000-0214</ProductRevision>
+							<WatchLog UpdateIntervalInMs="500">
+								<WatchLogItem>
+									<WatchLogParaSoE Index="33092"/>
+									<Alias>Type</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="432"/>
+									<Alias>Serial Nr</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="30"/>
+									<Alias>Firmware version</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="33080"/>
+									<Alias>PCB temperature</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="380"/>
+									<Alias>DC bus voltage</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="32977"/>
+									<Alias>Int. brake resistor power</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="32978"/>
+									<Alias>Ext. brake resistor power</Alias>
+								</WatchLogItem>
+							</WatchLog>
+							<Infeed>
+								<PowerSupplyMains>
+									<Name>InfeedTypePowerSupplyMains</Name>
+									<ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
+									<Parameter>
+										<PropertyName>PowerSupplyType</PropertyName>
+										<Value>4</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MainVoltage</PropertyName>
+										<Value>400</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UTolerancePositive</PropertyName>
+										<Value>10</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UToleranceNegative</PropertyName>
+										<Value>10</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MinDcLinkVoltage</PropertyName>
+										<Value>434.784429344014</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MaxDcLinkVoltage</PropertyName>
+										<Value>875</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UmainsPhaseErrDetection</PropertyName>
+										<Value>1</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>LongFilterForUmainsPhaseErrDetection</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+								</PowerSupplyMains>
+							</Infeed>
+							<Inverter>
+								<Device>
+									<Name>DMInverterTypeDevice</Name>
+									<ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
+									<Parameter>
+										<PropertyName>MaxAllowedMainVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MinDcLinkVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MaxDcLinkVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+								</Device>
+								<Channel ChnId="0">
+									<TcLink>
+										<TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+										<IoItemPathName>TIID^Device 4 (EtherCAT)^Azimuth (AX5125-0000-0214)</IoItemPathName>
+										<NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 5</NcItemPathName>
+									</TcLink>
+									<SelectedModifyOptPDOsMode>0</SelectedModifyOptPDOsMode>
+									<Block Id="0">
+										<Controller/>
+									</Block>
+									<Block Id="1">
+										<Controller/>
+									</Block>
+									<Block Id="2">
+										<Controller/>
+									</Block>
+									<Block Id="3">
+										<Controller/>
+									</Block>
+									<Block Id="4">
+										<Controller/>
+									</Block>
+									<Block Id="5">
+										<Controller/>
+									</Block>
+									<Block Id="6">
+										<Controller/>
+									</Block>
+									<Block Id="7">
+										<Controller/>
+									</Block>
+									<WatchLog ChnId="0" UpdateIntervalInMs="500">
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32821"/>
+											<Alias>Motor type</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<DependOn>
+												<WatchLogItem>
+													<WatchLogParaSoE Index="32866" SubItemPath="eNamePlateType"/>
+												</WatchLogItem>
+												<Condition Value="1">
+													<WatchLogItem>
+														<WatchLogParaSoE Index="32866" SubItemPath="uData.eNamePlateType.stMotorPara.lSerialNumber"/>
+													</WatchLogItem>
+												</Condition>
+												<Condition Value="2">
+													<WatchLogItem>
+														<WatchLogParaSoE Index="32866" SubItemPath="uData.stElecDataSheet.stMotorDataElecDataSheet.strSerialNumber"/>
+													</WatchLogItem>
+												</Condition>
+											</DependOn>
+											<Alias>Motor SN</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32919" SubItemPath="stParaCh.llSerialNumber"/>
+											<Alias>Feedback SN</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="135"/>
+											<Alias>Axis state</Alias>
+											<ValueMask>57352</ValueMask>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="135" SubItemPath="ActualOperationMode"/>
+											<Alias>Actual operation mode</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32831"/>
+											<Alias>Motor I²T</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="383"/>
+											<Alias>Motor temperature</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32833"/>
+											<Alias>Thermistor resistor</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="384"/>
+											<Alias>Amplifier temperature</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="33229"/>
+											<Alias>Motor current</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="36"/>
+											<Alias>Velocity command</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="40"/>
+											<Alias>Actual velocity</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="51"/>
+											<Alias>Motor ratation angle</Alias>
+										</WatchLogItem>
+									</WatchLog>
+								</Channel>
+							</Inverter>
+						</TcDMDrive>
 					</Xml>
 					<EtherCAT SlaveType="2" PdiType="#x0c08" MboxDataLinkLayer="true" StateMBoxPolling="true" CfgModeSafeOp="true" DownloadPdoCfg="true" CycleMBoxPollingTime="0" FoeType="1" SoeChannels="1" VendorId="#x00000002" ProductCode="#x14056012" RevisionNo="#x00d60000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="15000" TimeoutStateChange3="10000" TimeoutStateChange4="500" AutoRestoreAfterWcOk="true" CheckRevisionNoType="4" PortPhys="12305" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="AX5125-0000-0214 EtherCAT Drive (SoE, 1 Ch.)" Desc="AX5125-0000-0214" PortABoxInfo="#x00ffffff">
 						<SyncMan>001880002600010001000000800080008000001826010000</SyncMan>
@@ -6932,6 +7149,11 @@ Bit1: Value smaller than Limit2]]></Comment>
 						<MBoxUserCmdData>020005000a0000001700000000000000000000000000000000000000000000000340020000000000d0075473637963202d20436f6d6d206379636c652074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000000e000000000000000000000000000000000000000000000003402000000000000b004f7065726174696f6e206d6f646500</MBoxUserCmdData>
 						<MBoxUserCmdData>004005000a0000001e0000000000000000000000000000000000000000000000034030810000000001005265706f727420646961676e6f737469637320696e666f726d6174696f6e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000001d00000000000000000000000000000000000000000000000340cc80000000000908506f776572206d616e6167656d656e7420636f6e74726f6c20776f726400</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000001500000000000000000000000000000000000000000000000340c98000000000a00f4e6f6d696e616c206d61696e7320766f6c7461676500</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000002600000000000000000000000000000000000000000000000340cb800000000064004d61696e7320766f6c74616765206e6567617469766520746f6c6572616e63652072616e676500</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000002600000000000000000000000000000000000000000000000340ca800000000064004d61696e7320766f6c7461676520706f73697469766520746f6c6572616e63652072616e676500</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000c0000001a000000000000000000000000000000000000000000000003405d800000000000000000436f6e66696775726564206368616e6e656c2063757272656e7400</MBoxUserCmdData>
 						<Pdo Name="AT" Index="#x0010" Flags="#x0001" SyncMan="3">
 							<Entry Name="Drive status word" Index="#x0087" Flags="#x00000800">
 								<Type>UINT</Type>
@@ -7188,6 +7410,208 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Box Id="10" BoxType="9099" BoxFlags="#x00000020">
 					<Name>Elevation (AX5125-0000-0214)</Name>
 					<ImageId>1009</ImageId>
+					<Xml>
+						<TcDMDrive>
+							<SortId>1</SortId>
+							<DriveModuleType>31</DriveModuleType>
+							<TcLink ProtocalType="1">
+								<TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+								<IoItemPathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</IoItemPathName>
+								<ItemId>10</ItemId>
+								<ObjectId>#x0302000a</ObjectId>
+							</TcLink>
+							<OrderCode>AX5125-0000-02xx</OrderCode>
+							<Name>Elevation (AX5125-0000-0214)</Name>
+							<ProductRevision>AX5125-0000-0214</ProductRevision>
+							<WatchLog UpdateIntervalInMs="500">
+								<WatchLogItem>
+									<WatchLogParaSoE Index="33092"/>
+									<Alias>Type</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="432"/>
+									<Alias>Serial Nr</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="30"/>
+									<Alias>Firmware version</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="33080"/>
+									<Alias>PCB temperature</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="380"/>
+									<Alias>DC bus voltage</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="32977"/>
+									<Alias>Int. brake resistor power</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="32978"/>
+									<Alias>Ext. brake resistor power</Alias>
+								</WatchLogItem>
+							</WatchLog>
+							<Infeed>
+								<PowerSupplyMains>
+									<Name>InfeedTypePowerSupplyMains</Name>
+									<ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
+									<Parameter>
+										<PropertyName>PowerSupplyType</PropertyName>
+										<Value>4</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MainVoltage</PropertyName>
+										<Value>400</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UTolerancePositive</PropertyName>
+										<Value>10</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UToleranceNegative</PropertyName>
+										<Value>10</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MinDcLinkVoltage</PropertyName>
+										<Value>434.784429344014</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MaxDcLinkVoltage</PropertyName>
+										<Value>875</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UmainsPhaseErrDetection</PropertyName>
+										<Value>1</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>LongFilterForUmainsPhaseErrDetection</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+								</PowerSupplyMains>
+							</Infeed>
+							<Inverter>
+								<Device>
+									<Name>DMInverterTypeDevice</Name>
+									<ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
+									<Parameter>
+										<PropertyName>MaxAllowedMainVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MinDcLinkVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MaxDcLinkVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+								</Device>
+								<Channel ChnId="0">
+									<TcLink>
+										<TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+										<IoItemPathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</IoItemPathName>
+										<NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 6</NcItemPathName>
+									</TcLink>
+									<SelectedModifyOptPDOsMode>0</SelectedModifyOptPDOsMode>
+									<Block Id="0">
+										<Controller/>
+									</Block>
+									<Block Id="1">
+										<Controller/>
+									</Block>
+									<Block Id="2">
+										<Controller/>
+									</Block>
+									<Block Id="3">
+										<Controller/>
+									</Block>
+									<Block Id="4">
+										<Controller/>
+									</Block>
+									<Block Id="5">
+										<Controller/>
+									</Block>
+									<Block Id="6">
+										<Controller/>
+									</Block>
+									<Block Id="7">
+										<Controller/>
+									</Block>
+									<WatchLog ChnId="0" UpdateIntervalInMs="500">
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32821"/>
+											<Alias>Motor type</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<DependOn>
+												<WatchLogItem>
+													<WatchLogParaSoE Index="32866" SubItemPath="eNamePlateType"/>
+												</WatchLogItem>
+												<Condition Value="1">
+													<WatchLogItem>
+														<WatchLogParaSoE Index="32866" SubItemPath="uData.eNamePlateType.stMotorPara.lSerialNumber"/>
+													</WatchLogItem>
+												</Condition>
+												<Condition Value="2">
+													<WatchLogItem>
+														<WatchLogParaSoE Index="32866" SubItemPath="uData.stElecDataSheet.stMotorDataElecDataSheet.strSerialNumber"/>
+													</WatchLogItem>
+												</Condition>
+											</DependOn>
+											<Alias>Motor SN</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32919" SubItemPath="stParaCh.llSerialNumber"/>
+											<Alias>Feedback SN</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="135"/>
+											<Alias>Axis state</Alias>
+											<ValueMask>57352</ValueMask>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="135" SubItemPath="ActualOperationMode"/>
+											<Alias>Actual operation mode</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32831"/>
+											<Alias>Motor I²T</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="383"/>
+											<Alias>Motor temperature</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32833"/>
+											<Alias>Thermistor resistor</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="384"/>
+											<Alias>Amplifier temperature</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="33229"/>
+											<Alias>Motor current</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="36"/>
+											<Alias>Velocity command</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="40"/>
+											<Alias>Actual velocity</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="51"/>
+											<Alias>Motor ratation angle</Alias>
+										</WatchLogItem>
+									</WatchLog>
+								</Channel>
+							</Inverter>
+						</TcDMDrive>
+					</Xml>
 					<EtherCAT SlaveType="2" PdiType="#x0c08" MboxDataLinkLayer="true" StateMBoxPolling="true" CfgModeSafeOp="true" DownloadPdoCfg="true" CycleMBoxPollingTime="0" FoeType="1" SoeChannels="1" VendorId="#x00000002" ProductCode="#x14056012" RevisionNo="#x00d60000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="15000" TimeoutStateChange3="10000" TimeoutStateChange4="500" AutoRestoreAfterWcOk="true" CheckRevisionNoType="4" PortPhys="12305" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="AX5125-0000-0214 EtherCAT Drive (SoE, 1 Ch.)" Desc="AX5125-0000-0214" PortABoxInfo="#x01000008">
 						<SyncMan>001880002600010001000000800080008000001826010000</SyncMan>
 						<SyncMan>001a80002200010002000000800080008000001a22010000</SyncMan>
@@ -7210,6 +7634,10 @@ Bit1: Value smaller than Limit2]]></Comment>
 						<MBoxUserCmdData>020005000a0000001700000000000000000000000000000000000000000000000340020000000000d0075473637963202d20436f6d6d206379636c652074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000000e000000000000000000000000000000000000000000000003402000000000000b004f7065726174696f6e206d6f646500</MBoxUserCmdData>
 						<MBoxUserCmdData>004005000a0000001e0000000000000000000000000000000000000000000000034030810000000001005265706f727420646961676e6f737469637320696e666f726d6174696f6e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000001d00000000000000000000000000000000000000000000000340cc80000000000908506f776572206d616e6167656d656e7420636f6e74726f6c20776f726400</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000001500000000000000000000000000000000000000000000000340c98000000000a00f4e6f6d696e616c206d61696e7320766f6c7461676500</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000002600000000000000000000000000000000000000000000000340cb800000000064004d61696e7320766f6c74616765206e6567617469766520746f6c6572616e63652072616e676500</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000002600000000000000000000000000000000000000000000000340ca800000000064004d61696e7320766f6c7461676520706f73697469766520746f6c6572616e63652072616e676500</MBoxUserCmdData>
 						<Pdo Name="AT" Index="#x0010" Flags="#x0001" SyncMan="3">
 							<Entry Name="Drive status word" Index="#x0087" Flags="#x00000800">
 								<Type>UINT</Type>
@@ -7466,6 +7894,309 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Box Id="12" BoxType="9099" BoxFlags="#x00000020">
 					<Name>Derotator (AX5206-0000-0215)</Name>
 					<ImageId>1010</ImageId>
+					<Xml>
+						<TcDMDrive>
+							<SortId>2</SortId>
+							<DriveModuleType>31</DriveModuleType>
+							<TcLink ProtocalType="1">
+								<TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+								<IoItemPathName>TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)</IoItemPathName>
+								<ItemId>12</ItemId>
+								<ObjectId>#x0302000c</ObjectId>
+							</TcLink>
+							<OrderCode>AX5206-0000-02xx</OrderCode>
+							<Name>Derotator (AX5206-0000-0215)</Name>
+							<ProductRevision>AX5206-0000-0215</ProductRevision>
+							<WatchLog UpdateIntervalInMs="500">
+								<WatchLogItem>
+									<WatchLogParaSoE Index="33092"/>
+									<Alias>Type</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="432"/>
+									<Alias>Serial Nr</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="30"/>
+									<Alias>Firmware version</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="33080"/>
+									<Alias>PCB temperature</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="380"/>
+									<Alias>DC bus voltage</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="32977"/>
+									<Alias>Int. brake resistor power</Alias>
+								</WatchLogItem>
+								<WatchLogItem>
+									<WatchLogParaSoE Index="32978"/>
+									<Alias>Ext. brake resistor power</Alias>
+								</WatchLogItem>
+							</WatchLog>
+							<Infeed>
+								<PowerSupplyMains>
+									<Name>InfeedTypePowerSupplyMains</Name>
+									<ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
+									<Parameter>
+										<PropertyName>PowerSupplyType</PropertyName>
+										<Value>4</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MainVoltage</PropertyName>
+										<Value>400</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UTolerancePositive</PropertyName>
+										<Value>10</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UToleranceNegative</PropertyName>
+										<Value>10</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MinDcLinkVoltage</PropertyName>
+										<Value>434.784429344014</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MaxDcLinkVoltage</PropertyName>
+										<Value>875</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>UmainsPhaseErrDetection</PropertyName>
+										<Value>1</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>LongFilterForUmainsPhaseErrDetection</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+								</PowerSupplyMains>
+							</Infeed>
+							<Inverter>
+								<Device>
+									<Name>DMInverterTypeDevice</Name>
+									<ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
+									<Parameter>
+										<PropertyName>MaxAllowedMainVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MinDcLinkVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+									<Parameter>
+										<PropertyName>MaxDcLinkVoltage</PropertyName>
+										<Value>0</Value>
+									</Parameter>
+								</Device>
+								<Channel ChnId="0">
+									<TcLink>
+										<TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+										<IoItemPathName>TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)</IoItemPathName>
+										<NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 7</NcItemPathName>
+									</TcLink>
+									<SelectedModifyOptPDOsMode>0</SelectedModifyOptPDOsMode>
+									<Block Id="0">
+										<Controller/>
+									</Block>
+									<Block Id="1">
+										<Controller/>
+									</Block>
+									<Block Id="2">
+										<Controller/>
+									</Block>
+									<Block Id="3">
+										<Controller/>
+									</Block>
+									<Block Id="4">
+										<Controller/>
+									</Block>
+									<Block Id="5">
+										<Controller/>
+									</Block>
+									<Block Id="6">
+										<Controller/>
+									</Block>
+									<Block Id="7">
+										<Controller/>
+									</Block>
+									<WatchLog ChnId="0" UpdateIntervalInMs="500">
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32821"/>
+											<Alias>Motor type</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<DependOn>
+												<WatchLogItem>
+													<WatchLogParaSoE Index="32866" SubItemPath="eNamePlateType"/>
+												</WatchLogItem>
+												<Condition Value="1">
+													<WatchLogItem>
+														<WatchLogParaSoE Index="32866" SubItemPath="uData.eNamePlateType.stMotorPara.lSerialNumber"/>
+													</WatchLogItem>
+												</Condition>
+												<Condition Value="2">
+													<WatchLogItem>
+														<WatchLogParaSoE Index="32866" SubItemPath="uData.stElecDataSheet.stMotorDataElecDataSheet.strSerialNumber"/>
+													</WatchLogItem>
+												</Condition>
+											</DependOn>
+											<Alias>Motor SN</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32919" SubItemPath="stParaCh.llSerialNumber"/>
+											<Alias>Feedback SN</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="135"/>
+											<Alias>Axis state</Alias>
+											<ValueMask>57352</ValueMask>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="135" SubItemPath="ActualOperationMode"/>
+											<Alias>Actual operation mode</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32831"/>
+											<Alias>Motor I²T</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="383"/>
+											<Alias>Motor temperature</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32833"/>
+											<Alias>Thermistor resistor</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="384"/>
+											<Alias>Amplifier temperature</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="33229"/>
+											<Alias>Motor current</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="36"/>
+											<Alias>Velocity command</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="40"/>
+											<Alias>Actual velocity</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="51"/>
+											<Alias>Motor ratation angle</Alias>
+										</WatchLogItem>
+									</WatchLog>
+								</Channel>
+								<Channel ChnId="1">
+									<TcLink>
+										<TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+										<IoItemPathName>TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)</IoItemPathName>
+										<NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 8</NcItemPathName>
+									</TcLink>
+									<SelectedModifyOptPDOsMode>0</SelectedModifyOptPDOsMode>
+									<Block Id="0">
+										<Controller/>
+									</Block>
+									<Block Id="1">
+										<Controller/>
+									</Block>
+									<Block Id="2">
+										<Controller/>
+									</Block>
+									<Block Id="3">
+										<Controller/>
+									</Block>
+									<Block Id="4">
+										<Controller/>
+									</Block>
+									<Block Id="5">
+										<Controller/>
+									</Block>
+									<Block Id="6">
+										<Controller/>
+									</Block>
+									<Block Id="7">
+										<Controller/>
+									</Block>
+									<WatchLog ChnId="1" UpdateIntervalInMs="500">
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32821"/>
+											<Alias>Motor type</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<DependOn>
+												<WatchLogItem>
+													<WatchLogParaSoE Index="32866" SubItemPath="eNamePlateType"/>
+												</WatchLogItem>
+												<Condition Value="1">
+													<WatchLogItem>
+														<WatchLogParaSoE Index="32866" SubItemPath="uData.eNamePlateType.stMotorPara.lSerialNumber"/>
+													</WatchLogItem>
+												</Condition>
+												<Condition Value="2">
+													<WatchLogItem>
+														<WatchLogParaSoE Index="32866" SubItemPath="uData.stElecDataSheet.stMotorDataElecDataSheet.strSerialNumber"/>
+													</WatchLogItem>
+												</Condition>
+											</DependOn>
+											<Alias>Motor SN</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32919" SubItemPath="stParaCh.llSerialNumber"/>
+											<Alias>Feedback SN</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="135"/>
+											<Alias>Axis state</Alias>
+											<ValueMask>57352</ValueMask>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="135" SubItemPath="ActualOperationMode"/>
+											<Alias>Actual operation mode</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32831"/>
+											<Alias>Motor I²T</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="383"/>
+											<Alias>Motor temperature</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="32833"/>
+											<Alias>Thermistor resistor</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="384"/>
+											<Alias>Amplifier temperature</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="33229"/>
+											<Alias>Motor current</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="36"/>
+											<Alias>Velocity command</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="40"/>
+											<Alias>Actual velocity</Alias>
+										</WatchLogItem>
+										<WatchLogItem>
+											<WatchLogParaSoE Index="51"/>
+											<Alias>Motor ratation angle</Alias>
+										</WatchLogItem>
+									</WatchLog>
+								</Channel>
+							</Inverter>
+						</TcDMDrive>
+					</Xml>
 					<EtherCAT SlaveType="2" PdiType="#x0c08" MboxDataLinkLayer="true" StateMBoxPolling="true" CfgModeSafeOp="true" DownloadPdoCfg="true" CycleMBoxPollingTime="0" FoeType="1" SoeChannels="2" VendorId="#x00000002" ProductCode="#x14566012" RevisionNo="#x00d70000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="20000" TimeoutStateChange3="10000" TimeoutStateChange4="500" AutoRestoreAfterWcOk="true" CheckRevisionNoType="4" PortPhys="12305" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="AX5206-0000-0215 EtherCAT Drive (SoE, 2 Ch.)" Desc="AX5206-0000-0215" PortABoxInfo="#x0100000a">
 						<SyncMan>001880002600010001000000800080008000001826010000</SyncMan>
 						<SyncMan>001a80002200010002000000800080008000001a22010000</SyncMan>
@@ -7490,6 +8221,10 @@ Bit1: Value smaller than Limit2]]></Comment>
 						<MBoxUserCmdData>020005000a0000000e000000000000000000000000000000000000000000000023402000000000000b004f7065726174696f6e206d6f646500</MBoxUserCmdData>
 						<MBoxUserCmdData>004005000a0000001e0000000000000000000000000000000000000000000000034030810000000001005265706f727420646961676e6f737469637320696e666f726d6174696f6e00</MBoxUserCmdData>
 						<MBoxUserCmdData>004005000a0000001e0000000000000000000000000000000000000000000000234030810000000001005265706f727420646961676e6f737469637320696e666f726d6174696f6e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000001d00000000000000000000000000000000000000000000000340cc80000000000908506f776572206d616e6167656d656e7420636f6e74726f6c20776f726400</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000001500000000000000000000000000000000000000000000000340c98000000000a00f4e6f6d696e616c206d61696e7320766f6c7461676500</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000002600000000000000000000000000000000000000000000000340cb800000000064004d61696e7320766f6c74616765206e6567617469766520746f6c6572616e63652072616e676500</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a0000002600000000000000000000000000000000000000000000000340ca800000000064004d61696e7320766f6c7461676520706f73697469766520746f6c6572616e63652072616e676500</MBoxUserCmdData>
 						<Pdo Name="AT 1" Index="#x0010" Flags="#x0001" SyncMan="3">
 							<Entry Name="Drive status word" Index="#x0087" Flags="#x00000800">
 								<Type>UINT</Type>
@@ -8391,22 +9126,21 @@ Bit1: Value smaller than Limit2]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-0050-0304-1000-040350000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030050"/>
 		<MappingInfo Identifier="{00000000-0050-0304-3000-040350000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-0060-0304-3000-040361000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{05000010-2001-0850-3000-040300205008}" Id="#x020300c0" Watchdog="14000000040000000400000004000000"/>
-		<MappingInfo Identifier="{03040010-0010-0304-1000-040310000403}" Id="#x02030030" Watchdog="00000000001000000400000004000000"/>
+		<MappingInfo Identifier="{03040010-0010-0304-1000-040310000403}" Id="#x02030030" Watchdog="04000000040000000400000004000000"/>
+		<MappingInfo Identifier="{03040010-0050-0304-1000-040350000403}" Id="#x02030040" Watchdog="04000000140000000400000004000000"/>
 		<OwnerA Name="TIID^Device 1 (EtherCAT)">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Safety IN (EL1904)">
-				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionOutputs^Message_28 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
+				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionInputs^Message_28 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Safety Logic (EL6910)">
-				<Link VarA="Term 8 (EK1200)^Safety IN (EL1904)^Module 1 (FSOES)^RxPDO^FSOE" VarB="ConnectionInputs^Message_28 TxPDO"/>
+				<Link VarA="Term 8 (EK1200)^Safety IN (EL1904)^Module 1 (FSOES)^TxPDO^FSOE" VarB="ConnectionOutputs^Message_28 RxPDO"/>
+				<Link VarA="Term 8 (EK1200)^Safety OUT (EL2904)^Module 1 (FSOES)^RxPDO^FSOE" VarB="ConnectionInputs^Message_8 TxPDO"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Safety OUT (EL2904)">
-				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionInputs^Message_27 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
-				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionInputs^Message_8 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
-				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionOutputs^Message_27 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
 				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionOutputs^Message_8 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Azimuth (AX5125-0000-0214)^Term 9 (AX5805)">
@@ -8414,20 +9148,24 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionOutputs^Message_5 RxPDO" VarB="Module 1 (Safety Process Data, 1 axis)^Inputs (Statusword)^FSOE"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)^Term 13 (AX5805)">
+				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionInputs^Message_17 TxPDO" VarB="Module 1 (Safety Process Data, 2 axis)^Outputs (Controlword)^FSOE"/>
 				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionOutputs^Message_17 RxPDO" VarB="Module 1 (Safety Process Data, 2 axis)^Inputs (Statusword)^FSOE"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)^Term 11 (AX5805)">
-				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionOutputs^Message_6 RxPDO" VarB="Module 1 (Safety Process Data, 1 axis)^Inputs (Statusword)^FSOE"/>
+				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionInputs^Message_6 TxPDO" VarB="Module 1 (Safety Process Data, 1 axis)^Outputs (Controlword)^FSOE"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 14 (EK1100)^Term 17 (EL2904)">
+				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionInputs^Message_27 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
+				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionOutputs^Message_27 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 14 (EK1100)^Term 18 (EL1904)">
-				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionOutputs^Message_7 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
+				<Link VarA="Term 8 (EK1200)^Safety Logic (EL6910)^ConnectionInputs^Message_7 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIID^Device 4 (EtherCAT)">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Safety Logic (EL6910)">
-				<Link VarA="Derotator (AX5206-0000-0215)^Term 13 (AX5805)^Module 1 (Safety Process Data, 2 axis)^Outputs (Controlword)^FSOE" VarB="ConnectionInputs^Message_17 TxPDO"/>
-				<Link VarA="Elevation (AX5125-0000-0214)^Term 11 (AX5805)^Module 1 (Safety Process Data, 1 axis)^Outputs (Controlword)^FSOE" VarB="ConnectionInputs^Message_6 TxPDO"/>
-				<Link VarA="Term 14 (EK1100)^Term 18 (EL1904)^Module 1 (FSOES)^RxPDO^FSOE" VarB="ConnectionInputs^Message_7 TxPDO"/>
+				<Link VarA="Elevation (AX5125-0000-0214)^Term 11 (AX5805)^Module 1 (Safety Process Data, 1 axis)^Inputs (Statusword)^FSOE" VarB="ConnectionOutputs^Message_6 RxPDO"/>
+				<Link VarA="Term 14 (EK1100)^Term 18 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE" VarB="ConnectionOutputs^Message_7 RxPDO"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis 5">
@@ -8498,11 +9236,33 @@ Bit1: Value smaller than Limit2]]></Comment>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Brake AzEl (EL2004)">
 				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObBrakeAzEl" VarB="Channel 2^MAIN.HydraulicsControl.ObBrakeAzEl"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Front Panel IN (EL1008)">
+				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inButtonReset" VarB="Channel 3^MAIN.CabinetControl.inButtonReset"/>
+				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inButtonStart" VarB="Channel 1^MAIN.CabinetControl.inButtonStart"/>
+				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inButtonStop" VarB="Channel 2^MAIN.CabinetControl.inButtonStop"/>
+				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inKeyClearBrakes" VarB="Channel 5^MAIN.CabinetControl.inKeyClearBrakes"/>
+				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inKeyLocal" VarB="Channel 4^MAIN.CabinetControl.inKeyLocal"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Front Panel OUT (EL2004)">
+				<Link VarA="PlcTask Outputs^MAIN.CabinetControl.outLampError" VarB="Channel 3^MAIN.CabinetControl.outLampError"/>
+				<Link VarA="PlcTask Outputs^MAIN.CabinetControl.outLampManual" VarB="Channel 2^MAIN.CabinetControl.outLampManual"/>
+				<Link VarA="PlcTask Outputs^MAIN.CabinetControl.outLampPower" VarB="Channel 1^MAIN.CabinetControl.outLampPower"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics Focus IN (EL1008)">
 				<Link VarA="PlcTask Inputs^MAIN.FocusControl.IbLimitFar" VarB="Channel 5^MAIN.FocusControl.IbLimitFar"/>
 				<Link VarA="PlcTask Inputs^MAIN.FocusControl.IbLimitNear" VarB="Channel 4^MAIN.FocusControl.IbLimitNear"/>
 				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbPumpRunning" VarB="Channel 1^MAIN.HydraulicsControl.IbPumpRunning"/>
 				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbSuctionRunning" VarB="Channel 2^MAIN.HydraulicsControl.IbSuctionRunning"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics IN2 (EL1008)">
+				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilCold" VarB="Channel 5^MAIN.HydraulicsControl.IbOilCold"/>
+				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilFilterDirty" VarB="Channel 6^MAIN.HydraulicsControl.IbOilFilterDirty"/>
+				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilHigh" VarB="Channel 2^MAIN.HydraulicsControl.IbOilHigh"/>
+				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilHot" VarB="Channel 4^MAIN.HydraulicsControl.IbOilHot"/>
+				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilLow" VarB="Channel 1^MAIN.HydraulicsControl.IbOilLow"/>
+				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilPressureOK" VarB="Channel 3^MAIN.HydraulicsControl.IbOilPressureOK"/>
+				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilReserve" VarB="Channel 8^MAIN.HydraulicsControl.IbOilReserve"/>
+				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilpanMaximum" VarB="Channel 7^MAIN.HydraulicsControl.IbOilpanMaximum"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics OUT (EL2008)">
 				<Link VarA="PlcTask Outputs^MAIN.FocusControl.ObFocusUnlock" VarB="Channel 7^MAIN.FocusControl.ObFocusUnlock"/>
@@ -8510,6 +9270,46 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObOilSuctionEnable" VarB="Channel 3^MAIN.HydraulicsControl.ObOilSuctionEnable"/>
 				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObResetOilPump" VarB="Channel 2^MAIN.HydraulicsControl.ObResetOilPump"/>
 				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObResetSuctionPump" VarB="Channel 4^MAIN.HydraulicsControl.ObResetSuctionPump"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover IN (EL1008)">
+				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverClosed[1]" VarB="Channel 2^MAIN.CoverControl.IabCoverClosed[1]"/>
+				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverClosed[2]" VarB="Channel 4^MAIN.CoverControl.IabCoverClosed[2]"/>
+				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverClosed[3]" VarB="Channel 6^MAIN.CoverControl.IabCoverClosed[3]"/>
+				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverOpen[1]" VarB="Channel 1^MAIN.CoverControl.IabCoverOpen[1]"/>
+				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverOpen[2]" VarB="Channel 3^MAIN.CoverControl.IabCoverOpen[2]"/>
+				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverOpen[3]" VarB="Channel 5^MAIN.CoverControl.IabCoverOpen[3]"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover OUT1 (EL2004)">
+				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabCloseCover[1]" VarB="Channel 2^MAIN.CoverControl.OabCloseCover[1]"/>
+				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabCloseCover[2]" VarB="Channel 4^MAIN.CoverControl.OabCloseCover[2]"/>
+				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabOpenCover[1]" VarB="Channel 1^MAIN.CoverControl.OabOpenCover[1]"/>
+				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabOpenCover[2]" VarB="Channel 3^MAIN.CoverControl.OabOpenCover[2]"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover OUT2 (EL2004)">
+				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabCloseCover[3]" VarB="Channel 2^MAIN.CoverControl.OabCloseCover[3]"/>
+				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabOpenCover[3]" VarB="Channel 1^MAIN.CoverControl.OabOpenCover[3]"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Pendant Control IN (EL1008)">
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbBCD0" VarB="Channel 1^MAIN.PendantControl.IbBCD0"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbBCD2" VarB="Channel 2^MAIN.PendantControl.IbBCD2"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbBCD4" VarB="Channel 3^MAIN.PendantControl.IbBCD4"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbBCD8" VarB="Channel 4^MAIN.PendantControl.IbBCD8"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbDirectionDown" VarB="Channel 7^MAIN.PendantControl.IbDirectionDown"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbDirectionUp" VarB="Channel 6^MAIN.PendantControl.IbDirectionUp"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbEnableKey" VarB="Channel 8^MAIN.PendantControl.IbEnableKey"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbResetButton" VarB="Channel 5^MAIN.PendantControl.IbResetButton"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Pendant Control IN2 (EL1008)">
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbDirectionLeft" VarB="Channel 2^MAIN.PendantControl.IbDirectionLeft"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbDirectionRight" VarB="Channel 3^MAIN.PendantControl.IbDirectionRight"/>
+				<Link VarA="PlcTask Inputs^MAIN.PendantControl.IbEnableButton" VarB="Channel 1^MAIN.PendantControl.IbEnableButton"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Pendant Control OUT (EL2008)">
+				<Link VarA="PlcTask Outputs^MAIN.PendantControl.ObLampDown" VarB="Channel 2^MAIN.PendantControl.ObLampDown"/>
+				<Link VarA="PlcTask Outputs^MAIN.PendantControl.ObLampError" VarB="Channel 5^MAIN.PendantControl.ObLampError"/>
+				<Link VarA="PlcTask Outputs^MAIN.PendantControl.ObLampLeft" VarB="Channel 4^MAIN.PendantControl.ObLampLeft"/>
+				<Link VarA="PlcTask Outputs^MAIN.PendantControl.ObLampRight" VarB="Channel 3^MAIN.PendantControl.ObLampRight"/>
+				<Link VarA="PlcTask Outputs^MAIN.PendantControl.ObLampUp" VarB="Channel 1^MAIN.PendantControl.ObLampUp"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Safety Logic (EL6910)">
 				<Link VarA="PlcTask Inputs^MAIN.AzimuthControl.IbSTO" VarB="StandardInputs^Standard Out Var 18"/>
