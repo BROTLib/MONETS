@@ -48,9 +48,6 @@
     <Compile Include="POUs\FB_PowerMonitoring.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_MonetTelescopeControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\FB_SafetyHandling.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -109,6 +106,7 @@
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="Components" />
+    <Folder Include="MONET" />
     <Folder Include="Telescope" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
