@@ -83,6 +83,7 @@ PowerMonitoring(phaseOK => ready);
 
 // only run TelescopeControl in automatic mode
 IF eTelescopeMode = E_TelescopeMode.automatic THEN
+	{*
 	TelescopeControl(
 		telescopeConfig := telescopeConfig,	
 		fbCovers 		:= CoverControl, 
@@ -93,6 +94,7 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		fbAzimuth 		:= AzimuthControl, 
 		fbDerotator 	:= DerotatorControl
 	);
+	*}
 END_IF
 
 // run all control FBs
@@ -211,7 +213,10 @@ END_IF
       <LineId Id="2103" Count="2" />
       <LineId Id="2211" Count="0" />
       <LineId Id="2210" Count="0" />
-      <LineId Id="2212" Count="10" />
+      <LineId Id="2212" Count="0" />
+      <LineId Id="2371" Count="0" />
+      <LineId Id="2213" Count="9" />
+      <LineId Id="2372" Count="0" />
       <LineId Id="2106" Count="0" />
       <LineId Id="2223" Count="0" />
       <LineId Id="2107" Count="0" />

@@ -10,6 +10,345 @@
   <ChildCount>1</ChildCount>
   <Disabled>false</Disabled>
   <TreeImageData16x14>424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffff0000ff0000ff0000ff0000808080ff00ff000000000000000000000000000000000000000000ff00ffff00ffff00ffff0000c0c0c0c0c0c0c0c0c0808080ff00ff0000000000000000000000000000000000000000000000ff0000ffff00ffc0c0c0ff0000c0c0c0c0c0c0808080ff00ff000000000000000000000000000000000000000000ff00ffff00ffff00ffc0c0c0c0c0c0ff0000c0c0c0808080ff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0ff0000808080ff00ff000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff0000c0c0c0c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000ff0000c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ff</TreeImageData16x14>
+  <Xml>
+    <AX5XXXDriveTool>
+      <InitCmds>
+        <InitCmd DriveNo="0" IDN="30" MotorDataLevel="0" DisableMode="0">
+          <RetainData>3e003e004669726d776172653a2076322e313420284275696c64203030303629202f20426f6f746c6f616465723a2076322e303220284275696c6420303030322900</RetainData>
+        </InitCmd>
+        <InitCmd DriveNo="0" IDN="432" MotorDataLevel="0" DisableMode="0">
+          <RetainData>1200120053657269616c233a20303030363633303730</RetainData>
+        </InitCmd>
+        <InitCmd DriveNo="0" IDN="33088" MotorDataLevel="0" DisableMode="0">
+          <RetainData>24002400d6000600ca0002002c9d5b002c9d5b00c8000900660000001b534c002260000000000000</RetainData>
+        </InitCmd>
+        <InitCmd DriveNo="0" IDN="33093" MotorDataLevel="0" DisableMode="0">
+          <RetainData>160016004a756e2020322032303232202c2031363a32303a3538</RetainData>
+        </InitCmd>
+      </InitCmds>
+      <StatusBar>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>135</Index>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>390</Index>
+          <Width>85</Width>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>95</Index>
+          <Width>100</Width>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>32821</Index>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>32973</Index>
+          <SubItem>Bit0</SubItem>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>32973</Index>
+          <SubItem>Bit3</SubItem>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>384</Index>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>135</Index>
+          <SubItem>ActualOperationMode</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33080</Index>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>32865</Index>
+          <SubItem>MotorBrakeUnlocked</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>380</Index>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>381</Index>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>32831</Index>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33221</Index>
+          <SubItem>Active</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33221</Index>
+          <SubItem>ReadyToEnable</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33221</Index>
+          <SubItem>IGreaterThanInom</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33221</Index>
+          <SubItem>IPeakLimitReached</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33221</Index>
+          <SubItem>IreductionActive</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33221</Index>
+          <SubItem>UmaxReached</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33221</Index>
+          <SubItem>FieldWeakeningActive</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>Active</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>ReadyToEnable</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>PosDirectionEnabled</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>NegDirectionEnabled</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>AccDecLimitationActive</SubItem>
+        </Element>
+        <Element option="1" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>vLimitationActive</SubItem>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>vZeroReached</SubItem>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>CmdMovPositive</SubItem>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>33271</Index>
+          <SubItem>CmdMovNegative</SubItem>
+        </Element>
+        <Element option="0" SortOder="0" SubIdx="0">
+          <Index>32983</Index>
+        </Element>
+      </StatusBar>
+    </AX5XXXDriveTool>
+    <TcDMDrive>
+      <SortId>1</SortId>
+      <DriveModuleType>31</DriveModuleType>
+      <TcLink ProtocalType="1">
+        <TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+        <IoItemPathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</IoItemPathName>
+        <ItemId>10</ItemId>
+        <ObjectId>#x0302000a</ObjectId>
+      </TcLink>
+      <OrderCode>AX5125-0000-02xx</OrderCode>
+      <Name>Elevation (AX5125-0000-0214)</Name>
+      <FirmwareVersion>Firmware: v2.14 (Build 0006) / Bootloader: v2.02 (Build 0002)</FirmwareVersion>
+      <BootloaderVersion>2.02</BootloaderVersion>
+      <CatalogNo>AX5125-0000-0214</CatalogNo>
+      <HardwareVersion>c:0180  p:0103  d:0102  f:0101  o:0101  s:----</HardwareVersion>
+      <SerialNr>Serial#: 000663070</SerialNr>
+      <ProductRevision>AX5125-0000-0214</ProductRevision>
+      <HasDualUseInfo>true</HasDualUseInfo>
+      <OperatingFrequencyLimitation>true</OperatingFrequencyLimitation>
+      <WatchLog UpdateIntervalInMs="500">
+        <WatchLogItem>
+          <WatchLogParaSoE Index="33092" />
+          <Alias>Type</Alias>
+        </WatchLogItem>
+        <WatchLogItem>
+          <WatchLogParaSoE Index="432" />
+          <Alias>Serial Nr</Alias>
+        </WatchLogItem>
+        <WatchLogItem>
+          <WatchLogParaSoE Index="30" />
+          <Alias>Firmware version</Alias>
+        </WatchLogItem>
+        <WatchLogItem>
+          <WatchLogParaSoE Index="33080" />
+          <Alias>PCB temperature</Alias>
+        </WatchLogItem>
+        <WatchLogItem>
+          <WatchLogParaSoE Index="380" />
+          <Alias>DC bus voltage</Alias>
+        </WatchLogItem>
+        <WatchLogItem>
+          <WatchLogParaSoE Index="32977" />
+          <Alias>Int. brake resistor power</Alias>
+        </WatchLogItem>
+        <WatchLogItem>
+          <WatchLogParaSoE Index="32978" />
+          <Alias>Ext. brake resistor power</Alias>
+        </WatchLogItem>
+      </WatchLog>
+      <Infeed>
+        <PowerSupplyMains>
+          <Name>InfeedTypePowerSupplyMains</Name>
+          <ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
+          <Parameter>
+            <PropertyName>PowerSupplyType</PropertyName>
+            <Value>4</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>MainVoltage</PropertyName>
+            <Value>400</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>UTolerancePositive</PropertyName>
+            <Value>10</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>UToleranceNegative</PropertyName>
+            <Value>10</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>MinDcLinkVoltage</PropertyName>
+            <Value>434.784429344014</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>MaxDcLinkVoltage</PropertyName>
+            <Value>875</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>UmainsPhaseErrDetection</PropertyName>
+            <Value>1</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>LongFilterForUmainsPhaseErrDetection</PropertyName>
+            <Value>0</Value>
+          </Parameter>
+        </PowerSupplyMains>
+      </Infeed>
+      <Inverter>
+        <Device>
+          <Name>DMInverterTypeDevice</Name>
+          <ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
+          <Parameter>
+            <PropertyName>MaxAllowedMainVoltage</PropertyName>
+            <Value>0</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>MinDcLinkVoltage</PropertyName>
+            <Value>0</Value>
+          </Parameter>
+          <Parameter>
+            <PropertyName>MaxDcLinkVoltage</PropertyName>
+            <Value>0</Value>
+          </Parameter>
+        </Device>
+        <Channel ChnId="0">
+          <TcLink>
+            <TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
+            <IoItemPathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</IoItemPathName>
+            <NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 6</NcItemPathName>
+          </TcLink>
+          <SelectedModifyOptPDOsMode>0</SelectedModifyOptPDOsMode>
+          <Block Id="0">
+            <Controller />
+          </Block>
+          <Block Id="1">
+            <Controller />
+          </Block>
+          <Block Id="2">
+            <Controller />
+          </Block>
+          <Block Id="3">
+            <Controller />
+          </Block>
+          <Block Id="4">
+            <Controller />
+          </Block>
+          <Block Id="5">
+            <Controller />
+          </Block>
+          <Block Id="6">
+            <Controller />
+          </Block>
+          <Block Id="7">
+            <Controller />
+          </Block>
+          <WatchLog ChnId="0" UpdateIntervalInMs="500">
+            <WatchLogItem>
+              <WatchLogParaSoE Index="32821" />
+              <Alias>Motor type</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <DependOn>
+                <WatchLogItem>
+                  <WatchLogParaSoE Index="32866" SubItemPath="eNamePlateType" />
+                </WatchLogItem>
+                <Condition Value="1">
+                  <WatchLogItem>
+                    <WatchLogParaSoE Index="32866" SubItemPath="uData.eNamePlateType.stMotorPara.lSerialNumber" />
+                  </WatchLogItem>
+                </Condition>
+                <Condition Value="2">
+                  <WatchLogItem>
+                    <WatchLogParaSoE Index="32866" SubItemPath="uData.stElecDataSheet.stMotorDataElecDataSheet.strSerialNumber" />
+                  </WatchLogItem>
+                </Condition>
+              </DependOn>
+              <Alias>Motor SN</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="32919" SubItemPath="stParaCh.llSerialNumber" />
+              <Alias>Feedback SN</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="135" />
+              <Alias>Axis state</Alias>
+              <ValueMask>57352</ValueMask>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="135" SubItemPath="ActualOperationMode" />
+              <Alias>Actual operation mode</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="32831" />
+              <Alias>Motor I²T</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="383" />
+              <Alias>Motor temperature</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="32833" />
+              <Alias>Thermistor resistor</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="384" />
+              <Alias>Amplifier temperature</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="33229" />
+              <Alias>Motor current</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="36" />
+              <Alias>Velocity command</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="40" />
+              <Alias>Actual velocity</Alias>
+            </WatchLogItem>
+            <WatchLogItem>
+              <WatchLogParaSoE Index="51" />
+              <Alias>Motor ratation angle</Alias>
+            </WatchLogItem>
+          </WatchLog>
+        </Channel>
+      </Inverter>
+    </TcDMDrive>
+  </Xml>
   <BoxDef>
     <FieldbusAddress>1003</FieldbusAddress>
     <AmsAddress>
@@ -35,11 +374,11 @@
       </Info>
       <ProcessData>
         <Send>
-          <BitStart>776</BitStart>
+          <BitStart>768</BitStart>
           <BitLength>48</BitLength>
         </Send>
         <Recv>
-          <BitStart>776</BitStart>
+          <BitStart>768</BitStart>
           <BitLength>80</BitLength>
         </Recv>
         <Sm2>
@@ -82,7 +421,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483551</IndexOffset>
+              <IndexOffset>-2147483552</IndexOffset>
               <Length>2</Length>
             </AdsInfo>
           </Entry>
@@ -97,7 +436,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483549</IndexOffset>
+              <IndexOffset>-2147483550</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
@@ -112,7 +451,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483545</IndexOffset>
+              <IndexOffset>-2147483546</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
@@ -131,7 +470,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2130706335</IndexOffset>
+              <IndexOffset>-2130706336</IndexOffset>
               <Length>2</Length>
             </AdsInfo>
           </Entry>
@@ -146,7 +485,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2130706333</IndexOffset>
+              <IndexOffset>-2130706334</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
@@ -311,6 +650,28 @@
               <Elements>64</Elements>
               <Attribute>0</Attribute>
               <Data>6400</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Configured channel current]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>32861</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>00000000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Configured safety option]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>34768</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0200</Data>
             </InitCmd>
           </InitCmds>
         </SoE>
@@ -1046,206 +1407,4 @@
     <SoeChannels>1</SoeChannels>
     <LinkedAxis>TINC^NC-Task 1 SAF^Axes^Axis 6</LinkedAxis>
   </EtherCAT>
-  <Xml>
-    <TcDMDrive>
-      <SortId>1</SortId>
-      <DriveModuleType>31</DriveModuleType>
-      <TcLink ProtocalType="1">
-        <TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
-        <IoItemPathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</IoItemPathName>
-        <ItemId>10</ItemId>
-        <ObjectId>#x0302000a</ObjectId>
-      </TcLink>
-      <OrderCode>AX5125-0000-02xx</OrderCode>
-      <Name>Elevation (AX5125-0000-0214)</Name>
-      <ProductRevision>AX5125-0000-0214</ProductRevision>
-      <WatchLog UpdateIntervalInMs="500">
-        <WatchLogItem>
-          <WatchLogParaSoE Index="33092" />
-          <Alias>Type</Alias>
-        </WatchLogItem>
-        <WatchLogItem>
-          <WatchLogParaSoE Index="432" />
-          <Alias>Serial Nr</Alias>
-        </WatchLogItem>
-        <WatchLogItem>
-          <WatchLogParaSoE Index="30" />
-          <Alias>Firmware version</Alias>
-        </WatchLogItem>
-        <WatchLogItem>
-          <WatchLogParaSoE Index="33080" />
-          <Alias>PCB temperature</Alias>
-        </WatchLogItem>
-        <WatchLogItem>
-          <WatchLogParaSoE Index="380" />
-          <Alias>DC bus voltage</Alias>
-        </WatchLogItem>
-        <WatchLogItem>
-          <WatchLogParaSoE Index="32977" />
-          <Alias>Int. brake resistor power</Alias>
-        </WatchLogItem>
-        <WatchLogItem>
-          <WatchLogParaSoE Index="32978" />
-          <Alias>Ext. brake resistor power</Alias>
-        </WatchLogItem>
-      </WatchLog>
-      <Infeed>
-        <PowerSupplyMains>
-          <Name>InfeedTypePowerSupplyMains</Name>
-          <ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
-          <Parameter>
-            <PropertyName>PowerSupplyType</PropertyName>
-            <Value>4</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>MainVoltage</PropertyName>
-            <Value>400</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>UTolerancePositive</PropertyName>
-            <Value>10</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>UToleranceNegative</PropertyName>
-            <Value>10</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>MinDcLinkVoltage</PropertyName>
-            <Value>434.784429344014</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>MaxDcLinkVoltage</PropertyName>
-            <Value>875</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>UmainsPhaseErrDetection</PropertyName>
-            <Value>1</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>LongFilterForUmainsPhaseErrDetection</PropertyName>
-            <Value>0</Value>
-          </Parameter>
-        </PowerSupplyMains>
-      </Infeed>
-      <Inverter>
-        <Device>
-          <Name>DMInverterTypeDevice</Name>
-          <ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
-          <Parameter>
-            <PropertyName>MaxAllowedMainVoltage</PropertyName>
-            <Value>0</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>MinDcLinkVoltage</PropertyName>
-            <Value>0</Value>
-          </Parameter>
-          <Parameter>
-            <PropertyName>MaxDcLinkVoltage</PropertyName>
-            <Value>0</Value>
-          </Parameter>
-        </Device>
-        <Channel ChnId="0">
-          <TcLink>
-            <TcPrjPath>..\MONETS\MONETS.tsproj</TcPrjPath>
-            <IoItemPathName>TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)</IoItemPathName>
-            <NcItemPathName AxisType="1">TINC^NC-Task 1 SAF^Axes^Axis 6</NcItemPathName>
-          </TcLink>
-          <SelectedModifyOptPDOsMode>0</SelectedModifyOptPDOsMode>
-          <Block Id="0">
-            <Controller />
-          </Block>
-          <Block Id="1">
-            <Controller />
-          </Block>
-          <Block Id="2">
-            <Controller />
-          </Block>
-          <Block Id="3">
-            <Controller />
-          </Block>
-          <Block Id="4">
-            <Controller />
-          </Block>
-          <Block Id="5">
-            <Controller />
-          </Block>
-          <Block Id="6">
-            <Controller />
-          </Block>
-          <Block Id="7">
-            <Controller />
-          </Block>
-          <WatchLog ChnId="0" UpdateIntervalInMs="500">
-            <WatchLogItem>
-              <WatchLogParaSoE Index="32821" />
-              <Alias>Motor type</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <DependOn>
-                <WatchLogItem>
-                  <WatchLogParaSoE Index="32866" SubItemPath="eNamePlateType" />
-                </WatchLogItem>
-                <Condition Value="1">
-                  <WatchLogItem>
-                    <WatchLogParaSoE Index="32866" SubItemPath="uData.eNamePlateType.stMotorPara.lSerialNumber" />
-                  </WatchLogItem>
-                </Condition>
-                <Condition Value="2">
-                  <WatchLogItem>
-                    <WatchLogParaSoE Index="32866" SubItemPath="uData.stElecDataSheet.stMotorDataElecDataSheet.strSerialNumber" />
-                  </WatchLogItem>
-                </Condition>
-              </DependOn>
-              <Alias>Motor SN</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="32919" SubItemPath="stParaCh.llSerialNumber" />
-              <Alias>Feedback SN</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="135" />
-              <Alias>Axis state</Alias>
-              <ValueMask>57352</ValueMask>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="135" SubItemPath="ActualOperationMode" />
-              <Alias>Actual operation mode</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="32831" />
-              <Alias>Motor I²T</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="383" />
-              <Alias>Motor temperature</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="32833" />
-              <Alias>Thermistor resistor</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="384" />
-              <Alias>Amplifier temperature</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="33229" />
-              <Alias>Motor current</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="36" />
-              <Alias>Velocity command</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="40" />
-              <Alias>Actual velocity</Alias>
-            </WatchLogItem>
-            <WatchLogItem>
-              <WatchLogParaSoE Index="51" />
-              <Alias>Motor ratation angle</Alias>
-            </WatchLogItem>
-          </WatchLog>
-        </Channel>
-      </Inverter>
-    </TcDMDrive>
-  </Xml>
 </TreeItem>

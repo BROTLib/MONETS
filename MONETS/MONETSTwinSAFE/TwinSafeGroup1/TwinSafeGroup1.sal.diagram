@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<safetyApplicationLanguageDiagram Crc="2518118773" dslVersion="1.5.0.0" Id="2b4fd189-13e4-428c-b7d8-e9999f1558d6" absoluteBounds="0, 0, 17.25, 19.25" name="TwinSAFE">
+<safetyApplicationLanguageDiagram Crc="281025883" dslVersion="1.5.0.0" Id="2b4fd189-13e4-428c-b7d8-e9999f1558d6" absoluteBounds="0, 0, 17.25, 19.25" name="TwinSAFE">
   <safetyApplicationMoniker name="/" />
   <nestedChildShapes>
     <networkSwimLane Id="dd8d8fab-4d66-4c51-b783-8ec1f2226890" absoluteBounds="0, 0, 17.25, 8.125">
@@ -132,70 +132,6 @@
           <nodes>
             <outPortShapeMoniker Id="67ab5da9-5ef5-43a9-b4e4-648c969d323b" />
             <inPortShapeMoniker Id="bf2203b9-424f-4e8e-a67b-c1d8c3bc7263" />
-          </nodes>
-        </wiredLinkConnector>
-        <fBEdmShape Id="3daa0727-a79e-4132-8b99-f5cd9feb01a2" absoluteBounds="7.5, 4.875, 3.35, 3">
-          <fBEdmMoniker name="//Network1/FBEdm3" />
-          <relativeChildShapes>
-            <inPortShape Id="c9119dcb-3f4b-49f2-9cd1-5cbb06e42a66" absoluteBounds="7.42, 6.4525000000000006, 0.15, 0.15">
-              <inPortMoniker name="//Network1/FBEdm3/Mon1" />
-              <relativeChildShapes />
-            </inPortShape>
-            <inPortShape Id="b1d0f22b-eb87-4e1e-92a5-8c05e80ea891" absoluteBounds="7.42, 6.6775, 0.15, 0.15">
-              <inPortMoniker name="//Network1/FBEdm3/Mon2" />
-              <relativeChildShapes />
-            </inPortShape>
-            <outPortShape Id="625bb3c8-48c7-4721-8598-053e69147d20" absoluteBounds="10.75, 5.62, 0.15, 0.15">
-              <outPortMoniker name="//Network1/FBEdm3/Error" />
-              <relativeChildShapes />
-            </outPortShape>
-            <paramPortShape Id="8ad80b78-58d2-48fc-87d3-43e234c38aa6" absoluteBounds="9.42, 6.95, 0.7, 0.2">
-              <parameterPortMoniker name="//Network1/FBEdm3/Switch On Monitoring (ms)" />
-              <relativeChildShapes />
-            </paramPortShape>
-            <paramPortShape Id="f14a8cbd-43f9-4aab-bcb2-a1fa2b63138e" absoluteBounds="9.42, 7.35, 0.7, 0.2">
-              <parameterPortMoniker name="//Network1/FBEdm3/Switch Off Monitoring (ms)" />
-              <relativeChildShapes />
-            </paramPortShape>
-          </relativeChildShapes>
-        </fBEdmShape>
-        <wiredLinkConnector Id="152d4572-6d12-4cae-a88c-394cb22efb4e" edgePoints="[(7.42 : 6.5275); (7.045 : 6.5275); (7.045 : 4.375); (5.025 : 4.375)]" fixedFrom="Caller" fixedTo="Caller" color="0, 0, 0" thickness="0.01" expandedManuallyRouted="false">
-          <wiredLinkMoniker Id="e48459ea-63ae-412d-9aca-c99300916047" />
-          <nodes>
-            <inPortShapeMoniker Id="c9119dcb-3f4b-49f2-9cd1-5cbb06e42a66" />
-            <outPortShapeMoniker Id="67ab5da9-5ef5-43a9-b4e4-648c969d323b" />
-          </nodes>
-        </wiredLinkConnector>
-        <fBEdmShape Id="b29be407-a79b-426f-8d6a-d1bf626f9230" absoluteBounds="12.5, 4.875, 3.35, 3">
-          <fBEdmMoniker name="//Network1/FBEdm4" />
-          <relativeChildShapes>
-            <inPortShape Id="e484e3ed-a8e3-46c8-8992-316f49cf9315" absoluteBounds="12.42, 6.4525000000000006, 0.15, 0.15">
-              <inPortMoniker name="//Network1/FBEdm4/Mon1" />
-              <relativeChildShapes />
-            </inPortShape>
-            <inPortShape Id="e1f814b1-857f-40e0-90c7-8793e5c9caee" absoluteBounds="12.42, 6.6775, 0.15, 0.15">
-              <inPortMoniker name="//Network1/FBEdm4/Mon2" />
-              <relativeChildShapes />
-            </inPortShape>
-            <outPortShape Id="b469f7f1-b5c8-4bce-bba8-2cc062fcaa5e" absoluteBounds="15.75, 5.62, 0.15, 0.15">
-              <outPortMoniker name="//Network1/FBEdm4/Error" />
-              <relativeChildShapes />
-            </outPortShape>
-            <paramPortShape Id="486389f4-6240-4ba8-994e-79feb3e2a7f6" absoluteBounds="14.42, 6.95, 0.7, 0.2">
-              <parameterPortMoniker name="//Network1/FBEdm4/Switch On Monitoring (ms)" />
-              <relativeChildShapes />
-            </paramPortShape>
-            <paramPortShape Id="0ce3604f-0380-4cd4-a70d-b57ea06271a7" absoluteBounds="14.42, 7.35, 0.7, 0.2">
-              <parameterPortMoniker name="//Network1/FBEdm4/Switch Off Monitoring (ms)" />
-              <relativeChildShapes />
-            </paramPortShape>
-          </relativeChildShapes>
-        </fBEdmShape>
-        <wiredLinkConnector Id="203cd2c7-56f5-4553-8b3d-ea3747e2a60a" edgePoints="[(12.42 : 6.5275); (12.045 : 6.5275); (12.045 : 4.375); (5.025 : 4.375)]" fixedFrom="Caller" fixedTo="Caller" color="0, 0, 0" thickness="0.01" expandedManuallyRouted="false">
-          <wiredLinkMoniker Id="3b660ea3-acd3-4f46-9997-e2f3e0282ecb" />
-          <nodes>
-            <inPortShapeMoniker Id="e484e3ed-a8e3-46c8-8992-316f49cf9315" />
-            <outPortShapeMoniker Id="67ab5da9-5ef5-43a9-b4e4-648c969d323b" />
           </nodes>
         </wiredLinkConnector>
       </nestedChildShapes>
