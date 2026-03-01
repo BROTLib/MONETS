@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
-  <POU Name="FB_MonetTelescopeControl2" Id="{392c90d3-a441-4c8d-a752-42b25b49f5cd}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_MonetTelescopeControl2 EXTENDS FB_AltAzTelescopeControl IMPLEMENTS I_AltAzTelescope
+  <POU Name="FB_MonetTelescopeControl" Id="{392c90d3-a441-4c8d-a752-42b25b49f5cd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MonetTelescopeControl EXTENDS FB_AltAzTelescopeControl IMPLEMENTS I_AltAzTelescope
 VAR_INPUT
 	fbFocus				: I_Focus;
 	fbCovers			: I_MirrorCovers;
@@ -1302,7 +1302,7 @@ fDeclination		:= RaDec.Declination;
 bTrack			:= TRUE;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_MonetTelescopeControl2">
+    <LineIds Name="FB_MonetTelescopeControl">
       <LineId Id="863" Count="2" />
       <LineId Id="364" Count="1" />
       <LineId Id="866" Count="0" />
@@ -1363,18 +1363,18 @@ bTrack			:= TRUE;]]></ST>
       <LineId Id="696" Count="55" />
       <LineId Id="179" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2._GotoTelescope">
+    <LineIds Name="FB_MonetTelescopeControl._GotoTelescope">
       <LineId Id="1" Count="27" />
       <LineId Id="90" Count="6" />
       <LineId Id="89" Count="0" />
       <LineId Id="29" Count="48" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2._HomeTelescope">
+    <LineIds Name="FB_MonetTelescopeControl._HomeTelescope">
       <LineId Id="1" Count="5" />
       <LineId Id="43" Count="0" />
       <LineId Id="8" Count="27" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2._ParkTelescope">
+    <LineIds Name="FB_MonetTelescopeControl._ParkTelescope">
       <LineId Id="1" Count="0" />
       <LineId Id="104" Count="2" />
       <LineId Id="103" Count="0" />
@@ -1386,10 +1386,10 @@ bTrack			:= TRUE;]]></ST>
       <LineId Id="116" Count="0" />
       <LineId Id="26" Count="61" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2._PowerOn">
+    <LineIds Name="FB_MonetTelescopeControl._PowerOn">
       <LineId Id="1" Count="54" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2._SendTelemetry">
+    <LineIds Name="FB_MonetTelescopeControl._SendTelemetry">
       <LineId Id="197" Count="0" />
       <LineId Id="201" Count="8" />
       <LineId Id="214" Count="0" />
@@ -1415,13 +1415,13 @@ bTrack			:= TRUE;]]></ST>
       <LineId Id="188" Count="8" />
       <LineId Id="5" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2._SlewTelescope">
+    <LineIds Name="FB_MonetTelescopeControl._SlewTelescope">
       <LineId Id="1" Count="15" />
       <LineId Id="71" Count="6" />
       <LineId Id="70" Count="0" />
       <LineId Id="17" Count="41" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2._StopTelescope">
+    <LineIds Name="FB_MonetTelescopeControl._StopTelescope">
       <LineId Id="16" Count="2" />
       <LineId Id="44" Count="0" />
       <LineId Id="19" Count="2" />
@@ -1435,60 +1435,60 @@ bTrack			:= TRUE;]]></ST>
       <LineId Id="39" Count="4" />
       <LineId Id="10" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2._TrackTelescope">
+    <LineIds Name="FB_MonetTelescopeControl._TrackTelescope">
       <LineId Id="1" Count="69" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Altitude.Get">
+    <LineIds Name="FB_MonetTelescopeControl.Altitude.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Azimuth.Get">
+    <LineIds Name="FB_MonetTelescopeControl.Azimuth.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Declination.Get">
+    <LineIds Name="FB_MonetTelescopeControl.Declination.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Home">
+    <LineIds Name="FB_MonetTelescopeControl.Home">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Init">
+    <LineIds Name="FB_MonetTelescopeControl.Init">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.MoveAltAz">
+    <LineIds Name="FB_MonetTelescopeControl.MoveAltAz">
       <LineId Id="1" Count="2" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.MoveRaDec">
+    <LineIds Name="FB_MonetTelescopeControl.MoveRaDec">
       <LineId Id="1" Count="2" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Park">
+    <LineIds Name="FB_MonetTelescopeControl.Park">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Reset">
+    <LineIds Name="FB_MonetTelescopeControl.Reset">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.RightAscension.Get">
+    <LineIds Name="FB_MonetTelescopeControl.RightAscension.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.SetAltitudeOffset">
+    <LineIds Name="FB_MonetTelescopeControl.SetAltitudeOffset">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.SetAzimuthOffset">
+    <LineIds Name="FB_MonetTelescopeControl.SetAzimuthOffset">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.SetDerotatorOffset">
+    <LineIds Name="FB_MonetTelescopeControl.SetDerotatorOffset">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Slew">
+    <LineIds Name="FB_MonetTelescopeControl.Slew">
       <LineId Id="9" Count="1" />
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Stop">
+    <LineIds Name="FB_MonetTelescopeControl.Stop">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.Track">
+    <LineIds Name="FB_MonetTelescopeControl.Track">
       <LineId Id="9" Count="1" />
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FB_MonetTelescopeControl2.TrackRaDec">
+    <LineIds Name="FB_MonetTelescopeControl.TrackRaDec">
       <LineId Id="1" Count="2" />
     </LineIds>
   </POU>

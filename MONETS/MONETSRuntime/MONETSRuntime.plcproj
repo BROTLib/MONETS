@@ -27,7 +27,7 @@
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Telescope\FB_MonetTelescopeControl2.TcPOU">
+    <Compile Include="MONET\FB_MonetTelescopeControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
@@ -107,7 +107,6 @@
     <Folder Include="GVLs" />
     <Folder Include="Components" />
     <Folder Include="MONET" />
-    <Folder Include="Telescope" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
