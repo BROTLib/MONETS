@@ -15,9 +15,9 @@ VAR
 	eTelescopeMode 		: E_TelescopeMode;
 	
 	fbComm				: FB_Comm_MQTT_Influx;
-	SafetyHandling		: FB_SafetyHandling(comm := fbComm);
-	CabinetControl		: FB_CabinetControl(comm := fbComm);
-	PowerMonitoring		: FB_PowerMonitoring(comm := fbComm);
+	SafetyHandling		: FB_MonetSafetyHandling(comm := fbComm);
+	CabinetControl		: FB_MonetCabinetControl(comm := fbComm);
+	PowerMonitoring		: FB_MonetPowerMonitoring(comm := fbComm);
 	RoofControl			: FB_RoofControl(comm := fbComm);
 	CoverControl		: FB_MonetCoverControl(comm := fbComm);
 	HydraulicsControl	: FB_HydraulicsControl(comm := fbComm);

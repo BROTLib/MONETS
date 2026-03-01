@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
-  <POU Name="FB_SafetyHandling" Id="{f40cbfea-880d-4f1c-9345-5f8b55063f2d}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_SafetyHandling
+  <POU Name="FB_MonetSafetyHandling" Id="{f40cbfea-880d-4f1c-9345-5f8b55063f2d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MonetSafetyHandling
 VAR
 	// power on delay
 
@@ -188,12 +188,12 @@ END_VAR]]></Declaration>
         <ST><![CDATA[THIS^.fbComm := comm;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_SafetyHandling">
+    <LineIds Name="FB_MonetSafetyHandling">
       <LineId Id="1" Count="79" />
       <LineId Id="130" Count="21" />
       <LineId Id="189" Count="0" />
     </LineIds>
-    <LineIds Name="FB_SafetyHandling.FB_Init">
+    <LineIds Name="FB_MonetSafetyHandling.FB_Init">
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>

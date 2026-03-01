@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
-  <POU Name="FB_CabinetControl" Id="{82301626-c59a-4d6c-ac78-2e8e2d6a8e41}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_CabinetControl
+  <POU Name="FB_MonetCabinetControl" Id="{82301626-c59a-4d6c-ac78-2e8e2d6a8e41}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MonetCabinetControl
 VAR_INPUT
 END_VAR
 VAR
@@ -160,38 +160,38 @@ END_VAR
         <ST><![CDATA[outLampManual := enable;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_CabinetControl">
+    <LineIds Name="FB_MonetCabinetControl">
       <LineId Id="74" Count="30" />
       <LineId Id="32" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.AreBreakesCleared">
+    <LineIds Name="FB_MonetCabinetControl.AreBreakesCleared">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.FB_Init">
+    <LineIds Name="FB_MonetCabinetControl.FB_Init">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.IsKeyOnManual">
+    <LineIds Name="FB_MonetCabinetControl.IsKeyOnManual">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.IsResetPushed">
+    <LineIds Name="FB_MonetCabinetControl.IsResetPushed">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.IsStartPushed">
+    <LineIds Name="FB_MonetCabinetControl.IsStartPushed">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.IsStopPushed">
+    <LineIds Name="FB_MonetCabinetControl.IsStopPushed">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.KeyLocal.Get">
+    <LineIds Name="FB_MonetCabinetControl.KeyLocal.Get">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.SetBlinkError">
+    <LineIds Name="FB_MonetCabinetControl.SetBlinkError">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.SetBlinkPower">
+    <LineIds Name="FB_MonetCabinetControl.SetBlinkPower">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CabinetControl.SetManualLamp">
+    <LineIds Name="FB_MonetCabinetControl.SetManualLamp">
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>

@@ -27,28 +27,28 @@
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MONET\FB_MonetCabinetControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MONET\FB_MonetFocusControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MONET\FB_MonetHydraulicsControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MONET\FB_MonetPendantControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MONET\FB_MonetTelescopeControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MONET\FB_MonetPowerMonitoring.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MONET\FB_MonetSafetyHandling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_CabinetControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_MonetHydraulicsControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_MonetFocusControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_MonetPendantControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_PowerMonitoring.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_SafetyHandling.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">

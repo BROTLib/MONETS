@@ -3771,7 +3771,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{6DADE760-7FAC-4830-92BA-478C8595D673}" Name="MONETSRuntime" PrjFilePath="MONETSRuntime\MONETSRuntime.plcproj" TmcFilePath="MONETSRuntime\MONETSRuntime.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MONETSRuntime\MONETSRuntime.tmc" TmcHash="{96FA558B-02AB-71BC-0BB9-3C71D964F492}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MONETSRuntime\MONETSRuntime.tmc" TmcHash="{58F4731D-A2C8-82DA-8B57-ADB125A25D58}">
 					<Name>MONETSRuntime Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

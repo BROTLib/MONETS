@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
-  <POU Name="FB_PowerMonitoring" Id="{1c33c5f1-1a01-4451-9e8f-b85db9566c06}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_PowerMonitoring
+  <POU Name="FB_MonetPowerMonitoring" Id="{1c33c5f1-1a01-4451-9e8f-b85db9566c06}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MonetPowerMonitoring
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -101,7 +101,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[THIS^.fbComm := comm;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_PowerMonitoring">
+    <LineIds Name="FB_MonetPowerMonitoring">
       <LineId Id="1" Count="1" />
       <LineId Id="15" Count="9" />
       <LineId Id="26" Count="3" />
@@ -113,7 +113,7 @@ END_VAR]]></Declaration>
       <LineId Id="81" Count="0" />
       <LineId Id="61" Count="0" />
     </LineIds>
-    <LineIds Name="FB_PowerMonitoring.FB_Init">
+    <LineIds Name="FB_MonetPowerMonitoring.FB_Init">
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
