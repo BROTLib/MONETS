@@ -4,144 +4,26 @@
   <FileName></FileName>
   <Children>
     <Node>
-      <Title>Scope Project1.tcscopex</Title>
-      <Expanded>False</Expanded>
-      <FileName></FileName>
-      <Children />
-    </Node>
-    <Node>
-      <Title>ScopeWizard</Title>
-      <Expanded>False</Expanded>
-      <FileName>C:\Users\MONET\Documents\MONETS\Scope\ScopeWizard.tcscopex</FileName>
+      <Title>MotorTuning</Title>
+      <Expanded>True</Expanded>
+      <FileName>C:\Users\MONET\Documents\MONETS\Scope\MotorTuning.tcscopex</FileName>
       <Children>
         <Node>
           <Title>DataPool</Title>
           <Expanded>False</Expanded>
           <FileName></FileName>
-          <Children>
-            <Node>
-              <Title>Following distance Az</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>Following distance Dero</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>Following distance El</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>Torque/force feedback value Az</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>Torque/force feedback value Dero</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>Torque/force feedback value El</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>Velocity feedback 1 value Az</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>Velocity feedback 1 value El</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-          </Children>
+          <Children />
         </Node>
         <Node>
           <Title>YT Chart</Title>
-          <Expanded>False</Expanded>
+          <Expanded>True</Expanded>
           <FileName></FileName>
           <Children>
             <Node>
-              <Title>Torque/force feedback</Title>
+              <Title>Axis Group</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>Torque/force feedback value Az</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>Torque/force feedback value El</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>Torque/force feedback value Dero</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Follow distance</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>Following distance Az</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>Following distance El</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>Following distance Dero</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Velocity feedback</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>Velocity feedback 1 value Az</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>Velocity feedback 1 value El</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
+              <Children />
             </Node>
           </Children>
         </Node>
@@ -152,6 +34,12 @@
           <Children />
         </Node>
       </Children>
+    </Node>
+    <Node>
+      <Title>Scope Project1.tcscopex</Title>
+      <Expanded>False</Expanded>
+      <FileName></FileName>
+      <Children />
     </Node>
   </Children>
 </Node>

@@ -19,6 +19,9 @@
     <AllowChecksForLibrary>false</AllowChecksForLibrary>
     <POUsForPropertyAccessIncluded>false</POUsForPropertyAccessIncluded>
     <GlobalVersionStructureIncluded>false</GlobalVersionStructureIncluded>
+    <Company>IAG</Company>
+    <Title>MONETS</Title>
+    <ProjectVersion>0.1</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Components\FB_MonetCoverControl.TcPOU">

@@ -100,21 +100,21 @@ END_IF
 // run all control FBs
 CoverControl();
 HydraulicsControl(
-	nMinPanLevel	:= 3000,
+	nMinPanLevel	:= 3500,
 	nMaxPanLevel	:= 10200,
 	fMinPanPercent	:= 0.0,
 	fMaxPanPercent	:= 50.0, //56.0,
 	bBrakeClearing	:= brakeClearing
 );
 ElevationControl(
-	fCalibPosition 	:= 27.66337, //28.5,
+	fCalibPosition 	:= 68.0 - 8.3 - 0.5,
 	fbCovers 		:= CoverControl, 
 	fbBrake 		:= HydraulicsControl
 );
 AzimuthControl(
-	fCalibPosition	:= 212.43044, //212.75,
-	fMinPosition	:= -72.0,
-	fMaxPosition	:= 495.0,
+	fCalibPosition	:= 0.0,
+	fMinPosition	:= -274.0,
+	fMaxPosition	:= 270.0,
 	bBrakeOpen		:= HydraulicsControl.brakeOpen,
 );
 DerotatorControl(

@@ -9,10 +9,10 @@
     <Name>Scope</Name>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Scope Project1.tcscopex">
+    <Content Include="MotorTuning.tcscopex">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="ScopeWizard.tcscopex">
+    <Content Include="Scope Project1.tcscopex">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>

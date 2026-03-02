@@ -2760,7 +2760,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.FocusControl.InNegLimit"</v>
+                          <v n="Value">"MAIN.FocusControl.IbLimitNear"</v>
                         </o>
                       </l>
                     </o>
@@ -2983,7 +2983,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.FocusControl.InPosLimit"</v>
+                          <v n="Value">"MAIN.FocusControl.IbLimitFar"</v>
                         </o>
                       </l>
                     </o>
@@ -3966,7 +3966,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.FocusControl.MovePos"</v>
+                          <v n="Value">"MAIN.FocusControl.bMovePos"</v>
                         </o>
                       </l>
                     </o>

@@ -55,6 +55,9 @@
         <InitCmd DriveNo="0" IDN="432" MotorDataLevel="0" DisableMode="0">
           <RetainData>1200120053657269616c233a20303030363633303731</RetainData>
         </InitCmd>
+        <InitCmd DriveNo="0" IDN="33088" MotorDataLevel="0" DisableMode="0">
+          <RetainData>24002400d6000600ca0002002c9d5b002c9d5b00c8000900660000001b534c002260000000000000</RetainData>
+        </InitCmd>
         <InitCmd DriveNo="0" IDN="33093" MotorDataLevel="0" DisableMode="0">
           <RetainData>160016004a756e2020322032303232202c2031363a32303a3538</RetainData>
         </InitCmd>
@@ -312,14 +315,14 @@
           <Block Id="0">
             <Motor IsManualInput="true" IsManualMFiInput="false">
               <DatabaseType>
-                <SchemaVersion></SchemaVersion>
-                <DataVersion></DataVersion>
+                <SchemaVersion />
+                <DataVersion />
                 <OrderCode>TMB 0530-070-3VDN</OrderCode>
-                <GroupType></GroupType>
+                <GroupType />
                 <ElectricMotorType>TMB 0530-070-3VDN</ElectricMotorType>
-                <MotorfeedbackType></MotorfeedbackType>
-                <MotorbrakeType></MotorbrakeType>
-                <AssemblyType></AssemblyType>
+                <MotorfeedbackType />
+                <MotorbrakeType />
+                <AssemblyType />
                 <VendorName>ETEL</VendorName>
                 <IsAc>true</IsAc>
                 <ConstructType>0</ConstructType>
@@ -795,17 +798,17 @@
                 </SoE>
               </Calc>
             </Feedback>
-            <Load MoveStyle="Linear">
+            <Load MoveStyle="Rotary">
               <IsMotorRotary>true</IsMotorRotary>
               <Name>InverterChannelTypeBlockLoad</Name>
               <ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
               <Parameter>
                 <PropertyName>FeedConstantUnit</PropertyName>
-                <Value>mm</Value>
+                <Value>°</Value>
               </Parameter>
               <Parameter>
                 <PropertyName>FeedConstant</PropertyName>
-                <Value>60</Value>
+                <Value>360</Value>
               </Parameter>
               <Parameter>
                 <PropertyName>GearRatioMotorSide</PropertyName>
@@ -829,7 +832,7 @@
               </Parameter>
               <Parameter>
                 <PropertyName>LoadInertiaMass</PropertyName>
-                <Value>0</Value>
+                <Value>40</Value>
               </Parameter>
               <Parameter>
                 <PropertyName>MaxApplicationTorqueForce</PropertyName>
@@ -846,23 +849,23 @@
                 <ProjectGUID>00000000-0000-0000-0000-000000000000</ProjectGUID>
                 <Parameter>
                   <PropertyName>Filter_Type</PropertyName>
-                  <Value>0</Value>
+                  <Value>1</Value>
                 </Parameter>
                 <Parameter>
                   <PropertyName>Filter_LowPassFrequency</PropertyName>
-                  <Value>500</Value>
+                  <Value>25</Value>
                 </Parameter>
                 <Parameter>
                   <PropertyName>Filter_LowPassDamping</PropertyName>
-                  <Value>0.5</Value>
+                  <Value>0</Value>
                 </Parameter>
                 <Parameter>
                   <PropertyName>Filter_HighPassFrequency</PropertyName>
-                  <Value>1000</Value>
+                  <Value>10</Value>
                 </Parameter>
                 <Parameter>
                   <PropertyName>Filter_HighPassDamping</PropertyName>
-                  <Value>0.5</Value>
+                  <Value>0</Value>
                 </Parameter>
               </Filter>
               <Filter Id="1">
@@ -1155,11 +1158,11 @@
       <ProcessData>
         <Send>
           <BitStart>568</BitStart>
-          <BitLength>48</BitLength>
+          <BitLength>64</BitLength>
         </Send>
         <Recv>
           <BitStart>568</BitStart>
-          <BitLength>80</BitLength>
+          <BitLength>192</BitLength>
         </Recv>
         <Sm2>
           <Type>Outputs</Type>
@@ -1235,6 +1238,81 @@
               <Length>4</Length>
             </AdsInfo>
           </Entry>
+          <Entry>
+            <Index>#x82</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>32</BitLen>
+            <Name>Probe value 1 positive edge</Name>
+            <DataType>DINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483567</IndexOffset>
+              <Length>4</Length>
+            </AdsInfo>
+          </Entry>
+          <Entry>
+            <Index>#x199</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>16</BitLen>
+            <Name>Probe 1 positive latched</Name>
+            <DataType>UINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483563</IndexOffset>
+              <Length>2</Length>
+            </AdsInfo>
+          </Entry>
+          <Entry>
+            <Index>#x8321</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>16</BitLen>
+            <Name>Digital inputs, state</Name>
+            <DataType>WORD</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483561</IndexOffset>
+              <Length>2</Length>
+            </AdsInfo>
+          </Entry>
+          <Entry>
+            <Index>#x186</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>32</BitLen>
+            <Name>Diagnostic number</Name>
+            <DataType>DWORD</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483559</IndexOffset>
+              <Length>4</Length>
+            </AdsInfo>
+          </Entry>
+          <Entry>
+            <Index>#x54</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>16</BitLen>
+            <Name>Torque/force feedback value</Name>
+            <DataType>INT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483555</IndexOffset>
+              <Length>2</Length>
+            </AdsInfo>
+          </Entry>
         </TxPdo>
         <RxPdo Mandatory="true" Sm="2">
           <Index>#x18</Index>
@@ -1267,6 +1345,21 @@
               <IndexGroup>50593872</IndexGroup>
               <IndexOffset>-2130706359</IndexOffset>
               <Length>4</Length>
+            </AdsInfo>
+          </Entry>
+          <Entry>
+            <Index>#x195</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>16</BitLen>
+            <Name>Probe 1 enable</Name>
+            <DataType>UINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2130706355</IndexOffset>
+              <Length>2</Length>
             </AdsInfo>
           </Entry>
         </RxPdo>
@@ -1319,7 +1412,7 @@
               <IDN>16</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>040004003300bd00</Data>
+              <Data>0e000e003300bd0082009901218386015400</Data>
             </InitCmd>
             <InitCmd Fixed="true">
               <Transition>PS</Transition>
@@ -1330,7 +1423,7 @@
               <IDN>24</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>020002002f00</Data>
+              <Data>040004002f009501</Data>
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
@@ -1443,26 +1536,81 @@
               <Data>0b00</Data>
             </InitCmd>
             <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Velocity loop proportional gain]]></Comment>
+              <Transition>IP</Transition>
+              <Comment><![CDATA[Report diagnostics information]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
               <DriveNo>0</DriveNo>
-              <IDN>100</IDN>
+              <IDN>33072</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>db930400</Data>
+              <Data>0100</Data>
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
-              <Comment><![CDATA[Velocity loop integral action time]]></Comment>
+              <Comment><![CDATA[Feedback 1 type]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
               <DriveNo>0</DriveNo>
-              <IDN>101</IDN>
+              <IDN>32918</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>5000</Data>
+              <Data>e000e00000000000556e6b6e23315670702d3336303030532d35560000000000000000000000000000000000000000000200200303000000000000000100030000000000a08c000000000000e8030000e8030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Feedback 1 reference signal]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>32922</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>080008000100000000000000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Velocity observer]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>33282</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0c000c0001000000c800e803bc020000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Position loop Kv-factor]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>104</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0600</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Velocity filter 1: Gain at infinite frequency]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>33280</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>804a5d05</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Current command value filter 0]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>33281</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>40004000010000000100000019000000000000000a0000000000000000000000000000001e0000000310a0000000000000000000fdef5f3f000000000000000000000000</Data>
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
@@ -1495,7 +1643,7 @@
               <IDN>32839</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>0800080000c4090000000000</Data>
+              <Data>0800080000c40900005a6202</Data>
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
@@ -1763,6 +1911,28 @@
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
+              <Comment><![CDATA[Velocity loop proportional gain]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>100</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>408af701</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Velocity loop integral action time]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>101</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>5802</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
               <Comment><![CDATA[Motor temperature sensor type]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
@@ -1773,48 +1943,37 @@
               <Data>0400</Data>
             </InitCmd>
             <InitCmd>
-              <Transition>IP</Transition>
-              <Comment><![CDATA[Report diagnostics information]]></Comment>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Probe 1 logic configuration]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
               <DriveNo>0</DriveNo>
-              <IDN>33072</IDN>
+              <IDN>33019</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>0100</Data>
+              <Data>080008000000080001000000</Data>
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
-              <Comment><![CDATA[Feedback 1 type]]></Comment>
+              <Comment><![CDATA[Probe control parameter]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
               <DriveNo>0</DriveNo>
-              <IDN>32918</IDN>
+              <IDN>169</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>e000e00000000000556e6b6e23315670702d3336303030532d35560000000000000000000000000000000000000000000200200303000000000000000100030000000000a08c000000000000e8030000e8030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</Data>
+              <Data>2101</Data>
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
-              <Comment><![CDATA[Feedback 1 reference signal]]></Comment>
+              <Comment><![CDATA[Probe 1 value source]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
               <DriveNo>0</DriveNo>
-              <IDN>32922</IDN>
+              <IDN>33018</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>080008000100000000000000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Velocity observer]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>0</DriveNo>
-              <IDN>33282</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0c000c0001000000f401e803bc020000</Data>
+              <Data>0000</Data>
             </InitCmd>
           </InitCmds>
         </SoE>
@@ -2167,7 +2326,7 @@
           <Cmd>5</Cmd>
           <Adp>1001</Adp>
           <Ado>2064</Ado>
-          <Data>0010060024000100</Data>
+          <Data>0010080024000100</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -2177,7 +2336,7 @@
           <Cmd>5</Cmd>
           <Adp>1001</Adp>
           <Ado>2072</Ado>
-          <Data>00110a0022000100</Data>
+          <Data>0011180022000100</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -2187,7 +2346,7 @@
           <Cmd>5</Cmd>
           <Adp>1001</Adp>
           <Ado>1536</Ado>
-          <Data>00000001060000070010000201000000</Data>
+          <Data>00000001080000070010000201000000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -2197,7 +2356,7 @@
           <Cmd>5</Cmd>
           <Adp>1001</Adp>
           <Ado>1552</Ado>
-          <Data>000000010a0000070011000101000000</Data>
+          <Data>00000001180000070011000101000000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
