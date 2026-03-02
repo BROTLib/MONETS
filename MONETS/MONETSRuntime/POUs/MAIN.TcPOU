@@ -21,7 +21,7 @@ VAR
 	RoofControl			: FB_RoofControl(comm := fbComm);
 	CoverControl		: FB_MonetCoverControl(comm := fbComm);
 	HydraulicsControl	: FB_HydraulicsControl(comm := fbComm);
-	FocusControl		: FB_FocusControl(comm := fbComm);
+	FocusControl		: FB_MonetFocusControl(comm := fbComm);
 	DerotatorControl	: FB_DerotatorControl(comm := fbComm);
 	ElevationControl	: FB_ElevationControl(comm := fbComm);
 	AzimuthControl		: FB_AzimuthControl(comm := fbComm);

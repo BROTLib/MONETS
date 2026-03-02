@@ -18,12 +18,20 @@ VAR_OUTPUT
 	
 	fElevationPointingOffset : LREAL;
 	fAzimuthPointingOffset : LREAL;
+	fElevationPointingOffset2 : LREAL;
+	fAzimuthPointingOffset2 : LREAL;
+	
+	fRightAscensionCurrentSky: LREAL;
+	fDeclinationCurrentSky: LREAL;
 
 	fDerotatorVelocity	: LREAL;	// rotational velocity of the derotator
 	fElevationVelocity	: LREAL;	// rotational velocity of the elevation
 	fAzimuthVelocity	: LREAL;	// rotational velocity of the elevation
 END_VAR
 VAR
+	fbPointing			: FB_PointingModelForward(AOFF := 0.0, BNP := 0.41799581014823517, AN_A := -0.0005399238415356825, AE_A := 0.0010943700155200701, NPAE := 0.3540915955287274, 
+                                                  EOFF := 0.0, AN_E := -0.0015387935505830619, AE_E := 0.0028384915610841777, TF := 0.07539398326327973);
+	fbPointingInverse	: FB_PointingModelInversion(fbPointing := fbPointing);
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -102,16 +110,23 @@ eq2hor(
 	dec := fDeclination,
 	lon := telescopeConfig.longitude,
 	lat := telescopeConfig.latitude,
+	altitude := telescopeConfig.altitude,
 	JD := fJd + fTimeOffset,
+	refract_to_observed := TRUE,
+	// refract := FALSE,
 	alt => fElevationCalc,
 	az => fAzimuthCalc,
 	ha => fHourAngleCalc);
 
 // apply pointing model
-fElevationPointingOffset := PointingModelElevation(fAzimuthCalc, fElevationCalc, EOFF, AN_E, AE_E, TF);
-fAzimuthPointingOffset := PointingModelAzimuth(fAzimuthCalc, fElevationCalc, AOFF, BNP, AN_A, AE_A, NPAE);
+fbPointing(
+	fAzimuth			:= fAzimuthCalc,
+	fElevation			:= fElevationCalc,
+	fAzimuthOffset		=> fAzimuthPointingOffset,
+	fElevationOffset	=> fElevationPointingOffset
+);
 fElevationCalc := fElevationCalc + fElevationPointingOffset + fElevationOffset;
-fAzimuthCalc := fAzimuthCalc + fAzimuthPointingOffset + fAzimuthOffset;
+fAzimuthCalc := fAzimuthCalc + fAzimuthPointingOffset + fAzimuthOffset / COS(fElevationCalc * d2r);
 
 // calculate derotator position 
 fDerotatorCalc := F_DerotatorPosition2(fAzimuthCalc, fElevationCalc, fDeclination, telescopeConfig.latitude, fDerotatorSign)  + fDerotatorOffset;
@@ -143,31 +158,40 @@ fAzimuthCurrent := fbAzimuth.fActualPosition;
 fElevationCurrent := fbElevation.fActualPosition;
 fDerotatorCurrent := fbDerotator.fActualPosition;
 
-// apply pointing model
-fElevationCurrentSky := fElevationCurrent - PointingModelElevation(fAzimuthCurrent, fElevationCurrent, EOFF, AN_E, AE_E, TF);
-fAzimuthCurrentSky := fAzimuthCurrent - PointingModelAzimuth(fAzimuthCurrent, fElevationCurrent, AOFF, BNP, AN_A, AE_A, NPAE);
+// apply inverse pointing model
+fbPointingInverse(
+	fAzimuth			:= fAzimuthCurrent,
+	fElevation			:= fElevationCurrent,
+	fAzimuthOffset  	=> fAzimuthPointingOffset2,
+	fElevationOffset	=> fElevationPointingOffset2
+);
+fAzimuthCurrentSky := fAzimuthCurrent - fAzimuthPointingOffset2;
+fElevationCurrentSky := fElevationCurrent - fElevationPointingOffset2;
 
 // add offsets
-fElevationCurrent := fElevationCurrentSky - fElevationOffset;
-fAzimuthCurrent := fAzimuthCurrentSky - fAzimuthOffset;
+//fElevationCurrent := fElevationCurrentSky - fElevationOffset;
+//fAzimuthCurrent := fAzimuthCurrentSky - fAzimuthOffset / COS(fElevationCalc * d2r);
 
 // calculate equatorial coordinates
-hor2eq(alt := fElevationCurrent, 
-		az := fAzimuthCurrent,
+hor2eq(alt := fElevationCurrentSky - fElevationOffset, 
+		az := fAzimuthCurrentSky - fAzimuthOffset / COS(fElevationCalc * d2r),
 		jd := fJd,
 		lat := telescopeConfig.latitude,
 		lon := telescopeConfig.longitude,
 		altitude := telescopeConfig.altitude,
-		ra => fRightAscensionCalc,
-		dec => fDeclinationCalc);		
+		refract_to_observed := FALSE,
+		// refract := FALSE,
+		ra => fRightAscensionCurrent,
+		dec => fDeclinationCurrent);		
 hor2eq(alt := fElevationCurrentSky, 
 		az := fAzimuthCurrentSky,
 		jd := fJd,
 		lat := telescopeConfig.latitude,
 		lon := telescopeConfig.longitude,
 		altitude := telescopeConfig.altitude,
-		ra => fRightAscensionCurrent,
-		dec => fDeclinationCurrent);
+		refract_to_observed := FALSE,
+		ra => fRightAscensionCurrentSky,
+		dec => fDeclinationCurrentSky);
 	
 // If the Telescope dips under the fHorizon (e.g. while tracking, stop and gohome)
 IF fbElevation.Calibrated AND fElevationCurrent < (fHorizon+0.2) THEN
@@ -381,9 +405,9 @@ END_IF
 
 // send telemetry
 IF bSlewing OR bTrack OR bTracking THEN
-	tonMQTTTimer.PT := T#1000MS; // during movement every second
+	tonMQTTTimer.PT := T#500MS; // during movement every second
 ELSE
-	tonMQTTTimer.PT := T#5000MS; // otherwise every five seconds
+	tonMQTTTimer.PT := T#1000MS; // otherwise every five seconds
 END_IF
 tonMQTTTimer(IN:=TRUE);
 IF tonMQTTTimer.Q THEN
@@ -809,8 +833,8 @@ fbComm.Publish('telescope', 'dome', 'OBJECT.EQUATORIAL.RA_PM', '0.0');
 fbComm.Publish('telescope', 'dome', 'OBJECT.EQUATORIAL.DEC_PM', '0.0');
 fbComm.Publish('telescope', 'dome', 'OBJECT.EQUATORIAL.RA_RATE', '0.0');
 fbComm.Publish('telescope', 'dome', 'OBJECT.EQUATORIAL.DEC_RATE', '0.0');
-fbComm.Publish('telescope', 'dome', 'OBJECT.EQUATORIAL.RA', LREAL_TO_STRING(fRightAscensionCalc/15.0));
-fbComm.Publish('telescope', 'dome', 'OBJECT.EQUATORIAL.DEC', LREAL_TO_STRING(fDeclinationCalc));	
+fbComm.Publish('telescope', 'dome', 'OBJECT.EQUATORIAL.RA', LREAL_TO_STRING(fRightAscension/15.0));
+fbComm.Publish('telescope', 'dome', 'OBJECT.EQUATORIAL.DEC', LREAL_TO_STRING(fDeclination));	
 
 // HORIZONTAL
 fbComm.Publish('telescope', 'dome', 'OBJECT.HORIZONTAL.ALT', LREAL_TO_STRING(fElevationCalc));
@@ -954,10 +978,16 @@ CASE nStage OF
 			nStage := 25;
 		END_IF				
 	25:
-		fbElevation.Position := fElevation + PointingModelElevation(fAzimuth, fElevation, EOFF, AN_E, AE_E, TF) + fElevationOffset;
+		fbPointing(
+			fAzimuth			:= fAzimuth,
+			fElevation			:= fElevation,
+			fAzimuthOffset		=> fAzimuthPointingOffset,
+			fElevationOffset	=> fElevationPointingOffset
+		);	
+		fbElevation.Position := fElevation + fElevationPointingOffset + fElevationOffset;
 		fbElevation.Velocity := 10.0;
 		fbElevation.MoveAxis := TRUE;
-		fbAzimuth.Position := fAzimuth + PointingModelAzimuth(fAzimuth, fElevation, AOFF, BNP, AN_A, AE_A, NPAE) + fAzimuthOffset;
+		fbAzimuth.Position := fAzimuth + fAzimuthPointingOffset + fAzimuthOffset / COS(fElevationCalc * d2r);
 		fbAzimuth.Velocity := 10.0;
 		fbAzimuth.MoveAxis := TRUE;
 		fbDerotator.Position := fElevation + fDerotatorOffset;
@@ -1287,7 +1317,8 @@ END_VAR
       <Implementation>
         <ST><![CDATA[THIS^.fRightAscension	:= fRightAscension;
 THIS^.fDeclination		:= fDeclination;
-THIS^.bTrack			:= TRUE;]]></ST>
+//THIS^.bTrack			:= TRUE;
+THIS^.bGoto				:= TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TrackRaDec" Id="{f497d99f-36a3-42c8-ae9b-738903f3158c}">
@@ -1299,7 +1330,8 @@ END_VAR
       <Implementation>
         <ST><![CDATA[fRightAscension	:= RaDec.RightAscension;
 fDeclination		:= RaDec.Declination;
-bTrack			:= TRUE;]]></ST>
+//bTrack			:= TRUE;
+THIS^.bGoto				:= TRUE;]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_MonetTelescopeControl">
@@ -1307,7 +1339,11 @@ bTrack			:= TRUE;]]></ST>
       <LineId Id="364" Count="1" />
       <LineId Id="866" Count="0" />
       <LineId Id="367" Count="0" />
-      <LineId Id="869" Count="10" />
+      <LineId Id="1094" Count="0" />
+      <LineId Id="869" Count="0" />
+      <LineId Id="1096" Count="2" />
+      <LineId Id="1095" Count="0" />
+      <LineId Id="870" Count="9" />
       <LineId Id="382" Count="0" />
       <LineId Id="880" Count="0" />
       <LineId Id="882" Count="10" />
@@ -1324,12 +1360,36 @@ bTrack			:= TRUE;]]></ST>
       <LineId Id="913" Count="1" />
       <LineId Id="398" Count="4" />
       <LineId Id="1009" Count="0" />
-      <LineId Id="403" Count="15" />
-      <LineId Id="1002" Count="1" />
+      <LineId Id="403" Count="7" />
+      <LineId Id="1042" Count="0" />
+      <LineId Id="411" Count="0" />
+      <LineId Id="1036" Count="0" />
+      <LineId Id="1043" Count="0" />
+      <LineId Id="412" Count="4" />
+      <LineId Id="1048" Count="0" />
+      <LineId Id="1050" Count="3" />
+      <LineId Id="1049" Count="0" />
+      <LineId Id="1099" Count="0" />
+      <LineId Id="1102" Count="0" />
       <LineId Id="1001" Count="0" />
       <LineId Id="419" Count="1" />
       <LineId Id="1000" Count="0" />
-      <LineId Id="421" Count="52" />
+      <LineId Id="421" Count="27" />
+      <LineId Id="1054" Count="0" />
+      <LineId Id="1056" Count="2" />
+      <LineId Id="1061" Count="0" />
+      <LineId Id="1055" Count="0" />
+      <LineId Id="450" Count="0" />
+      <LineId Id="1100" Count="0" />
+      <LineId Id="451" Count="1" />
+      <LineId Id="1101" Count="0" />
+      <LineId Id="1103" Count="0" />
+      <LineId Id="455" Count="7" />
+      <LineId Id="1037" Count="0" />
+      <LineId Id="1044" Count="0" />
+      <LineId Id="463" Count="7" />
+      <LineId Id="1038" Count="0" />
+      <LineId Id="471" Count="2" />
       <LineId Id="924" Count="6" />
       <LineId Id="923" Count="0" />
       <LineId Id="931" Count="0" />
@@ -1419,7 +1479,10 @@ bTrack			:= TRUE;]]></ST>
       <LineId Id="1" Count="15" />
       <LineId Id="71" Count="6" />
       <LineId Id="70" Count="0" />
-      <LineId Id="17" Count="41" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="89" Count="4" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="18" Count="40" />
     </LineIds>
     <LineIds Name="FB_MonetTelescopeControl._StopTelescope">
       <LineId Id="16" Count="2" />
@@ -1487,9 +1550,11 @@ bTrack			:= TRUE;]]></ST>
     <LineIds Name="FB_MonetTelescopeControl.Track">
       <LineId Id="9" Count="1" />
       <LineId Id="8" Count="0" />
+      <LineId Id="17" Count="0" />
     </LineIds>
     <LineIds Name="FB_MonetTelescopeControl.TrackRaDec">
       <LineId Id="1" Count="2" />
+      <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

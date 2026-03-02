@@ -1,34 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
   <POU Name="FB_MonetFocusControl" Id="{27922653-650e-4327-85ba-374d2f945b2c}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_MonetFocusControl EXTENDS FB_BaseAxis IMPLEMENTS I_Focus
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MonetFocusControl EXTENDS FB_FocusControl
 VAR_INPUT
-	fMinPosition		: LREAL := 0;	// minimum position
-	fMaxPosition		: LREAL := 100;	// maximum position
-	eTelescopeMode		: E_TelescopeMode;
-	fHomingPosition		: LREAL := 92.02; // 104.02 - 12.00 	// reference position for homing
-	fTolerance			: LREAL := 0.005;
 END_VAR
 VAR_OUTPUT
-	bFocusUnlocked		: BOOL;
 END_VAR
 VAR
-	bMoveAxis			: BOOL;		// move the axis to new position
-	ObFocusUnlock AT%Q* : BOOL;		// whether focus is unlocked
-	fActualPosition		: LREAL;
-	tonMqttTimer 		: TON := (PT:=T#5S);
-	//getlastposition:	BOOL := TRUE;
-	fbAxisEvent			: FB_EventLog;
-	fbCalibrationEvent	: FB_EventLog;
-	eHomingMode			: MC_HOMINGMODE := MC_DefaultHoming;
-	fbSetPosition		: MC_SetPosition;
-	
-	IbLimitNear    AT%I*: BOOL;	// DIN29 3.4
-	IbLimitFar     AT%I*: BOOL;	// DIN30 3.5
-	refAxis			: AXIS_REF;
 END_VAR
 VAR PERSISTENT
-	fLastPposition		: LREAL := -1.0;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -129,84 +109,19 @@ END_IF
 bCalibrated := fbAxis.calibrated;
 bReady := fbAxis.Ready AND fbAxis.StandStill OR NOT ObFocusUnlock;
 
-SendTelemetry();
+// send telemetry
+tonComm(IN:=TRUE);
+IF tonComm.Q THEN // publish new payload every 5 seconds
+	tonComm(IN:=FALSE);
+	SendTelemetry();	
+END_IF
 HandleEvents();]]></ST>
     </Implementation>
-    <Method Name="HandleEvents" Id="{375f50c9-e6ea-4fcd-9fab-a26147b70ce8}">
-      <Declaration><![CDATA[METHOD PRIVATE HandleEvents : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[fbAxisEvent(	
-	Trigger 		:= fbAxis.Error, 
-	Level 			:= ADSLOG_MSGTYPE_ERROR,
-	FormatString	:= 'Focus Axis Error: %S',
-	OnMessage 		:= NCError_TO_STRING(nErrorID),
-	OffMEssage 		:= 'OK',
-	OffLevel 		:= ADSLOG_MSGTYPE_HINT,
-	fbComm 			:= fbComm);
-
-fbCalibrationEvent(
-	Trigger 		:=	bCalibrated,
-	Level 			:=	ADSLOG_MSGTYPE_HINT,
-	OnMessage 		:= 'Focus is calibrated.',
-	fbComm 			:= fbComm);
-]]></ST>
-      </Implementation>
-    </Method>
-    <Property Name="InNegLimit" Id="{1d25a9c6-c26c-4c20-9f13-eca88477ee48}">
-      <Declaration><![CDATA[PROPERTY PUBLIC InNegLimit : BOOL]]></Declaration>
-      <Get Name="Get" Id="{88be5ca6-56e1-4d6b-8cc7-729df9681a1a}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[InNegLimit := IbLimitNear;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Property Name="InPosLimit" Id="{66e2cfb2-3f2c-47bf-8a02-ad3ba18a05bd}">
-      <Declaration><![CDATA[PROPERTY PUBLIC InPosLimit : BOOL]]></Declaration>
-      <Get Name="Get" Id="{d6be74e5-be21-4625-abd6-363742161882}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[InPosLimit := IbLimitFar;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Method Name="SendTelemetry" Id="{9492de4d-6d2e-401c-bc97-10786d283636}">
-      <Declaration><![CDATA[METHOD PRIVATE SendTelemetry : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[tonMqttTimer(IN:=TRUE);
-IF tonMqttTimer.Q THEN // publish new payload every second
-	tonMqttTimer(IN:=FALSE);
-	fbComm.Publish('telescope', 'dome', 'FocusPosition', LREAL_TO_FMTSTR(fActualPosition, 5, TRUE));
-	fbComm.Publish('telescope', 'dome', 'Focuscalibrated', BOOL_TO_STRING(bCalibrated));	
-	fbComm.Publish('telescope', 'dome', 'FocusReady', BOOL_TO_STRING(bReady));	
-END_IF
-]]></ST>
-      </Implementation>
-    </Method>
     <LineIds Name="FB_MonetFocusControl">
-      <LineId Id="1" Count="98" />
-    </LineIds>
-    <LineIds Name="FB_MonetFocusControl.HandleEvents">
-      <LineId Id="1" Count="14" />
-    </LineIds>
-    <LineIds Name="FB_MonetFocusControl.InNegLimit.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MonetFocusControl.InPosLimit.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_MonetFocusControl.SendTelemetry">
-      <LineId Id="1" Count="7" />
+      <LineId Id="1" Count="95" />
+      <LineId Id="130" Count="5" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="99" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
