@@ -11047,7 +11047,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 					<ImageId>1011</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x044c2c52" RevisionNo="#x00120000" PortPhys="305" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1100 EtherCAT Coupler (2A E-Bus)" Desc="EK1100" PortABoxInfo="#x0100000c"/>
 					<Box Id="2" BoxType="9099">
-						<Name>Term 2 (EL2008)</Name>
+						<Name>Roof Open/Close (EL2008)</Name>
 						<ImageId>1002</ImageId>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07d83052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2008 8Ch. Dig. Output 24V, 0.5A" Desc="EL2008" PortABoxInfo="#x01000001">
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
@@ -11099,7 +11099,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="3" BoxType="9099">
-						<Name>Term 3 (EL2008)</Name>
+						<Name>Roof Reset (EL2008)</Name>
 						<ImageId>1002</ImageId>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07d83052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2008 8Ch. Dig. Output 24V, 0.5A" Desc="EL2008" PortABoxInfo="#x01000002">
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
@@ -11147,7 +11147,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="4" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Term 4 (EL2904)</Name>
+						<Name>Roof Safety OUT (EL2904)</Name>
 						<ImageId>118</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x0b583052" RevisionNo="#x00130000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="2" Type="EL2904, 4 Ch. Safety Output 24V, 0.5A, TwinSAFE" Desc="EL2904" PortABoxInfo="#x01000003">
 							<SyncMan>001000012600010001000000400000010001001026010000</SyncMan>
@@ -11242,7 +11242,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="5" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Term 5 (EL1904)</Name>
+						<Name>Roof Safety IN (EL1904)</Name>
 						<ImageId>118</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x07703052" RevisionNo="#x00130000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="1" Type="EL1904, 4 Ch. Safety Input 24V, TwinSAFE" Desc="EL1904" PortABoxInfo="#x01000004">
 							<SyncMan>001000012600010001000000400000010001001026010000</SyncMan>
@@ -11309,7 +11309,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="6" BoxType="9099">
-						<Name>Term 6 (EL1008)</Name>
+						<Name>Roof IN 1 (EL1008)</Name>
 						<ImageId>7</ImageId>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000005">
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
@@ -11365,7 +11365,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="7" BoxType="9099">
-						<Name>Term 7 (EL1008)</Name>
+						<Name>Roof IN 2 (EL1008)</Name>
 						<ImageId>7</ImageId>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000006">
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
@@ -11418,7 +11418,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="14" BoxType="9099">
-						<Name>Term 14 (EL1008)</Name>
+						<Name>Roof IN 3 (EL1008)</Name>
 						<ImageId>7</ImageId>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000007">
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
@@ -11468,7 +11468,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="15" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Term 15 (EL4004)</Name>
+						<Name>Roof Speed (EL4004)</Name>
 						<ImageId>1012</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x0fa43052" RevisionNo="#x00150000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL4004 4Ch. Ana. Output 0-10V, 12bit" Desc="EL4004" PortABoxInfo="#x0100000e">
 							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
@@ -11481,22 +11481,22 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000a0860100000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<Pdo Name="AO Outputs Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7000" Sub="#x11" Flags="#x00020000">
+								<Entry Name="MAIN.RoofControl.roofs[1].motors[1].speed" Index="#x7000" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="AO Outputs Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7010" Sub="#x11" Flags="#x00020000">
+								<Entry Name="MAIN.RoofControl.roofs[2].motors[1].speed" Index="#x7010" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="AO Outputs Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7020" Sub="#x11" Flags="#x00020000">
+								<Entry Name="MAIN.RoofControl.roofs[2].motors[2].speed" Index="#x7020" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="AO Outputs Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7030" Sub="#x11" Flags="#x00020000">
+								<Entry Name="MAIN.RoofControl.roofs[1].motors[2].speed" Index="#x7030" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -11771,30 +11771,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.ElevationControl.InDiagnostic" VarB="AT^Diagnostic number"/>
 				<Link VarA="PlcTask Inputs^MAIN.ElevationControl.InDigitalInputs" VarB="AT^Digital inputs, state"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Term 14 (EL1008)">
-				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].motors[2].closed" VarB="Channel 2^MAIN.RoofControl.roofs[1].motors[2].closed"/>
-				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].motors[2].opened" VarB="Channel 7^MAIN.RoofControl.roofs[1].motors[2].opened"/>
-				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[1].closed" VarB="Channel 1^MAIN.RoofControl.roofs[2].motors[1].closed"/>
-				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[2].closed" VarB="Channel 5^MAIN.RoofControl.roofs[2].motors[2].closed"/>
-				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[2].opened" VarB="Channel 3^MAIN.RoofControl.roofs[2].motors[2].opened"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Term 2 (EL2008)">
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[1].direction_close" VarB="Channel 3^MAIN.RoofControl.roofs[1].motors[1].direction_close"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[1].direction_open" VarB="Channel 1^MAIN.RoofControl.roofs[1].motors[1].direction_open"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[2].direction_close" VarB="Channel 8^MAIN.RoofControl.roofs[1].motors[2].direction_close"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[2].direction_open" VarB="Channel 6^MAIN.RoofControl.roofs[1].motors[2].direction_open"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[1].direction_close" VarB="Channel 7^MAIN.RoofControl.roofs[2].motors[1].direction_close"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[1].direction_open" VarB="Channel 5^MAIN.RoofControl.roofs[2].motors[1].direction_open"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[2].direction_close" VarB="Channel 4^MAIN.RoofControl.roofs[2].motors[2].direction_close"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[2].direction_open" VarB="Channel 2^MAIN.RoofControl.roofs[2].motors[2].direction_open"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Term 3 (EL2008)">
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[1].reset_drive" VarB="Channel 1^MAIN.RoofControl.roofs[1].motors[1].reset_drive"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[2].reset_drive" VarB="Channel 7^MAIN.RoofControl.roofs[1].motors[2].reset_drive"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[1].reset_drive" VarB="Channel 3^MAIN.RoofControl.roofs[2].motors[1].reset_drive"/>
-				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[2].reset_drive" VarB="Channel 5^MAIN.RoofControl.roofs[2].motors[2].reset_drive"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Term 6 (EL1008)">
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Roof IN 1 (EL1008)">
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.automatic" VarB="Channel 6^MAIN.RoofControl.automatic"/>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].motors[1].counter" VarB="Channel 1^MAIN.RoofControl.roofs[1].motors[1].counter"/>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].motors[1].motor_error" VarB="Channel 2^MAIN.RoofControl.roofs[1].motors[1].motor_error"/>
@@ -11804,7 +11781,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[1].motor_error" VarB="Channel 4^MAIN.RoofControl.roofs[2].motors[1].motor_error"/>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[2].counter" VarB="Channel 5^MAIN.RoofControl.roofs[2].motors[2].counter"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Term 7 (EL1008)">
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Roof IN 2 (EL1008)">
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].close_roof" VarB="Channel 1^MAIN.RoofControl.roofs[1].close_roof"/>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].motors[1].closed" VarB="Channel 6^MAIN.RoofControl.roofs[1].motors[1].closed"/>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].motors[1].opened" VarB="Channel 4^MAIN.RoofControl.roofs[1].motors[1].opened"/>
@@ -11813,6 +11790,35 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[1].opened" VarB="Channel 8^MAIN.RoofControl.roofs[2].motors[1].opened"/>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[2].motor_error" VarB="Channel 7^MAIN.RoofControl.roofs[2].motors[2].motor_error"/>
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].open_roof" VarB="Channel 3^MAIN.RoofControl.roofs[2].open_roof"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Roof IN 3 (EL1008)">
+				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].motors[2].closed" VarB="Channel 2^MAIN.RoofControl.roofs[1].motors[2].closed"/>
+				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[1].motors[2].opened" VarB="Channel 7^MAIN.RoofControl.roofs[1].motors[2].opened"/>
+				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[1].closed" VarB="Channel 1^MAIN.RoofControl.roofs[2].motors[1].closed"/>
+				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[2].closed" VarB="Channel 5^MAIN.RoofControl.roofs[2].motors[2].closed"/>
+				<Link VarA="PlcTask Inputs^MAIN.RoofControl.roofs[2].motors[2].opened" VarB="Channel 3^MAIN.RoofControl.roofs[2].motors[2].opened"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Roof Open/Close (EL2008)">
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[1].direction_close" VarB="Channel 3^MAIN.RoofControl.roofs[1].motors[1].direction_close"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[1].direction_open" VarB="Channel 1^MAIN.RoofControl.roofs[1].motors[1].direction_open"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[2].direction_close" VarB="Channel 8^MAIN.RoofControl.roofs[1].motors[2].direction_close"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[2].direction_open" VarB="Channel 6^MAIN.RoofControl.roofs[1].motors[2].direction_open"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[1].direction_close" VarB="Channel 7^MAIN.RoofControl.roofs[2].motors[1].direction_close"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[1].direction_open" VarB="Channel 5^MAIN.RoofControl.roofs[2].motors[1].direction_open"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[2].direction_close" VarB="Channel 4^MAIN.RoofControl.roofs[2].motors[2].direction_close"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[2].direction_open" VarB="Channel 2^MAIN.RoofControl.roofs[2].motors[2].direction_open"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Roof Reset (EL2008)">
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[1].reset_drive" VarB="Channel 1^MAIN.RoofControl.roofs[1].motors[1].reset_drive"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[2].reset_drive" VarB="Channel 7^MAIN.RoofControl.roofs[1].motors[2].reset_drive"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[1].reset_drive" VarB="Channel 3^MAIN.RoofControl.roofs[2].motors[1].reset_drive"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[2].reset_drive" VarB="Channel 5^MAIN.RoofControl.roofs[2].motors[2].reset_drive"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Roof Speed (EL4004)">
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[1].speed" VarB="AO Outputs Channel 1^MAIN.RoofControl.roofs[1].motors[1].speed"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[1].motors[2].speed" VarB="AO Outputs Channel 4^MAIN.RoofControl.roofs[1].motors[2].speed"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[1].speed" VarB="AO Outputs Channel 2^MAIN.RoofControl.roofs[2].motors[1].speed"/>
+				<Link VarA="PlcTask Outputs^MAIN.RoofControl.roofs[2].motors[2].speed" VarB="AO Outputs Channel 3^MAIN.RoofControl.roofs[2].motors[2].speed"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Azimuth">
 				<Link VarA="PlcTask Inputs^MAIN.AzimuthControl.axisRef.NcToPlc" VarB="Outputs^ToPlc"/>
