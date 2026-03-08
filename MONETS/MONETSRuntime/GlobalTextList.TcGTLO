@@ -356,6 +356,16 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"728"</v>
+              <v n="TextDefault">"Limit error"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"363"</v>
+              <v n="TextDefault">"Limiterror"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"557"</v>
               <v n="TextDefault">"Limits"</v>
               <l n="LanguageTexts" t="ArrayList" />

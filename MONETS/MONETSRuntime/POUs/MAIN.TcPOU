@@ -29,10 +29,10 @@ VAR
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
 END_VAR
 VAR CONSTANT
-	telescopeConfig		: ST_TelescopeConfig := (longitude := -104.0217, latitude := 30.6714, altitude := 2000.0, 
-												 azimuthPark := 190, elevationPark := 60, derotatorPark := -116.42, focusPark := 53.8, 
-												 azimuthHome := 190, elevationHome := 40, derotatorPark := -116.42,
-												 name := 'MONET/N', diameter := 1.2, cabinet := 'Beckhoff', manufacturer := 'Halfmann, Haidenhain, Beckhoff',
+	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
+												 azimuthPark := -180, elevationPark := 60, derotatorPark := -116.42, focusPark := 53.8, 
+												 azimuthHome := -180, elevationHome := 40, derotatorPark := -116.42,
+												 name := 'MONET/S', diameter := 1.2, cabinet := 'Beckhoff', manufacturer := 'Halfmann, Haidenhain, Beckhoff',
 												 mountOptions := 'ALT-AZ', mount := 'ALT_AZ');
 END_VAR]]></Declaration>
     <Implementation>
@@ -128,8 +128,8 @@ RoofControl(
 	min_speed		:= 10000,
 	max_speed 		:= 30000, 
 	acceleration 	:= 150,
-	min_position 	:= 0,
-	max_position 	:= 202,
+	max_position_1 	:= 205,
+	max_position_2 	:= 203,
 	max_position_diff	:= 3,
 	limit_slowdown	:= 5
 );
@@ -226,7 +226,10 @@ END_IF
       <LineId Id="2187" Count="0" />
       <LineId Id="2126" Count="3" />
       <LineId Id="2246" Count="0" />
-      <LineId Id="2130" Count="9" />
+      <LineId Id="2130" Count="4" />
+      <LineId Id="2136" Count="0" />
+      <LineId Id="2371" Count="0" />
+      <LineId Id="2137" Count="2" />
       <LineId Id="2236" Count="9" />
       <LineId Id="2235" Count="0" />
       <LineId Id="2140" Count="6" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Crc="2932423124" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project Crc="316079995" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
@@ -16,7 +16,7 @@
     <IntProjName>MonetTwinSAFE</IntProjName>
     <IsNewCreated>false</IsNewCreated>
     <SPlcProjVersion>1.8.0.0</SPlcProjVersion>
-    <NextSdsId>29</NextSdsId>
+    <NextSdsId>31</NextSdsId>
     <Name>MONETSTwinSAFE</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -33,6 +33,8 @@
     <None Include="TwinSafeGroup1\Alias Devices\Azimuth_STOState.sds" />
     <None Include="TwinSafeGroup1\Alias Devices\Derotator_STOReset.sds" />
     <None Include="TwinSafeGroup1\Alias Devices\Derotator_STOState.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Roof Safety IN %28EL1904%29 - Module 1 %28FSOES%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Roof Safety OUT %28EL2904%29 - Module 1 %28FSOES%29.sds" />
     <None Include="TwinSafeGroup1\Alias Devices\Elevation_STOReset.sds" />
     <None Include="TwinSafeGroup1\Alias Devices\Elevation_STOState.sds" />
     <None Include="TwinSafeGroup1\Alias Devices\Term 6 %28AX5805%29 - Module %28Safety Process Data, 2 axis%29.sds" />
