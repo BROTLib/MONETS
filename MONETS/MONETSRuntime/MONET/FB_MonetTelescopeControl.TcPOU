@@ -29,8 +29,8 @@ VAR_OUTPUT
 	fAzimuthVelocity	: LREAL;	// rotational velocity of the elevation
 END_VAR
 VAR
-	fbPointing			: FB_PointingModelForward(AOFF := 0.0, BNP := 0.41799581014823517, AN_A := -0.0005399238415356825, AE_A := 0.0010943700155200701, NPAE := 0.3540915955287274, 
-                                                  EOFF := 0.0, AN_E := -0.0015387935505830619, AE_E := 0.0028384915610841777, TF := 0.07539398326327973);
+	fbPointing			: FB_PointingModelForward(AOFF := 0.0, BNP := 0.0, AN_A := 0.0, AE_A := 0.0, NPAE := 0.0, 
+                                                  EOFF := 0.0, AN_E := 0.0, AE_E := 0.0, TF := 0.0);
 	fbPointingInverse	: FB_PointingModelInversion(fbPointing := fbPointing);
 END_VAR
 ]]></Declaration>
@@ -141,17 +141,28 @@ fDerotatorVelocity := F_Derotatorvelocity(fElevationCalc, fAzimuthCalc, telescop
 fElevationVelocity := F_Elevationvelocity(fAzimuthCalc, telescopeConfig.latitude);
 fAzimuthVelocity := F_Azimuthvelocity(fElevationCalc, fAzimuthCalc, telescopeConfig.latitude);
 
-IF (fAzimuthCalc > 310.0 AND fAzimuthVelocity > 0.0) OR (fAzimuthCalc > 440.0) THEN
+IF (fAzimuthCalc > 270.0) THEN
 	fAzimuthCalc := fAzimuthCalc - 360.0;
-ELSIF (fAzimuthCalc < 80.0 AND fAzimuthVelocity < 0.0) OR (fAzimuthCalc < -50.0) THEN
+ELSIF (fAzimuthCalc < -274.0) THEN
 	fAzimuthCalc := fAzimuthCalc + 360.0;
 END_IF
-
-IF (fDerotatorCalc > 290.0 AND fDerotatorVelocity > 0.0) OR (fDerotatorCalc > 380.0) THEN
+IF (fDerotatorCalc > 360.0) THEN
 	fDerotatorCalc := fDerotatorCalc - 360.0;
-ELSIF (fDerotatorCalc < 20.0 AND fDerotatorVelocity < 0.0) OR (fDerotatorCalc < -70.0) THEN
+ELSIF (fDerotatorCalc < -90.0) THEN
 	fDerotatorCalc := fDerotatorCalc + 360.0;
 END_IF
+
+//IF (fAzimuthCalc > 310.0 AND fAzimuthVelocity > 0.0) OR (fAzimuthCalc > 440.0) THEN
+//	fAzimuthCalc := fAzimuthCalc - 360.0;
+//ELSIF (fAzimuthCalc < 80.0 AND fAzimuthVelocity < 0.0) OR (fAzimuthCalc < -50.0) THEN
+//	fAzimuthCalc := fAzimuthCalc + 360.0;
+//END_IF
+
+//IF (fDerotatorCalc > 290.0 AND fDerotatorVelocity > 0.0) OR (fDerotatorCalc > 380.0) THEN
+//	fDerotatorCalc := fDerotatorCalc - 360.0;
+//ELSIF (fDerotatorCalc < 20.0 AND fDerotatorVelocity < 0.0) OR (fDerotatorCalc < -70.0) THEN
+//	fDerotatorCalc := fDerotatorCalc + 360.0;
+//END_IF
 
 // get current coordinates	
 fAzimuthCurrent := fbAzimuth.fActualPosition;
@@ -375,8 +386,12 @@ IF bReady THEN
 	fReadyState := 1.0;
 ELSIF bError THEN
 	fReadyState := -1.0;
+ELSIF bPower THEN
+	fReadyState := 0.7;
 ELSIF bIsParked THEN
 	fReadyState := 0.0;
+ELSIF bPark THEN
+	fReadyState := 0.3;
 END_IF
 
 //MotionState
@@ -1374,7 +1389,15 @@ THIS^.bGoto				:= TRUE;]]></ST>
       <LineId Id="1001" Count="0" />
       <LineId Id="419" Count="1" />
       <LineId Id="1000" Count="0" />
-      <LineId Id="421" Count="27" />
+      <LineId Id="421" Count="3" />
+      <LineId Id="1175" Count="0" />
+      <LineId Id="425" Count="0" />
+      <LineId Id="1176" Count="0" />
+      <LineId Id="1179" Count="1" />
+      <LineId Id="1177" Count="0" />
+      <LineId Id="1182" Count="4" />
+      <LineId Id="1181" Count="0" />
+      <LineId Id="426" Count="22" />
       <LineId Id="1054" Count="0" />
       <LineId Id="1056" Count="2" />
       <LineId Id="1061" Count="0" />
@@ -1411,7 +1434,11 @@ THIS^.bGoto				:= TRUE;]]></ST>
       <LineId Id="583" Count="0" />
       <LineId Id="587" Count="10" />
       <LineId Id="599" Count="0" />
-      <LineId Id="933" Count="9" />
+      <LineId Id="933" Count="1" />
+      <LineId Id="1141" Count="1" />
+      <LineId Id="935" Count="1" />
+      <LineId Id="1138" Count="1" />
+      <LineId Id="937" Count="5" />
       <LineId Id="950" Count="0" />
       <LineId Id="943" Count="6" />
       <LineId Id="932" Count="0" />
@@ -1420,8 +1447,7 @@ THIS^.bGoto				:= TRUE;]]></ST>
       <LineId Id="752" Count="0" />
       <LineId Id="754" Count="8" />
       <LineId Id="662" Count="0" />
-      <LineId Id="696" Count="55" />
-      <LineId Id="179" Count="0" />
+      <LineId Id="696" Count="51" />
     </LineIds>
     <LineIds Name="FB_MonetTelescopeControl._GotoTelescope">
       <LineId Id="1" Count="27" />

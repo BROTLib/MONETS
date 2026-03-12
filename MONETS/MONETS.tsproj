@@ -2178,6 +2178,8 @@ External Setpoint Generation:
 					</AxisPara>
 					<Encoder Name="Enc" EncType="8">
 						<EncPara ScaleFactorNumerator="360" ScaleFactorDenominator="1048576" MaxCount="#xffffffff">
+							<SoftEndMinControl Enable="true" Range="-274"/>
+							<SoftEndMaxControl Enable="true" Range="270"/>
 							<Inc RefMode="2"/>
 						</EncPara>
 						<Vars VarGrpType="1">
@@ -2468,7 +2470,10 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="8">
-						<EncPara ScaleFactorNumerator="0.2" ScaleFactorDenominator="1048576" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="0.2" ScaleFactorDenominator="1048576" Offset="355.939444732666" MaxCount="#xffffffff" ReferenceSystem="1">
+							<SoftEndMinControl Range="-90"/>
+							<SoftEndMaxControl Range="360"/>
+						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2743,7 +2748,7 @@ External Setpoint Generation:
 					</Drive>
 					<Controller Name="Ctrl" CtrType="1">
 						<CtrPara PriorControlFactor="1">
-							<PID PosKp="100"/>
+							<PID PosKp="150"/>
 							<Observer BandWidth="20"/>
 						</CtrPara>
 					</Controller>
@@ -2766,7 +2771,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{6DADE760-7FAC-4830-92BA-478C8595D673}" Name="MONETSRuntime" PrjFilePath="MONETSRuntime\MONETSRuntime.plcproj" TmcFilePath="MONETSRuntime\MONETSRuntime.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MONETSRuntime\MONETSRuntime.tmc" TmcHash="{2E246073-ADC6-FD1E-FA45-ED062FA81D48}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MONETSRuntime\MONETSRuntime.tmc" TmcHash="{FF42D65D-93C3-DC18-0A0E-5B1B77BAD3FC}">
 					<Name>MONETSRuntime Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -2896,6 +2901,110 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.PowerMonitoring.L3VoltageGuardError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.automatic</Name>
+							<Comment><![CDATA[ automatic mode]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.ups_fail</Name>
+							<Comment><![CDATA[ UPS failure]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].open_roof</Name>
+							<Comment><![CDATA[ commands for roofs]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].close_roof</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].motor_error</Name>
+							<Comment><![CDATA[ error ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].opened</Name>
+							<Comment><![CDATA[ signals from limit switches]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].closed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].counter</Name>
+							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].motor_error</Name>
+							<Comment><![CDATA[ error ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].opened</Name>
+							<Comment><![CDATA[ signals from limit switches]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].closed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].counter</Name>
+							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].open_roof</Name>
+							<Comment><![CDATA[ commands for roofs]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].close_roof</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].motor_error</Name>
+							<Comment><![CDATA[ error ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].opened</Name>
+							<Comment><![CDATA[ signals from limit switches]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].closed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].counter</Name>
+							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].motor_error</Name>
+							<Comment><![CDATA[ error ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].opened</Name>
+							<Comment><![CDATA[ signals from limit switches]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].closed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].counter</Name>
+							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -3094,110 +3203,6 @@ External Setpoint Generation:
 							<Name>MAIN.PendantControl.IbDirectionRight</Name>
 							<Type>BOOL</Type>
 						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.automatic</Name>
-							<Comment><![CDATA[ automatic mode]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.ups_fail</Name>
-							<Comment><![CDATA[ UPS failure]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].open_roof</Name>
-							<Comment><![CDATA[ commands for roofs]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].close_roof</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].motor_error</Name>
-							<Comment><![CDATA[ error ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].opened</Name>
-							<Comment><![CDATA[ signals from limit switches]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].closed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].motor_error</Name>
-							<Comment><![CDATA[ error ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].opened</Name>
-							<Comment><![CDATA[ signals from limit switches]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].closed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].open_roof</Name>
-							<Comment><![CDATA[ commands for roofs]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].close_roof</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].motor_error</Name>
-							<Comment><![CDATA[ error ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].opened</Name>
-							<Comment><![CDATA[ signals from limit switches]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].closed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].motor_error</Name>
-							<Comment><![CDATA[ error ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].opened</Name>
-							<Comment><![CDATA[ signals from limit switches]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].closed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
@@ -3241,6 +3246,78 @@ External Setpoint Generation:
 						<Var>
 							<Name>MAIN.CabinetControl.outLampError</Name>
 							<Comment><![CDATA[DOUT3 0.2	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].reset_drive</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].speed</Name>
+							<Comment><![CDATA[ move speed]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].direction_open</Name>
+							<Comment><![CDATA[ move direction]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].direction_close</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].reset_drive</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].speed</Name>
+							<Comment><![CDATA[ move speed]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].direction_open</Name>
+							<Comment><![CDATA[ move direction]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].direction_close</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].reset_drive</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].speed</Name>
+							<Comment><![CDATA[ move speed]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].direction_open</Name>
+							<Comment><![CDATA[ move direction]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].direction_close</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].reset_drive</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].speed</Name>
+							<Comment><![CDATA[ move speed]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].direction_open</Name>
+							<Comment><![CDATA[ move direction]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].direction_close</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -3315,78 +3392,6 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.PendantControl.ObLampError</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].reset_drive</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].speed</Name>
-							<Comment><![CDATA[ move speed]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].direction_open</Name>
-							<Comment><![CDATA[ move direction]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].direction_close</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].reset_drive</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].speed</Name>
-							<Comment><![CDATA[ move speed]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].direction_open</Name>
-							<Comment><![CDATA[ move direction]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].direction_close</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].reset_drive</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].speed</Name>
-							<Comment><![CDATA[ move speed]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].direction_open</Name>
-							<Comment><![CDATA[ move direction]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].direction_close</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].reset_drive</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].speed</Name>
-							<Comment><![CDATA[ move speed]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].direction_open</Name>
-							<Comment><![CDATA[ move direction]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].direction_close</Name>
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>
@@ -5828,6 +5833,173 @@ Bit1: Value smaller than Limit2]]></Comment>
 					<Name>Azimuth (AX5125-0000-0214)</Name>
 					<ImageId>1009</ImageId>
 					<Xml>
+						<AX5XXXDriveTool>
+							<AxisSettings>
+								<AxisSetting Channel="0">
+									<Property>
+										<Name>Feedback1Connector0</Name>
+										<Value>41</Value>
+									</Property>
+									<Property>
+										<Name>Feedback1Connector1</Name>
+										<Value>41</Value>
+									</Property>
+									<Property>
+										<Name>Feedback1Connector2</Name>
+										<Value>41</Value>
+									</Property>
+									<Property>
+										<Name>AppendStartuplistDirect</Name>
+										<Value>2</Value>
+									</Property>
+									<Property>
+										<Name>ASMControlMode</Name>
+										<Value>0</Value>
+									</Property>
+									<Property>
+										<Name>SelectedConstraintsID</Name>
+										<Value>0</Value>
+									</Property>
+									<Property>
+										<Name>NcFeedConstant</Name>
+										<Value>360.000000</Value>
+									</Property>
+								</AxisSetting>
+							</AxisSettings>
+							<DialogSettings>
+								<DialogSetting Name="Power management" Channel="0">
+									<Property>
+										<Name>PowerSupplyType</Name>
+										<Value>0</Value>
+									</Property>
+								</DialogSetting>
+							</DialogSettings>
+							<InitCmds>
+								<InitCmd DriveNo="0" IDN="30" MotorDataLevel="0" DisableMode="0">
+									<RetainData>3e003e004669726d776172653a2076322e313420284275696c64203030303629202f20426f6f746c6f616465723a2076322e303220284275696c6420303030322900</RetainData>
+								</InitCmd>
+								<InitCmd DriveNo="0" IDN="432" MotorDataLevel="0" DisableMode="0">
+									<RetainData>1200120053657269616c233a20303030363633303731</RetainData>
+								</InitCmd>
+								<InitCmd DriveNo="0" IDN="33093" MotorDataLevel="0" DisableMode="0">
+									<RetainData>160016004a756e2020322032303232202c2031363a32303a3538</RetainData>
+								</InitCmd>
+							</InitCmds>
+							<StatusBar>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>135</Index>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>390</Index>
+									<Width>85</Width>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>95</Index>
+									<Width>220</Width>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>32821</Index>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>32973</Index>
+									<SubItem>Bit0</SubItem>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>32973</Index>
+									<SubItem>Bit3</SubItem>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>384</Index>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>135</Index>
+									<SubItem>ActualOperationMode</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33080</Index>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>32865</Index>
+									<SubItem>MotorBrakeUnlocked</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>380</Index>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>381</Index>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>32831</Index>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33221</Index>
+									<SubItem>Active</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33221</Index>
+									<SubItem>ReadyToEnable</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33221</Index>
+									<SubItem>IGreaterThanInom</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33221</Index>
+									<SubItem>IPeakLimitReached</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33221</Index>
+									<SubItem>IreductionActive</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33221</Index>
+									<SubItem>UmaxReached</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33221</Index>
+									<SubItem>FieldWeakeningActive</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>Active</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>ReadyToEnable</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>PosDirectionEnabled</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>NegDirectionEnabled</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>AccDecLimitationActive</SubItem>
+								</Element>
+								<Element option="1" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>vLimitationActive</SubItem>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>vZeroReached</SubItem>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>CmdMovPositive</SubItem>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>33271</Index>
+									<SubItem>CmdMovNegative</SubItem>
+								</Element>
+								<Element option="0" SortOder="0" SubIdx="0">
+									<Index>32983</Index>
+								</Element>
+							</StatusBar>
+						</AX5XXXDriveTool>
 						<TcDMDrive>
 							<SortId>0</SortId>
 							<DriveModuleType>31</DriveModuleType>
@@ -6782,176 +6954,6 @@ Bit1: Value smaller than Limit2]]></Comment>
 								</Channel>
 							</Inverter>
 						</TcDMDrive>
-						<AX5XXXDriveTool>
-							<AxisSettings>
-								<AxisSetting Channel="0">
-									<Property>
-										<Name>Feedback1Connector0</Name>
-										<Value>41</Value>
-									</Property>
-									<Property>
-										<Name>Feedback1Connector1</Name>
-										<Value>41</Value>
-									</Property>
-									<Property>
-										<Name>Feedback1Connector2</Name>
-										<Value>41</Value>
-									</Property>
-									<Property>
-										<Name>AppendStartuplistDirect</Name>
-										<Value>2</Value>
-									</Property>
-									<Property>
-										<Name>ASMControlMode</Name>
-										<Value>0</Value>
-									</Property>
-									<Property>
-										<Name>SelectedConstraintsID</Name>
-										<Value>0</Value>
-									</Property>
-									<Property>
-										<Name>NcFeedConstant</Name>
-										<Value>360.000000</Value>
-									</Property>
-								</AxisSetting>
-							</AxisSettings>
-							<DialogSettings>
-								<DialogSetting Name="Power management" Channel="0">
-									<Property>
-										<Name>PowerSupplyType</Name>
-										<Value>0</Value>
-									</Property>
-								</DialogSetting>
-							</DialogSettings>
-							<InitCmds>
-								<InitCmd DriveNo="0" IDN="30" MotorDataLevel="0" DisableMode="0">
-									<RetainData>3e003e004669726d776172653a2076322e313420284275696c64203030303629202f20426f6f746c6f616465723a2076322e303220284275696c6420303030322900</RetainData>
-								</InitCmd>
-								<InitCmd DriveNo="0" IDN="432" MotorDataLevel="0" DisableMode="0">
-									<RetainData>1200120053657269616c233a20303030363633303731</RetainData>
-								</InitCmd>
-								<InitCmd DriveNo="0" IDN="33088" MotorDataLevel="0" DisableMode="0">
-									<RetainData>24002400d6000600ca0002002c9d5b002c9d5b00c8000900660000001b534c002260000000000000</RetainData>
-								</InitCmd>
-								<InitCmd DriveNo="0" IDN="33093" MotorDataLevel="0" DisableMode="0">
-									<RetainData>160016004a756e2020322032303232202c2031363a32303a3538</RetainData>
-								</InitCmd>
-							</InitCmds>
-							<StatusBar>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>135</Index>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>390</Index>
-									<Width>85</Width>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>95</Index>
-									<Width>220</Width>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>32821</Index>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>32973</Index>
-									<SubItem>Bit0</SubItem>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>32973</Index>
-									<SubItem>Bit3</SubItem>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>384</Index>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>135</Index>
-									<SubItem>ActualOperationMode</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33080</Index>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>32865</Index>
-									<SubItem>MotorBrakeUnlocked</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>380</Index>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>381</Index>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>32831</Index>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33221</Index>
-									<SubItem>Active</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33221</Index>
-									<SubItem>ReadyToEnable</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33221</Index>
-									<SubItem>IGreaterThanInom</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33221</Index>
-									<SubItem>IPeakLimitReached</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33221</Index>
-									<SubItem>IreductionActive</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33221</Index>
-									<SubItem>UmaxReached</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33221</Index>
-									<SubItem>FieldWeakeningActive</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>Active</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>ReadyToEnable</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>PosDirectionEnabled</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>NegDirectionEnabled</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>AccDecLimitationActive</SubItem>
-								</Element>
-								<Element option="1" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>vLimitationActive</SubItem>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>vZeroReached</SubItem>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>CmdMovPositive</SubItem>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>33271</Index>
-									<SubItem>CmdMovNegative</SubItem>
-								</Element>
-								<Element option="0" SortOder="0" SubIdx="0">
-									<Index>32983</Index>
-								</Element>
-							</StatusBar>
-						</AX5XXXDriveTool>
 					</Xml>
 					<EtherCAT SlaveType="2" PdiType="#x0c08" MboxDataLinkLayer="true" StateMBoxPolling="true" CfgModeSafeOp="true" DownloadPdoCfg="true" CycleMBoxPollingTime="0" FoeType="1" SoeChannels="1" VendorId="#x00000002" ProductCode="#x14056012" RevisionNo="#x00d60000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="15000" TimeoutStateChange3="10000" TimeoutStateChange4="500" AutoRestoreAfterWcOk="true" CheckRevisionNoType="4" PortPhys="12305" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="AX5125-0000-0214 EtherCAT Drive (SoE, 1 Ch.)" Desc="AX5125-0000-0214" PortABoxInfo="#x00ffffff">
 						<SyncMan>001880002600010001000000800080008000001826010000</SyncMan>
@@ -7015,14 +7017,14 @@ Bit1: Value smaller than Limit2]]></Comment>
 						<MBoxUserCmdData>020005000a00000020000000000000000000000000000000000000000000000003406a0000000000950143757272656e74206c6f6f702070726f706f7274696f6e616c206761696e203100</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000002b000000000000000000000000000000000000000000000003406b0000000000080043757272656e7420636f6e74726f6c206c6f6f7020696e74656772616c20616374696f6e2074696d65203100</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000002900000000000000000000000000000000000000000000000340ff8100000000960056656c6f636974792066696c74657220313a204c6f7720706173732074696d6520636f6e7374616e7400</MBoxUserCmdData>
-						<MBoxUserCmdData>020005000c0000001f0000000000000000000000000000000000000000000000034064000000000000b4c40456656c6f63697479206c6f6f702070726f706f7274696f6e616c206761696e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020005000a0000002200000000000000000000000000000000000000000000000340650000000000580256656c6f63697479206c6f6f7020696e74656772616c20616374696f6e2074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000c0000001f00000000000000000000000000000000000000000000000340640000000000000e270756656c6f63697479206c6f6f702070726f706f7274696f6e616c206761696e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a00000022000000000000000000000000000000000000000000000003406500000000002c0156656c6f63697479206c6f6f7020696e74656772616c20616374696f6e2074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000001d000000000000000000000000000000000000000000000003403d800000000004004d6f746f722074656d70657261747572652073656e736f72207479706500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000500140000001b00000000000000000000000000000000000000000000000340fb800000000008000800000008000100000050726f62652031206c6f67696320636f6e66696775726174696f6e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000001700000000000000000000000000000000000000000000000340a90000000000210150726f626520636f6e74726f6c20706172616d6574657200</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000001400000000000000000000000000000000000000000000000340fa8000000000000050726f626520312076616c756520736f7572636500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000500200000002d00000000000000000000000000000000000000000000000340a78000000000140014000000f4015a001e000000000001000000000000004d6f746f7220616e6420666565646261636b20636f6e6e656374696f6e20636865636b20706172616d6574657200</MBoxUserCmdData>
-						<MBoxUserCmdData>02000500480000002800000000000000000000000000000000000000000000000340a580000000003c003c000100000064000000f401b80b0000000000000000f4016400f401f40104000500e1009600b80b84030000000000000000000000000000000000000000436f6d6d75746174696f6e206f66667365742063616c6962726174696f6e20706172616d6574657200</MBoxUserCmdData>
+						<MBoxUserCmdData>02000500480000002800000000000000000000000000000000000000000000000340a580000000003c003c000100000064000000f401b80b0000000000000000f401e803f401f40104000500e1009600b80b84030000000000000000000000000000000000000000436f6d6d75746174696f6e206f66667365742063616c6962726174696f6e20706172616d6574657200</MBoxUserCmdData>
 						<Pdo Name="AT" Index="#x0010" Flags="#x0001" SyncMan="3">
 							<Entry Name="Drive status word" BitLen="16" Index="#x0087" Flags="#x00000800">
 								<Type>UINT</Type>
@@ -8439,7 +8441,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						<MBoxUserCmdData>02000500ec0000000f00000000000000000000000000000000000000000000000340968000000000e000e00000000000556e6b6e23315670702d3336303030532d35560000000000000000000000000000000000000000000200200303000000000000000100030000000000a08c000000000000e8030000e8030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000466565646261636b2031207479706500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000500140000001b000000000000000000000000000000000000000000000003409a8000000000080008000100000000000000466565646261636b2031207265666572656e6365207369676e616c00</MBoxUserCmdData>
 						<MBoxUserCmdData>020005001800000011000000000000000000000000000000000000000000000003400282000000000c000c0001000000f401e803bc02000056656c6f63697479206f6273657276657200</MBoxUserCmdData>
-						<MBoxUserCmdData>020005000a00000017000000000000000000000000000000000000000000000003406800000000000a00506f736974696f6e206c6f6f70204b762d666163746f7200</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000a00000017000000000000000000000000000000000000000000000003406800000000000800506f736974696f6e206c6f6f70204b762d666163746f7200</MBoxUserCmdData>
 						<MBoxUserCmdData>020005004c0000001e0000000000000000000000000000000000000000000000034001820000000040004000010000000100000064000000000000000a0000000000000000000000000000001e000000c8ed760200000000000000003812893d00000000000000000000000043757272656e7420636f6d6d616e642076616c75652066696c746572203000</MBoxUserCmdData>
 						<MBoxUserCmdData>02000500140000001b00000000000000000000000000000000000000000000000340fb800000000008000800000008000100000050726f62652031206c6f67696320636f6e66696775726174696f6e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000001700000000000000000000000000000000000000000000000340a90000000000210150726f626520636f6e74726f6c20706172616d6574657200</MBoxUserCmdData>
@@ -8471,7 +8473,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 						<MBoxUserCmdData>020005000a00000020000000000000000000000000000000000000000000000003406a0000000000ca0043757272656e74206c6f6f702070726f706f7274696f6e616c206761696e203100</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000002b000000000000000000000000000000000000000000000003406b0000000000080043757272656e7420636f6e74726f6c206c6f6f7020696e74656772616c20616374696f6e2074696d65203100</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000002900000000000000000000000000000000000000000000000340ff8100000000960056656c6f636974792066696c74657220313a204c6f7720706173732074696d6520636f6e7374616e7400</MBoxUserCmdData>
-						<MBoxUserCmdData>020005000c0000001f0000000000000000000000000000000000000000000000034064000000000000127a0056656c6f63697479206c6f6f702070726f706f7274696f6e616c206761696e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020005000c0000001f00000000000000000000000000000000000000000000000340640000000000001bb70056656c6f63697479206c6f6f702070726f706f7274696f6e616c206761696e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a00000022000000000000000000000000000000000000000000000003406500000000002c0156656c6f63697479206c6f6f7020696e74656772616c20616374696f6e2074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020005000a0000001d000000000000000000000000000000000000000000000003403d800000000004004d6f746f722074656d70657261747572652073656e736f72207479706500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000500480000002800000000000000000000000000000000000000000000000340a580000000003c003c000100000064000000f401b80b0000000000000000f4016400f401f40104000500e1009600b80b84030000000000000000000000000000000000000000436f6d6d75746174696f6e206f66667365742063616c6962726174696f6e20706172616d6574657200</MBoxUserCmdData>
@@ -11922,6 +11924,10 @@ Bit1: Value smaller than Limit2]]></Comment>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Azimuth">
 				<Link VarA="PlcTask Inputs^MAIN.AzimuthControl.axisRef.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^MAIN.AzimuthControl.axisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Derotator">
+				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.axisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.DerotatorControl.axisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Elevation">
 				<Link VarA="PlcTask Inputs^MAIN.ElevationControl.axisRef.NcToPlc" VarB="Outputs^ToPlc"/>

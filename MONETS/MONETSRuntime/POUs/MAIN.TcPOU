@@ -30,8 +30,8 @@ VAR
 END_VAR
 VAR CONSTANT
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
-												 azimuthPark := -180, elevationPark := 60, derotatorPark := -116.42, focusPark := 53.8, 
-												 azimuthHome := -180, elevationHome := 40, derotatorPark := -116.42,
+												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 36.0, 
+												 azimuthHome := 175, elevationHome := 40, derotatorPark := 0,
 												 name := 'MONET/S', diameter := 1.2, cabinet := 'Beckhoff', manufacturer := 'Halfmann, Haidenhain, Beckhoff',
 												 mountOptions := 'ALT-AZ', mount := 'ALT_AZ');
 END_VAR]]></Declaration>
@@ -105,19 +105,19 @@ HydraulicsControl(
 	bBrakeClearing	:= brakeClearing
 );
 ElevationControl(
-	fCalibPosition 	:= 68.0 - 8.3 - 0.5,
+	fCalibPosition 	:= 68.0 - 8.3 - 0.5 + 1.31868 - 0.0073602711 - 0.015437815,
 	fbCovers 		:= CoverControl, 
 	fbBrake 		:= HydraulicsControl
 );
 AzimuthControl(
-	fCalibPosition	:= 0.0,
+	fCalibPosition	:= 1.241855 + 0.1016623498 + 0.1829224052,
 	fMinPosition	:= -274.0,
 	fMaxPosition	:= 270.0,
 	bBrakeOpen		:= HydraulicsControl.brakeOpen,
 );
 DerotatorControl(
-	fMinPosition		:= -170.0,
-	fMaxPosition		:= 300.0
+	fMinPosition		:= -90.0,
+	fMaxPosition		:= 360.0
 );	//
 FocusControl(
 	eTelescopeMode 	:= eTelescopeMode,
@@ -145,12 +145,12 @@ PendantControl(
 
 // and fbComm
 fbComm(	
-	sHostName		:= '169.254.146.10',
+	sHostName		:= '192.168.127.10',
     nHostPort  		:= 1883,
     nKeepAlive  	:= 60,
-	sTopicSub  		:= 'MONETN/Telescope/SET',
-	sTopicPublish	:= 'MONETN/Telemetry',
-	sTopicLog		:= 'MONETN/Log',
+	sTopicSub  		:= 'MONETS/Telescope/SET',
+	sTopicPublish	:= 'MONETS/Telemetry',
+	sTopicLog		:= 'MONETS/Log',
 	Telescope		:= TelescopeControl,
 	AltAzTelescope  := TelescopeControl,
 	Focus			:= FocusControl,
