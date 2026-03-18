@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	ready				: BOOL;		// telescope drives are ready to enable
-	error				: BOOL;		// error stat on drive, power or hydraulics
+	error				: BOOL;
 	brakeClearing		: BOOL := FALSE;	//	open brake
 	
 	commTimer 			: TON := (PT:=T#5S);
@@ -27,6 +27,8 @@ VAR
 	AzimuthControl		: FB_AzimuthControl(comm := fbComm);
 	TelescopeControl	: FB_MonetTelescopeControl(comm := fbComm);
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
+	
+	fbWeather			: FB_WeatherCheck();
 END_VAR
 VAR CONSTANT
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
@@ -157,6 +159,12 @@ fbComm(
 	Roof			:= RoofControl
 );
 
+fbWeather(
+	sHostName		:= '192.168.127.10',
+	nHostPort       := 8002,
+	sUri			:= '/api/current/'
+);
+
 // set control lights
 //error := Focuscontrol.Error OR CoverControl.Error OR HydraulicsControl.Error;
 error := CoverControl.Error OR HydraulicsControl.Error;
@@ -237,7 +245,13 @@ END_IF
       <LineId Id="2334" Count="0" />
       <LineId Id="2249" Count="0" />
       <LineId Id="2337" Count="0" />
-      <LineId Id="2147" Count="3" />
+      <LineId Id="2147" Count="0" />
+      <LineId Id="2411" Count="0" />
+      <LineId Id="2419" Count="0" />
+      <LineId Id="2421" Count="1" />
+      <LineId Id="2420" Count="0" />
+      <LineId Id="2407" Count="0" />
+      <LineId Id="2148" Count="2" />
       <LineId Id="2206" Count="0" />
       <LineId Id="2151" Count="28" />
       <LineId Id="2" Count="0" />

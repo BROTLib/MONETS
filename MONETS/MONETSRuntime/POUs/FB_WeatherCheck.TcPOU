@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="FB_WeatherCheck" Id="{9a536734-31d8-48cf-a90d-7504a91d0d9d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_WeatherCheck
+VAR_INPUT
+	bEnable				: BOOL := TRUE;
+	sHostName			: STRING;
+	nHostPort			: UINT;
+	sUri				: STRING;
+	PT					: TIME := T#10S; 
+END_VAR
+VAR_OUTPUT
+	bBusy				: BOOL;
+	bError				: BOOL;
+	bWeatherGood		: BOOL;
+END_VAR
+VAR
+	fbClient			: FB_IotHttpClient :=();
+	fbRequest			: FB_IotHttpRequest;
+	fbJson				: FB_JsonDomParser;
+	nState				: UDINT;
+	
+	bGetContentResult	: BOOL;
+	sContent			: STRING(511);
+	
+	bGetJsonResult		: BOOL;
+	jsonDoc				: SJsonValue;
+	jsonGood			: SJsonValue;
+	
+	fbTON				: TON();
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bEnable THEN
+	RETURN;
+END_IF
+
+fbClient.Execute();
+
+CASE nState OF
+0:	
+	IF NOT fbClient.bConfigured THEN
+		fbClient.sHostName := sHostName;
+		fbClient.nHostPort := nHostPort; 
+		fbClient.bKeepAlive := TRUE;
+		fbClient.tConnectionTimeout := T#10S;
+	ELSE
+		nState := 1;
+	END_IF
+1:
+	IF fbRequest.SendRequest(sUri := sUri, fbClient := fbClient, eRequestType := ETcIotHttpRequestType.HTTP_GET, 0 ,0, 0) THEN				
+		nState := 2;
+		bBusy := TRUE;
+		bError := FALSE;
+	END_IF					
+2:
+	IF NOT fbRequest.bBusy THEN
+		bError := TRUE;
+		IF NOT fbRequest.bError THEN				 
+			bGetContentResult := fbRequest.GetContent(pContent := ADR(sContent), nContentSize := SIZEOF(sContent), bSetNullTermination := TRUE);
+			IF fbRequest.nStatusCode >= 200 AND fbRequest.nStatusCode < 300 THEN
+				bGetJsonResult := FALSE;
+				jsonDoc := fbRequest.GetJsonDomContent(fbJson);
+				IF jsonDoc <> 0 THEN
+					IF fbJson.HasMember(jsonDoc, 'good')  THEN
+						jsonGood := fbJson.FindMember(jsonDoc, 'good');
+						bError := FALSE;						
+						IF fbJson.IsBool(jsonGood) THEN						
+							bWeatherGood := fbJson.GetBool(jsonGood);
+						END_IF		
+					END_IF
+					bError := FALSE;	
+				END_IF							
+			END_IF
+		END_IF
+		nState := 3;
+		bBusy := FALSE;
+	END_IF
+3:
+	fbTON(IN := TRUE, PT := PT);
+	IF fbTON.Q THEN
+		fbTON(IN := FALSE);
+    	nState := 0;
+	END_IF  	
+
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FB_WeatherCheck">
+      <LineId Id="164" Count="0" />
+      <LineId Id="166" Count="1" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="141" Count="1" />
+      <LineId Id="75" Count="1" />
+      <LineId Id="130" Count="1" />
+      <LineId Id="133" Count="2" />
+      <LineId Id="139" Count="1" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="94" Count="2" />
+      <LineId Id="98" Count="8" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="147" Count="3" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="112" Count="3" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
