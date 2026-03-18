@@ -159,11 +159,16 @@ fbComm(
 	Roof			:= RoofControl
 );
 
+// check weather and UPSs
 fbWeather(
 	sHostName		:= '192.168.127.10',
 	nHostPort       := 8002,
 	sUri			:= '/api/current/'
 );
+IF fbWeather.bError OR NOT fbWeather.bWeatherGood THEN
+	TelescopeControl.Park();
+	RoofControl.Close();
+END_IF
 
 // set control lights
 //error := Focuscontrol.Error OR CoverControl.Error OR HydraulicsControl.Error;
@@ -246,11 +251,15 @@ END_IF
       <LineId Id="2249" Count="0" />
       <LineId Id="2337" Count="0" />
       <LineId Id="2147" Count="0" />
+      <LineId Id="2425" Count="0" />
       <LineId Id="2411" Count="0" />
       <LineId Id="2419" Count="0" />
       <LineId Id="2421" Count="1" />
       <LineId Id="2420" Count="0" />
       <LineId Id="2407" Count="0" />
+      <LineId Id="2426" Count="1" />
+      <LineId Id="2429" Count="0" />
+      <LineId Id="2428" Count="0" />
       <LineId Id="2148" Count="2" />
       <LineId Id="2206" Count="0" />
       <LineId Id="2151" Count="28" />
