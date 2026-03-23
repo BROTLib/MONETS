@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="FB_TelescopeAuxiliary" Id="{cb121caa-cba6-4e85-8680-87ba92407bb5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TelescopeAuxiliary
+VAR
+	tempSensorM1   AT%I*: INT;
+	tempSensorM2   AT%I*: INT;
+	fbComm				: I_Comm;
+END_VAR
+VAR_OUTPUT
+	tempM1:	REAL;
+	tempM2:	REAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[tempM1 := tempSensorM1 / 32767.0 * 150.0 - 50.0; // flange
+tempM2 := tempSensorM2 / 32767.0 * 150.0 - 50.0; // behind M2?
+]]></ST>
+    </Implementation>
+    <Method Name="FB_Init" Id="{0ab38d83-c759-49b4-b051-261f5cd152ad}">
+      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
+//The return value is not evaluated. For a specific influence, you can also declare the
+//methods explicitly and provide additional code there with the standard initialization
+//code. You can evaluate the return value.
+METHOD FB_Init: BOOL
+VAR_INPUT
+    bInitRetains	: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode		: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)
+	comm			: I_Comm;	   
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.fbComm := comm;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SendTelemetry" Id="{5ed8a466-d7bf-44d5-b9d6-ae006c1229a8}">
+      <Declaration><![CDATA[METHOD SendTelemetry : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[1].NAME', 'TEMP_M1');
+fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[1].VALUE', LREAL_TO_FMTSTR(tempM1, 2, TRUE));
+fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[1].UNIT', 'C');
+fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[2].NAME', 'TEMP_M2');
+fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[2].VALUE', LREAL_TO_FMTSTR(tempM2, 2, TRUE));
+fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[2].UNIT', 'C');]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_TelescopeAuxiliary">
+      <LineId Id="26" Count="1" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TelescopeAuxiliary.FB_Init">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TelescopeAuxiliary.SendTelemetry">
+      <LineId Id="7" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

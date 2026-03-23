@@ -21,18 +21,19 @@ VAR
 	RoofControl			: FB_RoofControl(comm := fbComm);
 	CoverControl		: FB_MonetCoverControl(comm := fbComm);
 	HydraulicsControl	: FB_HydraulicsControl(comm := fbComm);
-	FocusControl		: FB_MonetFocusControl(comm := fbComm);
+	FocusControl		: FB_FocusControl(comm := fbComm);
 	DerotatorControl	: FB_DerotatorControl(comm := fbComm);
 	ElevationControl	: FB_ElevationControl(comm := fbComm);
 	AzimuthControl		: FB_AzimuthControl(comm := fbComm);
 	TelescopeControl	: FB_MonetTelescopeControl(comm := fbComm);
+	TelescopeAuxiliary  : FB_TelescopeAuxiliary(comm := fbComm);
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
 	
 	fbWeather			: FB_WeatherCheck();
 END_VAR
 VAR CONSTANT
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
-												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 36.0, 
+												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 33.0, 
 												 azimuthHome := 175, elevationHome := 40, derotatorPark := 0,
 												 name := 'MONET/S', diameter := 1.2, cabinet := 'Beckhoff', manufacturer := 'Halfmann, Haidenhain, Beckhoff',
 												 mountOptions := 'ALT-AZ', mount := 'ALT_AZ');
@@ -96,6 +97,7 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		fbDerotator 	:= DerotatorControl
 	);
 END_IF
+TelescopeAuxiliary();
 
 // run all control FBs
 CoverControl();
@@ -107,12 +109,12 @@ HydraulicsControl(
 	bBrakeClearing	:= brakeClearing
 );
 ElevationControl(
-	fCalibPosition 	:= 68.0 - 8.3 - 0.5 + 1.31868 - 0.0073602711 - 0.015437815,
+	fCalibPosition 	:= 60.567917554230512,
 	fbCovers 		:= CoverControl, 
 	fbBrake 		:= HydraulicsControl
 );
 AzimuthControl(
-	fCalibPosition	:= 1.241855 + 0.1016623498 + 0.1829224052,
+	fCalibPosition	:= 1.1466144421902693,
 	fMinPosition	:= -274.0,
 	fMaxPosition	:= 270.0,
 	bBrakeOpen		:= HydraulicsControl.brakeOpen,
@@ -165,10 +167,10 @@ fbWeather(
 	nHostPort       := 8002,
 	sUri			:= '/api/current/'
 );
-IF fbWeather.bError OR NOT fbWeather.bWeatherGood THEN
-	TelescopeControl.Park();
-	RoofControl.Close();
-END_IF
+//IF fbWeather.bError OR NOT fbWeather.bWeatherGood THEN
+	//TelescopeControl.Park();
+	//RoofControl.Close();
+//END_IF
 
 // set control lights
 //error := Focuscontrol.Error OR CoverControl.Error OR HydraulicsControl.Error;
@@ -200,6 +202,7 @@ IF commTimer.Q THEN
 	commTimer(IN:=FALSE);
 	fbComm.Publish('electronics', 'base', 'MainReady', BOOL_TO_STRING(ready));
 	fbComm.Publish('electronics', 'base', 'MasterError', BOOL_TO_STRING(error));
+	TelescopeAuxiliary.SendTelemetry();
 END_IF
 
 ]]></ST>
@@ -226,6 +229,7 @@ END_IF
       <LineId Id="2210" Count="0" />
       <LineId Id="2212" Count="10" />
       <LineId Id="2106" Count="0" />
+      <LineId Id="2466" Count="0" />
       <LineId Id="2223" Count="0" />
       <LineId Id="2107" Count="0" />
       <LineId Id="2110" Count="0" />
@@ -262,7 +266,9 @@ END_IF
       <LineId Id="2428" Count="0" />
       <LineId Id="2148" Count="2" />
       <LineId Id="2206" Count="0" />
-      <LineId Id="2151" Count="28" />
+      <LineId Id="2151" Count="26" />
+      <LineId Id="2467" Count="0" />
+      <LineId Id="2178" Count="1" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

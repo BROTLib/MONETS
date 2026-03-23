@@ -54,6 +54,9 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB_TelescopeAuxiliary.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FB_WeatherCheck.TcPOU">
       <SubType>Code</SubType>
     </Compile>
