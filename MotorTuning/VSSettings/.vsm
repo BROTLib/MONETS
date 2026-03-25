@@ -26,6 +26,12 @@
               <Children />
             </Node>
             <Node>
+              <Title>PosDiff</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
               <Title>Torque/force feedback value Az</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
@@ -107,6 +113,26 @@
                 </Node>
                 <Node>
                   <Title>Velocity feedback 1 value El</Title>
+                  <Expanded>False</Expanded>
+                  <FileName></FileName>
+                  <Children />
+                </Node>
+              </Children>
+            </Node>
+          </Children>
+        </Node>
+        <Node>
+          <Title>YT Chart (1)</Title>
+          <Expanded>True</Expanded>
+          <FileName></FileName>
+          <Children>
+            <Node>
+              <Title>Axis Group (3)</Title>
+              <Expanded>True</Expanded>
+              <FileName></FileName>
+              <Children>
+                <Node>
+                  <Title>PosDiff</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />

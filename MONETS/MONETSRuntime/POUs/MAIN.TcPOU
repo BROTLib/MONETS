@@ -33,7 +33,7 @@ VAR
 END_VAR
 VAR CONSTANT
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
-												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 33.0, 
+												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 36.0, 
 												 azimuthHome := 175, elevationHome := 40, derotatorPark := 0,
 												 name := 'MONET/S', diameter := 1.2, cabinet := 'Beckhoff', manufacturer := 'Halfmann, Haidenhain, Beckhoff',
 												 mountOptions := 'ALT-AZ', mount := 'ALT_AZ');
@@ -126,7 +126,9 @@ DerotatorControl(
 FocusControl(
 	eTelescopeMode 	:= eTelescopeMode,
 	fHomingPosition	:= 92.02, // 104.02 - 12.00
-	fVelocity		:= 0.2
+	fVelocity		:= 0.2,
+	ptBrakeDelay	:= T#30S,
+	ptFocusDelay	:= T#100MS
 );
 RoofControl(
 	min_speed		:= 10000,
@@ -243,6 +245,7 @@ END_IF
       <LineId Id="2187" Count="0" />
       <LineId Id="2126" Count="3" />
       <LineId Id="2246" Count="0" />
+      <LineId Id="2468" Count="1" />
       <LineId Id="2130" Count="4" />
       <LineId Id="2136" Count="0" />
       <LineId Id="2371" Count="0" />

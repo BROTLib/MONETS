@@ -3,17 +3,23 @@
   <POU Name="FB_TelescopeAuxiliary" Id="{cb121caa-cba6-4e85-8680-87ba92407bb5}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_TelescopeAuxiliary
 VAR
-	tempSensorM1   AT%I*: INT;
-	tempSensorM2   AT%I*: INT;
+	tempSensorM1   		AT%I*: INT;
+	tempSensorM1cell	AT%I*: INT;
+	tempSensorM2   		AT%I*: INT;
+	tempSensorFlange	AT%I*: INT;
 	fbComm				: I_Comm;
 END_VAR
 VAR_OUTPUT
-	tempM1:	REAL;
-	tempM2:	REAL;
+	tempM1				: REAL;
+	tempM1cell			: REAL;
+	tempM2				: REAL;
+	tempFlange			: REAL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[tempM1 := tempSensorM1 / 32767.0 * 150.0 - 50.0; // flange
-tempM2 := tempSensorM2 / 32767.0 * 150.0 - 50.0; // behind M2?
+      <ST><![CDATA[tempM1 		:= tempSensorM1 / 32767.0 * 150.0 - 50.0; 
+tempM1cell 	:= tempSensorM1cell / 32767.0 * 150.0 - 50.0;
+tempM2 		:= tempSensorM2 / 32767.0 * 150.0 - 50.0;
+tempFlange 	:= tempSensorFlange / 32767.0 * 150.0 - 50.0;
 ]]></ST>
     </Implementation>
     <Method Name="FB_Init" Id="{0ab38d83-c759-49b4-b051-261f5cd152ad}">
@@ -47,6 +53,7 @@ fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[2].UNIT', 'C');]]></ST>
     </Method>
     <LineIds Name="FB_TelescopeAuxiliary">
       <LineId Id="26" Count="1" />
+      <LineId Id="50" Count="1" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_TelescopeAuxiliary.FB_Init">
