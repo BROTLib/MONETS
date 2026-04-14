@@ -87,7 +87,6 @@ bError := fbElevation.Error OR
 		 fbDerotator.bError;
 			
 IF bError THEN
-	bGoHome := 	FALSE;
 	bTrack := 	FALSE;
 	bGoto := 	FALSE;
 	bSlew := 	FALSE;
@@ -382,9 +381,7 @@ bBusy := fbElevation.fbAxis.Busy OR
 
 (* STATUS STATES*)
 //fReadyState (see also _PowerOn and _ParkTelescope calls above)
-IF bReady THEN
-	fReadyState := 1.0;
-ELSIF bError THEN
+IF bError THEN
 	fReadyState := -1.0;
 ELSIF bPower THEN
 	fReadyState := 0.7;
@@ -392,6 +389,10 @@ ELSIF bIsParked THEN
 	fReadyState := 0.0;
 ELSIF bPark THEN
 	fReadyState := 0.3;
+ELSIF bReady THEN
+	fReadyState := 1.0;	
+ELSE
+	fReadyState := -2.0;	
 END_IF
 
 //MotionState
@@ -588,50 +589,49 @@ nLastStage := nStage;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="_HomeTelescope" Id="{4753aff7-faba-4306-9d47-8cb63c25adcc}" FolderPath="internal methods\">
+    <Method Name="_HomeTelescope" Id="{7bd4dae5-c49f-4cd9-a0c3-809697b8de19}" FolderPath="internal methods\">
       <Declaration><![CDATA[METHOD PRIVATE _HomeTelescope : BOOL
 VAR_INPUT
 END_VAR
 VAR
-	HomeEvent		: FB_Eventlog;
-	commandTimeout	: TON;
+    HomeEvent        : FB_Eventlog;
+    commandTimeout    : TON;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[commandTimeout(IN := NOT _HomeTelescope, PT := T#600S);
 IF commandTimeout.Q THEN
-	bError := TRUE;
-	nErrorID := 16#30;
-	_HomeTelescope :=TRUE;
+    bError := TRUE;
+    nErrorID := 16#30;
+    _HomeTelescope :=TRUE;
 END_IF
 
 IF bReady AND bStopped AND NOT bBusy AND NOT bTracking THEN
-	fbElevation.Velocity := 10.0;
-	fbElevation.Position := telescopeConfig.elevationHome;
-	fbElevation.MoveAxis := TRUE;
-	fbAzimuth.Velocity := 10.0;
-	fbAzimuth.Position := telescopeConfig.azimuthHome;
-	fbAzimuth.MoveAxis := TRUE;
-	fbDerotator.Velocity := 10.0;
-	fbDerotator.Position := telescopeConfig.derotatorHome;
-	fbDerotator.MoveAxis := TRUE;	
+    fbElevation.Velocity := 10.0;
+    fbElevation.Position := telescopeConfig.elevationHome;
+    fbElevation.MoveAxis := TRUE;
+    fbAzimuth.Velocity := 10.0;
+    fbAzimuth.Position := telescopeConfig.azimuthHome;
+    fbAzimuth.MoveAxis := TRUE;
+    fbDerotator.Velocity := 10.0;
+    fbDerotator.Position := telescopeConfig.derotatorHome;
+    fbDerotator.MoveAxis := TRUE;    
 END_IF
 
 IF fbElevation.MoveDone AND 
-	fbAzimuth.MoveDone AND 
-	fbDerotator.MoveDone THEN
-	bGoHome := FALSE;
-	fElevation := fElevationCurrent;
-	fAzimuth := fAzimuthCurrent;
-	_HomeTelescope := TRUE;
+    fbAzimuth.MoveDone AND 
+    fbDerotator.MoveDone THEN
+    bGoHome := FALSE;
+    fElevation := fElevationCurrent;
+    fAzimuth := fAzimuthCurrent;
+    _HomeTelescope := TRUE;
 ELSE
-	_HomeTelescope := FALSE;
+    _HomeTelescope := FALSE;
 END_IF
 
 HomeEvent(Trigger := _HomeTelescope, 
-			Level := ADSLOG_MSGTYPE_HINT,
-			FormatString := '%s',
-			OnMessage := 'Telescope is homed.', comm := fbComm);
-]]></ST>
+            Level := ADSLOG_MSGTYPE_HINT,
+            FormatString := '%s',
+            OnMessage := 'Telescope is homed.', comm := fbComm);]]></ST>
       </Implementation>
     </Method>
     <Method Name="_ParkTelescope" Id="{999576b1-8aca-41eb-91ab-673a6fc7f4ba}" FolderPath="internal methods\">
@@ -748,7 +748,10 @@ nLastStage := nStage;
       <Declaration><![CDATA[METHOD PRIVATE _PowerOn : BOOL
 VAR_INPUT
 END_VAR
-]]></Declaration>
+VAR_STAT
+	nStage		: USINT := 0;
+	nLastStage	: USINT := 101;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT bBrakeClearing THEN
 	bPowerFailure := TRUE;
@@ -761,50 +764,77 @@ ELSIF bError THEN
 ELSE
 	bPowerFailure := FALSE;		
 END_IF
-// COVER MUST BE OPENED FOR A SUCCESSFUL WAKE & SHAKE COMMAND!
-fbCovers.Open();
 
-// enable elevation, enable azimuth
-IF bMainReady AND fbCovers.Opened THEN
-	fbElevation.Enable := TRUE;
-	fbAzimuth.Enable := TRUE;
-	fbDerotator.Enable := TRUE;
+IF bReset OR bError OR bStop OR bInterrupted THEN
+	nStage := 0;
+	RETURN;
 END_IF
 
-IF fbElevation.Ready AND NOT fbElevation.Calibrated THEN
-	fbElevation.HomeAxis := TRUE;
-END_IF
-
-IF fbAzimuth.Ready AND NOT fbAzimuth.Calibrated THEN
-	fbAzimuth.HomeAxis := TRUE;
-END_IF
-
-// enable derotator
-IF fbElevation.Ready THEN
-	fbDerotator.HomeAxis := fbDerotator.Ready AND NOT fbDerotator.Calibrated;
-END_IF
-
-// start calibration of focus after elevation has been calibrated
-// this avoids imbalance by the M2 mirror on the elvation during its calibration
-IF fbElevation.Calibrated AND (fbFocus <> 0 AND_THEN NOT fbFocus.Calibrated) THEN
-	fbFocus.Enable := TRUE;
-	fbFocus.HomeAxis := TRUE;
-END_IF
-
-IF fbCovers.Opened AND 
-	fbElevation.Calibrated AND
-	fbAzimuth.Calibrated AND
-	fbDerotator.Calibrated THEN
-	//FocusControl.Calibrated THEN
-	bPower := FALSE;
-	_PowerOn := TRUE;
-	bIsParked := FALSE;
-	// slew the telescope to the home position
-	bGoHome := TRUE;
-ELSE
-	_PowerOn := FALSE;
-END_IF
-]]></ST>
+CASE nStage OF
+	0:
+		_PowerOn := FALSE; 
+		// COVER MUST BE OPENED FOR A SUCCESSFUL WAKE & SHAKE COMMAND!
+		fbCovers.Open();
+		IF bMainReady AND fbCovers.Opened THEN
+			nStage := 10;
+		END_IF
+		
+	10:
+		fbElevation.Enable := TRUE;
+		fbAzimuth.Enable := TRUE;
+		fbDerotator.Enable := TRUE;
+		
+		IF fbElevation.Ready AND NOT fbElevation.Calibrated THEN
+			fbElevation.HomeAxis := TRUE;
+		END_IF
+		
+		IF fbAzimuth.Ready AND NOT fbAzimuth.Calibrated THEN
+			fbAzimuth.HomeAxis := TRUE;
+		END_IF
+		
+		// enable derotator
+		IF fbElevation.Ready THEN
+			fbDerotator.HomeAxis := fbDerotator.Ready AND NOT fbDerotator.Calibrated;
+		END_IF
+		
+		// start calibration of focus after elevation has been calibrated
+		// this avoids imbalance by the M2 mirror on the elvation during its calibration
+		IF fbElevation.Calibrated AND (fbFocus <> 0 AND_THEN NOT fbFocus.Calibrated) THEN
+			fbFocus.Enable := TRUE;
+			fbFocus.HomeAxis := TRUE;
+		END_IF
+	
+		IF fbCovers.Opened AND fbElevation.Calibrated AND fbAzimuth.Calibrated AND fbDerotator.Calibrated AND fbFocus.Calibrated AND
+			bReady AND bStopped AND NOT bBusy AND NOT bTracking THEN
+			nStage := 30;
+		END_IF
+		
+	30:
+		fbElevation.Velocity := 10.0;
+		fbElevation.Position := telescopeConfig.elevationHome;
+		fbElevation.MoveAxis := TRUE;
+		fbAzimuth.Velocity := 10.0;
+		fbAzimuth.Position := telescopeConfig.azimuthHome;
+		fbAzimuth.MoveAxis := TRUE;
+		fbDerotator.Velocity := 10.0;
+		fbDerotator.Position := telescopeConfig.derotatorHome;
+		fbDerotator.MoveAxis := TRUE;	
+		
+		IF fbElevation.MoveDone AND 
+			fbAzimuth.MoveDone AND 
+			fbDerotator.MoveDone THEN
+			nStage := 100;
+		END_IF
+			
+	100:
+		bPower := FALSE;
+		fElevation := fElevationCurrent;
+		fAzimuth := fAzimuthCurrent;
+		_PowerOn := TRUE;
+		bIsParked := FALSE;
+		nStage := 0;
+	
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="_SendTelemetry" Id="{5e3ab35e-5dd6-4108-99df-8d99cebae004}" FolderPath="internal methods\">
@@ -1000,7 +1030,7 @@ CASE nStage OF
 			fElevationOffset	=> fElevationPointingOffset
 		);	
 		fbElevation.Position := fElevation + fElevationPointingOffset + fElevationOffset;
-		fbElevation.Velocity := 10.0;
+		fbElevation.Velocity := 5.0;
 		fbElevation.MoveAxis := TRUE;
 		fbAzimuth.Position := fAzimuth + fAzimuthPointingOffset + fAzimuthOffset / COS(fElevationCalc * d2r);
 		fbAzimuth.Velocity := 10.0;
@@ -1368,7 +1398,8 @@ THIS^.bGoto				:= TRUE;]]></ST>
       <LineId Id="881" Count="0" />
       <LineId Id="904" Count="1" />
       <LineId Id="903" Count="0" />
-      <LineId Id="383" Count="4" />
+      <LineId Id="383" Count="1" />
+      <LineId Id="386" Count="1" />
       <LineId Id="390" Count="0" />
       <LineId Id="906" Count="6" />
       <LineId Id="1008" Count="0" />
@@ -1432,12 +1463,14 @@ THIS^.bGoto				:= TRUE;]]></ST>
       <LineId Id="532" Count="50" />
       <LineId Id="972" Count="0" />
       <LineId Id="583" Count="0" />
-      <LineId Id="587" Count="10" />
-      <LineId Id="599" Count="0" />
+      <LineId Id="587" Count="9" />
       <LineId Id="933" Count="1" />
       <LineId Id="1141" Count="1" />
       <LineId Id="935" Count="1" />
       <LineId Id="1138" Count="1" />
+      <LineId Id="1222" Count="1" />
+      <LineId Id="1221" Count="0" />
+      <LineId Id="1224" Count="0" />
       <LineId Id="937" Count="5" />
       <LineId Id="950" Count="0" />
       <LineId Id="943" Count="6" />
@@ -1456,9 +1489,8 @@ THIS^.bGoto				:= TRUE;]]></ST>
       <LineId Id="29" Count="48" />
     </LineIds>
     <LineIds Name="FB_MonetTelescopeControl._HomeTelescope">
-      <LineId Id="1" Count="5" />
-      <LineId Id="43" Count="0" />
-      <LineId Id="8" Count="27" />
+      <LineId Id="10" Count="32" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_MonetTelescopeControl._ParkTelescope">
       <LineId Id="1" Count="0" />
@@ -1473,7 +1505,36 @@ THIS^.bGoto				:= TRUE;]]></ST>
       <LineId Id="26" Count="61" />
     </LineIds>
     <LineIds Name="FB_MonetTelescopeControl._PowerOn">
-      <LineId Id="1" Count="54" />
+      <LineId Id="1" Count="10" />
+      <LineId Id="64" Count="4" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="76" Count="4" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="87" Count="10" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="100" Count="4" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="111" Count="3" />
+      <LineId Id="124" Count="8" />
+      <LineId Id="134" Count="3" />
+      <LineId Id="148" Count="1" />
+      <LineId Id="146" Count="1" />
+      <LineId Id="138" Count="3" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="73" Count="0" />
     </LineIds>
     <LineIds Name="FB_MonetTelescopeControl._SendTelemetry">
       <LineId Id="197" Count="0" />
