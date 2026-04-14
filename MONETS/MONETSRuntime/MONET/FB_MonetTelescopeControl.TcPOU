@@ -1030,7 +1030,7 @@ CASE nStage OF
 			fElevationOffset	=> fElevationPointingOffset
 		);	
 		fbElevation.Position := fElevation + fElevationPointingOffset + fElevationOffset;
-		fbElevation.Velocity := 10.0;
+		fbElevation.Velocity := 5.0;
 		fbElevation.MoveAxis := TRUE;
 		fbAzimuth.Position := fAzimuth + fAzimuthPointingOffset + fAzimuthOffset / COS(fElevationCalc * d2r);
 		fbAzimuth.Velocity := 10.0;
