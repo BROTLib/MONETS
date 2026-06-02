@@ -36,7 +36,7 @@ END_VAR
 VAR CONSTANT
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
 												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 36.0, 
-												 azimuthHome := 175, elevationHome := 40, derotatorPark := 0,
+												 azimuthHome := 175, elevationHome := 40, derotatorHome := 0,
 												 name := 'MONET/S', diameter := 1.2, cabinet := 'Beckhoff', manufacturer := 'Halfmann, Haidenhain, Beckhoff',
 												 mountOptions := 'ALT-AZ', mount := 'ALT_AZ');
 	fbPointing			: FB_PointingModelForward(AOFF := -0.006778523308102358, BNP := 0.030459575443670728, AN_A := -0.013961935190411667, AE_A := -0.01036163798027645, NPAE := 0.0017131069293910839, 
