@@ -24,31 +24,7 @@
     <ProjectVersion>0.1</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Components\FB_MonetCoverControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MONET\FB_MonetCabinetControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MONET\FB_MonetFocusControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MONET\FB_MonetHydraulicsControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MONET\FB_MonetPendantControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MONET\FB_MonetTelescopeControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MONET\FB_MonetPowerMonitoring.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MONET\FB_MonetSafetyHandling.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
@@ -114,8 +90,6 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
-    <Folder Include="Components" />
-    <Folder Include="MONET" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -135,6 +109,10 @@
     <PlaceholderReference Include="MONET Roof">
       <DefaultResolution>MONET Roof, * (Georg-August-Universitaet Goettingen)</DefaultResolution>
       <Namespace>MONET_Roof</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="MONETcommon">
+      <DefaultResolution>MONETcommon, * (IAG)</DefaultResolution>
+      <Namespace>MONETcommon</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="System_VisuElemEventTable">
       <DefaultResolution>VisuElemEventTable, 1.0.3.0 (System)</DefaultResolution>
@@ -222,6 +200,7 @@
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_JsonXml">
       <DefaultResolution>Tc3_JsonXml, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_JsonXml</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
@@ -253,6 +232,9 @@
     </PlaceholderResolution>
     <PlaceholderResolution Include="MONET Roof">
       <Resolution>MONET Roof, * (Georg-August-Universitaet Goettingen)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="MONETcommon">
+      <Resolution>MONETcommon, * (IAG)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElemMeter">
       <Resolution>VisuElemMeter, * (System)</Resolution>

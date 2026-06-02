@@ -29,7 +29,7 @@ VAR
 	TelescopeAuxiliary  : FB_TelescopeAuxiliary(comm := fbComm);
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
 	
-	fbWeather			: FB_WeatherCheck();
+	//fbWeather			: FB_WeatherCheck();
 	
 	mqttWatchdog 		: TON := (PT := T#30S);  // grace period before emergency shutdown
 END_VAR

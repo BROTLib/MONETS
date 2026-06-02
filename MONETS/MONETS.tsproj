@@ -2771,11 +2771,303 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{6DADE760-7FAC-4830-92BA-478C8595D673}" Name="MONETSRuntime" PrjFilePath="MONETSRuntime\MONETSRuntime.plcproj" TmcFilePath="MONETSRuntime\MONETSRuntime.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MONETSRuntime\MONETSRuntime.tmc" TmcHash="{41EEFA7F-3E74-CBBA-7D04-240D4165FFBF}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MONETSRuntime\MONETSRuntime.tmc" TmcHash="{B1150D5A-A79B-E955-3AF8-7CF2B1F1BD10}">
 					<Name>MONETSRuntime Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.RoofControl.automatic</Name>
+							<Comment><![CDATA[ automatic mode]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.ups_fail</Name>
+							<Comment><![CDATA[ UPS failure]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].open_roof</Name>
+							<Comment><![CDATA[ commands for roofs]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].close_roof</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].motor_error</Name>
+							<Comment><![CDATA[ error ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].opened</Name>
+							<Comment><![CDATA[ signals from limit switches]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].closed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[1].counter</Name>
+							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].motor_error</Name>
+							<Comment><![CDATA[ error ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].opened</Name>
+							<Comment><![CDATA[ signals from limit switches]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].closed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[1].motors[2].counter</Name>
+							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].open_roof</Name>
+							<Comment><![CDATA[ commands for roofs]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].close_roof</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].motor_error</Name>
+							<Comment><![CDATA[ error ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].opened</Name>
+							<Comment><![CDATA[ signals from limit switches]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].closed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[1].counter</Name>
+							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].motor_error</Name>
+							<Comment><![CDATA[ error ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].opened</Name>
+							<Comment><![CDATA[ signals from limit switches]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].closed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.RoofControl.roofs[2].motors[2].counter</Name>
+							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbOilLow</Name>
+							<Comment><![CDATA[ 2.1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbOilHigh</Name>
+							<Comment><![CDATA[ ?]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbOilPressureOK</Name>
+							<Comment><![CDATA[ 2.3]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbOilHot</Name>
+							<Comment><![CDATA[ 2.4]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbOilCold</Name>
+							<Comment><![CDATA[ 2.5]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbOilFilterDirty</Name>
+							<Comment><![CDATA[ 2.6]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbPumpRunning</Name>
+							<Comment><![CDATA[ 2.7]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbSuctionRunning</Name>
+							<Comment><![CDATA[ 2.8]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.InOilLevel</Name>
+							<Comment><![CDATA[BT2]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbOilpanMaximum</Name>
+							<Comment><![CDATA[DIN39 4.6]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HydraulicsControl.IbOilReserve</Name>
+							<Comment><![CDATA[DIN40 4.7]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.TelescopeAuxiliary.tempSensorM1</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.TelescopeAuxiliary.tempSensorM1cell</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.TelescopeAuxiliary.tempSensorM2</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.TelescopeAuxiliary.tempSensorFlange</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbBCD0</Name>
+							<Comment><![CDATA[DIN17 2.0]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbBCD2</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbBCD4</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbBCD8</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbResetButton</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbDirectionUp</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbDirectionDown</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbEnableKey</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbEnableButton</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbDirectionLeft</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PendantControl.IbDirectionRight</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.DerotatorControl.InDigitalInputs</Name>
+							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.DerotatorControl.InDiagnostic</Name>
+							<Comment><![CDATA[ diagnostic number]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.DerotatorControl.InTorque</Name>
+							<Comment><![CDATA[ derotator torque feedback]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.DerotatorControl.IbSTO</Name>
+							<Comment><![CDATA[ STO]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.DerotatorControl.axisRef.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ElevationControl.InDigitalInputs</Name>
+							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ElevationControl.InDiagnostic</Name>
+							<Comment><![CDATA[ diagnostic number]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ElevationControl.InTorque</Name>
+							<Comment><![CDATA[ derotator torque feedback]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ElevationControl.IbSTO</Name>
+							<Comment><![CDATA[ STO]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ElevationControl.axisRef.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.AzimuthControl.InDigitalInputs</Name>
+							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.AzimuthControl.InDiagnostic</Name>
+							<Comment><![CDATA[ diagnostic number]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.AzimuthControl.InTorque</Name>
+							<Comment><![CDATA[ derotator torque feedback]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.AzimuthControl.IbSTO</Name>
+							<Comment><![CDATA[ STO]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.AzimuthControl.axisRef.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.SafetyHandling.inError</Name>
 							<Comment><![CDATA[ Safety Error Condition]]></Comment>
@@ -2904,308 +3196,6 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.RoofControl.automatic</Name>
-							<Comment><![CDATA[ automatic mode]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.ups_fail</Name>
-							<Comment><![CDATA[ UPS failure]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].open_roof</Name>
-							<Comment><![CDATA[ commands for roofs]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].close_roof</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].motor_error</Name>
-							<Comment><![CDATA[ error ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].opened</Name>
-							<Comment><![CDATA[ signals from limit switches]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].closed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[1].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].motor_error</Name>
-							<Comment><![CDATA[ error ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].opened</Name>
-							<Comment><![CDATA[ signals from limit switches]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].closed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[1].motors[2].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].open_roof</Name>
-							<Comment><![CDATA[ commands for roofs]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].close_roof</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].motor_error</Name>
-							<Comment><![CDATA[ error ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].opened</Name>
-							<Comment><![CDATA[ signals from limit switches]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].closed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[1].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].motor_error</Name>
-							<Comment><![CDATA[ error ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].opened</Name>
-							<Comment><![CDATA[ signals from limit switches]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].closed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.RoofControl.roofs[2].motors[2].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CoverControl.IabCoverOpen</Name>
-							<Comment><![CDATA[ limit coper 1 open switch]]></Comment>
-							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CoverControl.IabCoverClosed</Name>
-							<Comment><![CDATA[ limit coper 1 closed switch]]></Comment>
-							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilLow</Name>
-							<Comment><![CDATA[ 2.1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilHigh</Name>
-							<Comment><![CDATA[ ?]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilPressureOK</Name>
-							<Comment><![CDATA[ 2.3]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilHot</Name>
-							<Comment><![CDATA[ 2.4]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilCold</Name>
-							<Comment><![CDATA[ 2.5]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilFilterDirty</Name>
-							<Comment><![CDATA[ 2.6]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbPumpRunning</Name>
-							<Comment><![CDATA[ 2.7]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbSuctionRunning</Name>
-							<Comment><![CDATA[ 2.8]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.InOilLevel</Name>
-							<Comment><![CDATA[BT2]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilpanMaximum</Name>
-							<Comment><![CDATA[DIN39 4.6]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilReserve</Name>
-							<Comment><![CDATA[DIN40 4.7]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.TelescopeAuxiliary.tempSensorM1</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.TelescopeAuxiliary.tempSensorM1cell</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.TelescopeAuxiliary.tempSensorM2</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.TelescopeAuxiliary.tempSensorFlange</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.InDigitalInputs</Name>
-							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
-							<Type>WORD</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.InDiagnostic</Name>
-							<Comment><![CDATA[ diagnostic number]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.InTorque</Name>
-							<Comment><![CDATA[ derotator torque feedback]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.IbSTO</Name>
-							<Comment><![CDATA[ STO]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.axisRef.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.InDigitalInputs</Name>
-							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
-							<Type>WORD</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.InDiagnostic</Name>
-							<Comment><![CDATA[ diagnostic number]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.InTorque</Name>
-							<Comment><![CDATA[ derotator torque feedback]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.IbSTO</Name>
-							<Comment><![CDATA[ STO]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.axisRef.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.InDigitalInputs</Name>
-							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
-							<Type>WORD</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.InDiagnostic</Name>
-							<Comment><![CDATA[ diagnostic number]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.InTorque</Name>
-							<Comment><![CDATA[ derotator torque feedback]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.IbSTO</Name>
-							<Comment><![CDATA[ STO]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.axisRef.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbBCD0</Name>
-							<Comment><![CDATA[DIN17 2.0]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbBCD2</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbBCD4</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbBCD8</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbResetButton</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbDirectionUp</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbDirectionDown</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbEnableKey</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbEnableButton</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbDirectionLeft</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PendantControl.IbDirectionRight</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.FocusControl.IbLimitNear</Name>
 							<Comment><![CDATA[ DIN29 3.4]]></Comment>
 							<Type>BOOL</Type>
@@ -3219,51 +3209,19 @@ External Setpoint Generation:
 							<Name>MAIN.FocusControl.refAxis.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
+						<Var>
+							<Name>MAIN.CoverControl.IabCoverOpen</Name>
+							<Comment><![CDATA[ limit coper 1 open switch]]></Comment>
+							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CoverControl.IabCoverClosed</Name>
+							<Comment><![CDATA[ limit coper 1 closed switch]]></Comment>
+							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
-						<Var>
-							<Name>MAIN.SafetyHandling.outRun</Name>
-							<Comment><![CDATA[ Run/Stop Safety]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.SafetyHandling.outRestart</Name>
-							<Comment><![CDATA[ Restart Safety]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.SafetyHandling.outErrAck</Name>
-							<Comment><![CDATA[ Error Acknowledgement ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.SafetyHandling.outResetAzimuthSTO</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.SafetyHandling.outResetElevationSTO</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.SafetyHandling.outResetDerotatorSTO</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CabinetControl.outLampPower</Name>
-							<Comment><![CDATA[DOUT1 0.0]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CabinetControl.outLampManual</Name>
-							<Comment><![CDATA[DOUT2 0.1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CabinetControl.outLampError</Name>
-							<Comment><![CDATA[DOUT3 0.2	]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
 						<Var>
 							<Name>MAIN.RoofControl.roofs[1].motors[1].reset_drive</Name>
 							<Type>BOOL</Type>
@@ -3337,16 +3295,6 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CoverControl.OabOpenCover</Name>
-							<Comment><![CDATA[ open cover1-3 command]]></Comment>
-							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CoverControl.OabCloseCover</Name>
-							<Comment><![CDATA[ close cover1-3 command]]></Comment>
-							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.HydraulicsControl.ObOilPumpEnable</Name>
 							<Comment><![CDATA[DOUT4 0.3]]></Comment>
 							<Type>BOOL</Type>
@@ -3370,18 +3318,6 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.DerotatorControl.axisRef.PlcToNc</Name>
-							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.axisRef.PlcToNc</Name>
-							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.axisRef.PlcToNc</Name>
-							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.PendantControl.ObLampUp</Name>
 							<Type>BOOL</Type>
 						</Var>
@@ -3402,6 +3338,60 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.DerotatorControl.axisRef.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ElevationControl.axisRef.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.AzimuthControl.axisRef.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.SafetyHandling.outRun</Name>
+							<Comment><![CDATA[ Run/Stop Safety]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.SafetyHandling.outRestart</Name>
+							<Comment><![CDATA[ Restart Safety]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.SafetyHandling.outErrAck</Name>
+							<Comment><![CDATA[ Error Acknowledgement ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.SafetyHandling.outResetAzimuthSTO</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.SafetyHandling.outResetElevationSTO</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.SafetyHandling.outResetDerotatorSTO</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CabinetControl.outLampPower</Name>
+							<Comment><![CDATA[DOUT1 0.0]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CabinetControl.outLampManual</Name>
+							<Comment><![CDATA[DOUT2 0.1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CabinetControl.outLampError</Name>
+							<Comment><![CDATA[DOUT3 0.2	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.FocusControl.ObFocusUnlock</Name>
 							<Comment><![CDATA[ whether focus is unlocked]]></Comment>
 							<Type>BOOL</Type>
@@ -3409,6 +3399,16 @@ External Setpoint Generation:
 						<Var>
 							<Name>MAIN.FocusControl.refAxis.PlcToNc</Name>
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CoverControl.OabOpenCover</Name>
+							<Comment><![CDATA[ open cover1-3 command]]></Comment>
+							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CoverControl.OabCloseCover</Name>
+							<Comment><![CDATA[ close cover1-3 command]]></Comment>
+							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2025-08-31T07:44:04">
