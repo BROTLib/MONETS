@@ -30,6 +30,8 @@ VAR
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
 	
 	fbWeather			: FB_WeatherCheck();
+	
+	mqttWatchdog 		: TON := (PT := T#30S);  // grace period before emergency shutdown
 END_VAR
 VAR CONSTANT
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
@@ -149,6 +151,14 @@ PendantControl(
 	fbDerotator 	:= DerotatorControl	
 );
 
+// MQTT watchdog: if connection is lost for more than the timeout, park and close roof
+mqttWatchdog(IN := NOT fbComm.bConnected);
+IF mqttWatchdog.Q THEN
+    TelescopeControl.bPark  := TRUE;
+    RoofControl.Close();
+    fbComm.Publish('electronics', 'base', 'MQTTWatchdog', 'TRIGGERED');
+END_IF
+
 // and fbComm
 fbComm(	
 	sHostName		:= '192.168.127.10',
@@ -250,7 +260,10 @@ END_IF
       <LineId Id="2136" Count="0" />
       <LineId Id="2371" Count="0" />
       <LineId Id="2137" Count="2" />
-      <LineId Id="2236" Count="9" />
+      <LineId Id="2236" Count="8" />
+      <LineId Id="2509" Count="6" />
+      <LineId Id="2508" Count="0" />
+      <LineId Id="2245" Count="0" />
       <LineId Id="2235" Count="0" />
       <LineId Id="2140" Count="6" />
       <LineId Id="2207" Count="0" />
