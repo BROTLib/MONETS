@@ -39,6 +39,9 @@ VAR CONSTANT
 												 azimuthHome := 175, elevationHome := 40, derotatorPark := 0,
 												 name := 'MONET/S', diameter := 1.2, cabinet := 'Beckhoff', manufacturer := 'Halfmann, Haidenhain, Beckhoff',
 												 mountOptions := 'ALT-AZ', mount := 'ALT_AZ');
+	fbPointing			: FB_PointingModelForward(AOFF := -0.006778523308102358, BNP := 0.030459575443670728, AN_A := -0.013961935190411667, AE_A := -0.01036163798027645, NPAE := 0.0017131069293910839, 
+                                                  EOFF := 0.04040337399598415, AN_E := -0.011190631316106092, AE_E := -0.009741636951375865, TF := 0.06450337748465318);
+	fbPointingInverse	: FB_PointingModelInversion(fbPointing := fbPointing);
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(* 
@@ -96,7 +99,9 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		fbFocus 		:= FocusControl, 
 		fbElevation 	:= ElevationControl, 
 		fbAzimuth 		:= AzimuthControl, 
-		fbDerotator 	:= DerotatorControl
+		fbDerotator 	:= DerotatorControl,
+		fbPointing      := fbPointing,
+		fbPointingInverse := fbPointingInverse
 	);
 END_IF
 TelescopeAuxiliary();
@@ -239,7 +244,9 @@ END_IF
       <LineId Id="2103" Count="2" />
       <LineId Id="2211" Count="0" />
       <LineId Id="2210" Count="0" />
-      <LineId Id="2212" Count="10" />
+      <LineId Id="2212" Count="9" />
+      <LineId Id="2558" Count="1" />
+      <LineId Id="2222" Count="0" />
       <LineId Id="2106" Count="0" />
       <LineId Id="2466" Count="0" />
       <LineId Id="2223" Count="0" />
