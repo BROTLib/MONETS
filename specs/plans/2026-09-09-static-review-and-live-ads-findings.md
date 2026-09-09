@@ -49,11 +49,15 @@ Reconstructed causal chain:
 
 **Open question, not yet investigated:** why did Derotator lose Feed Forward Permission in the first place? That's an NC/axis-parameter-level question (`allow motion commands to external setpoint axis`, feed-forward config) rather than something visible in the ST source — would need TwinCAT XAE Shell's NC configuration view or the relevant axis parameter list, not just the `.tsproj` text.
 
+## Resolution (manual, same day)
+
+Tim manually forced `MAIN.TelescopeControl.bInterrupted := FALSE` and parked the telescope successfully. Re-read live afterward: `bInterrupted = False`, `bReady = True`, `Elevation`/`Azimuth`/`Derotator` all `bEnable = True`, `bError = False`, park in progress (`bBusy = True`). This confirms the deadlock diagnosis directly — clearing `bInterrupted` was sufficient to unblock `_PowerOn()`, re-enable the axes, and let the park command execute. No code changes were needed to recover this specific incident; the manual clear is the same recovery `TelescopeControl.bReset` would have performed automatically had the reset button been wired (ADR 0001).
+
 ## Not yet done
 
-- No code changes applied yet (Tim asked to hold off on the fix for now).
-- The live telescope is still in the deadlocked state as of this writing — `MAIN.TelescopeControl.bInterrupted` was not cleared (no write was made; investigation was read-only by design).
+- The code fix in ADR 0001 (wiring `MAIN`'s reset block to `TelescopeControl.bReset` + `CoverControl.Reset()`/`HydraulicsControl.Reset()`) has **not** been applied — Tim asked to hold off. The manual ADS write above was a one-off operational recovery, not a substitute for the fix; the same deadlock will recur on the next axis fault that interrupts an in-flight command.
 - `FB_MonetSafetyHandling`'s hardware-driven `outErrAck` sequence and `FB_TelescopeAuxiliary`/`E_ModeLanguage` were not re-examined this session (nothing new since the original handover).
+- Root cause of the Derotator Feed Forward Permission loss (the actual trigger, see below) is still open.
 
 ## Live ADS access notes (for next time)
 
