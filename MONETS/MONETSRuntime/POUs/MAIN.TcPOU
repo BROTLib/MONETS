@@ -33,6 +33,24 @@ VAR
 	
 	mqttWatchdog 		: TON := (PT := T#30S);  // grace period before emergency shutdown
 	bMqttEverConnected	: BOOL := FALSE;  // arms the watchdog only after the first successful connect, so a slow/normal boot never trips it
+
+	// diagnostics telemetry (domain 'diagnostics', see IAG/specs/plans/2026-09-09-extended-diagnostics-telemetry-proposal.md)
+	diagnosticsHeartbeat	: TON := (PT := T#30S);	// republish the full snapshot on this cadence even with no change
+	bDiagHeartbeatTick		: BOOL;
+	bLastInterrupted		: BOOL;
+	bLastElevationError	: BOOL;
+	bLastAzimuthError		: BOOL;
+	bLastDerotatorError		: BOOL;
+	bLastFocusError			: BOOL;
+	bLastElevationEnabled	: BOOL;
+	bLastAzimuthEnabled	: BOOL;
+	bLastDerotatorEnabled	: BOOL;
+	bLastSafetyError		: BOOL;
+	bLastSafetyEstop		: BOOL;
+	bLastSafetyState		: BOOL;
+	bLastTelescopeReady		: BOOL;
+	bLastTelescopeBusy		: BOOL;
+	bLastTelescopeStopped	: BOOL;
 END_VAR
 VAR CONSTANT
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
@@ -225,6 +243,79 @@ IF commTimer.Q THEN
 	fbComm.Publish('electronics', 'base', 'MainReady', BOOL_TO_STRING(ready));
 	fbComm.Publish('electronics', 'base', 'MasterError', BOOL_TO_STRING(error));
 	TelescopeAuxiliary.SendTelemetry();
+END_IF
+
+// diagnostics telemetry: publish on change, plus a full-snapshot heartbeat so a human
+// scanning history can tell the system was actively reporting, not just silent.
+diagnosticsHeartbeat(IN := TRUE);
+bDiagHeartbeatTick := diagnosticsHeartbeat.Q;
+IF bDiagHeartbeatTick THEN
+	diagnosticsHeartbeat(IN := FALSE);
+END_IF
+
+IF (TelescopeControl.bInterrupted <> bLastInterrupted) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'Interrupted', BOOL_TO_STRING(TelescopeControl.bInterrupted));
+	bLastInterrupted := TelescopeControl.bInterrupted;
+END_IF
+
+IF (ElevationControl.bError <> bLastElevationError) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'ElevationError', BOOL_TO_STRING(ElevationControl.bError));
+	fbComm.Publish('diagnostics', 'base', 'ElevationErrorID', UDINT_TO_STRING(ElevationControl.nErrorID));
+	bLastElevationError := ElevationControl.bError;
+END_IF
+IF (AzimuthControl.bError <> bLastAzimuthError) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'AzimuthError', BOOL_TO_STRING(AzimuthControl.bError));
+	fbComm.Publish('diagnostics', 'base', 'AzimuthErrorID', UDINT_TO_STRING(AzimuthControl.nErrorID));
+	bLastAzimuthError := AzimuthControl.bError;
+END_IF
+IF (DerotatorControl.bError <> bLastDerotatorError) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'DerotatorError', BOOL_TO_STRING(DerotatorControl.bError));
+	fbComm.Publish('diagnostics', 'base', 'DerotatorErrorID', UDINT_TO_STRING(DerotatorControl.nErrorID));
+	bLastDerotatorError := DerotatorControl.bError;
+END_IF
+IF (FocusControl.bError <> bLastFocusError) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'FocusError', BOOL_TO_STRING(FocusControl.bError));
+	fbComm.Publish('diagnostics', 'base', 'FocusErrorID', UDINT_TO_STRING(FocusControl.nErrorID));
+	bLastFocusError := FocusControl.bError;
+END_IF
+
+IF (ElevationControl.bEnable <> bLastElevationEnabled) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'ElevationEnabled', BOOL_TO_STRING(ElevationControl.bEnable));
+	bLastElevationEnabled := ElevationControl.bEnable;
+END_IF
+IF (AzimuthControl.bEnable <> bLastAzimuthEnabled) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'AzimuthEnabled', BOOL_TO_STRING(AzimuthControl.bEnable));
+	bLastAzimuthEnabled := AzimuthControl.bEnable;
+END_IF
+IF (DerotatorControl.bEnable <> bLastDerotatorEnabled) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'DerotatorEnabled', BOOL_TO_STRING(DerotatorControl.bEnable));
+	bLastDerotatorEnabled := DerotatorControl.bEnable;
+END_IF
+
+IF (SafetyHandling.error <> bLastSafetyError) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'SafetyError', BOOL_TO_STRING(SafetyHandling.error));
+	bLastSafetyError := SafetyHandling.error;
+END_IF
+IF (SafetyHandling.estop <> bLastSafetyEstop) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'SafetyEstop', BOOL_TO_STRING(SafetyHandling.estop));
+	bLastSafetyEstop := SafetyHandling.estop;
+END_IF
+IF (SafetyHandling.state <> bLastSafetyState) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'SafetyState', BOOL_TO_STRING(SafetyHandling.state));
+	bLastSafetyState := SafetyHandling.state;
+END_IF
+
+IF (TelescopeControl.bReady <> bLastTelescopeReady) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'TelescopeReady', BOOL_TO_STRING(TelescopeControl.bReady));
+	bLastTelescopeReady := TelescopeControl.bReady;
+END_IF
+IF (TelescopeControl.bBusy <> bLastTelescopeBusy) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'TelescopeBusy', BOOL_TO_STRING(TelescopeControl.bBusy));
+	bLastTelescopeBusy := TelescopeControl.bBusy;
+END_IF
+IF (TelescopeControl.bStopped <> bLastTelescopeStopped) OR bDiagHeartbeatTick THEN
+	fbComm.Publish('diagnostics', 'base', 'TelescopeStopped', BOOL_TO_STRING(TelescopeControl.bStopped));
+	bLastTelescopeStopped := TelescopeControl.bStopped;
 END_IF
 
 ]]></ST>
