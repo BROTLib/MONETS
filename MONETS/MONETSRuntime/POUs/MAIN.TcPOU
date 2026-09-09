@@ -32,6 +32,7 @@ VAR
 	//fbWeather			: FB_WeatherCheck();
 	
 	mqttWatchdog 		: TON := (PT := T#30S);  // grace period before emergency shutdown
+	bMqttEverConnected	: BOOL := FALSE;  // arms the watchdog only after the first successful connect, so a slow/normal boot never trips it
 END_VAR
 VAR CONSTANT
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
@@ -156,12 +157,16 @@ PendantControl(
 	fbDerotator 	:= DerotatorControl	
 );
 
-// MQTT watchdog: if connection is lost for more than the timeout, park and close roof
-mqttWatchdog(IN := NOT fbComm.bConnected);
+// MQTT watchdog: if connection is lost for more than the timeout, park and close roof.
+// Armed only after the first successful connect -- otherwise a normal boot (bConnected
+// starts FALSE until the initial hostname/connect/subscribe sequence completes) would
+// trip this on every restart, not just real outages.
+bMqttEverConnected := bMqttEverConnected OR fbComm.bConnected;
+mqttWatchdog(IN := bMqttEverConnected AND NOT fbComm.bConnected);
 IF mqttWatchdog.Q THEN
-    TelescopeControl.bPark  := TRUE;
-    RoofControl.Close();
-    fbComm.Publish('electronics', 'base', 'MQTTWatchdog', 'TRIGGERED');
+	TelescopeControl.bPark := TRUE;
+	RoofControl.Close();
+	fbComm.Publish('electronics', 'base', 'MQTTWatchdog', 'TRIGGERED');
 END_IF
 
 // and fbComm
