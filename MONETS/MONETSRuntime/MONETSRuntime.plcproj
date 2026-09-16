@@ -7,7 +7,7 @@
     <DownloadApplicationInfo>true</DownloadApplicationInfo>
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
-    <Name>MONETNRuntime</Name>
+    <Name>MONETSRuntime</Name>
     <ProgramVersion>3.1.4026.13</ProgramVersion>
     <Application>{871a658d-301d-40cb-a7bc-530550c7313b}</Application>
     <TypeSystem>{7cbec500-4611-45d7-82b8-8145305f1ef0}</TypeSystem>
@@ -86,7 +86,7 @@
       <SubType>Code</SubType>
       <DependentUpon>VisualizationManager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="GVLs\GVL_Version.TcGVL">
+    <Compile Include="GVLs\Global_Version.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
