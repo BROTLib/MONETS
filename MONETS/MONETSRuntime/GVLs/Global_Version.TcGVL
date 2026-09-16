@@ -7,6 +7,9 @@ VAR_GLOBAL CONSTANT
 	// which only covers Tc2_*/Tc3_* library references, not custom ones -- until now: this
 	// GVL uses Beckhoff's own naming exactly, so it merges into a consumer's Global_Version.
 	// Kept in sync with <ProjectVersion> in MONETSRuntime.plcproj at release time.
+	// SA0033 (unused variable) is a hard error in this project; this constant is meant
+	// to be read externally via ADS, never referenced internally, so it's suppressed here.
+	{attribute 'analysis' := '-33'}
 	stLibVersion_MONETSRuntime : ST_LibVersion := (
 		iMajor := 0,
 		iMinor := 1,
