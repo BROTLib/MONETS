@@ -110,9 +110,9 @@
       <DefaultResolution>HalfBROT, * (BROT)</DefaultResolution>
       <Namespace>HalfBROT</Namespace>
     </PlaceholderReference>
-    <PlaceholderReference Include="MONET Roof">
-      <DefaultResolution>MONET Roof, * (Georg-August-Universitaet Goettingen)</DefaultResolution>
-      <Namespace>MONET_Roof</Namespace>
+    <PlaceholderReference Include="MONETRoof">
+      <DefaultResolution>MONETRoof, * (Georg-August-Universitaet Goettingen)</DefaultResolution>
+      <Namespace>MONETRoof</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONETcommon">
       <DefaultResolution>MONETcommon, * (IAG)</DefaultResolution>

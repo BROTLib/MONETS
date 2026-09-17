@@ -11,7 +11,7 @@ the telescope mount (Azimuth / Elevation / Derotator axes), focus, the three
 mirror covers, the hydraulic pump/brake system, the observatory roof, power
 monitoring, cabinet I/O and the TwinSAFE safety chain, and publishes
 MQTT/InfluxDB telemetry. It is built on the **BROTLib** core library, the
-**HalfBROT** hardware layer and the **MONET Roof** library (`FB_RoofControl`),
+**HalfBROT** hardware layer and the **MONETRoof** library (`FB_RoofControl`),
 and — unlike MONETN — consumes the **MONETcommon** library **directly**: the
 MONETS project contains almost no local function blocks beyond `MAIN` and two
 site-specific POUs.
@@ -94,7 +94,7 @@ MAIN
 ├── SafetyHandling     : FB_MonetSafetyHandling       (MONETcommon)
 ├── CabinetControl     : FB_MonetCabinetControl       (MONETcommon)
 ├── PowerMonitoring    : FB_MonetPowerMonitoring      (MONETcommon)
-├── RoofControl        : FB_RoofControl               (MONET Roof library)
+├── RoofControl        : FB_RoofControl               (MONETRoof library)
 ├── CoverControl       : FB_MonetCoverControl         (MONETcommon)
 ├── HydraulicsControl  : FB_MonetHydraulicsControl    (MONETcommon)
 ├── FocusControl       : FB_MonetFocusControl         (MONETcommon)
@@ -186,7 +186,7 @@ Eleven TwinCAT visualization screens provide the operator HMI: the main
 - **HalfBROT** (BROT) — axis and hardware function blocks.
 - **MONETcommon** (IAG) — the MONET control logic, referenced directly
   (`PlaceholderReference Include="MONETcommon"`).
-- **MONET Roof** (`MONET_Roof`) — `FB_RoofControl`/`I_Roof`.
+- **MONETRoof** (`MONETRoof`) — `FB_RoofControl`/`I_Roof`.
 - Beckhoff system libraries: `Tc2_MC2`, `Tc2_MC2_Drive`, `Tc2_NC`,
   `Tc3_IotBase`/`Tc3_IotCommunicator` (MQTT), `Tc2_Standard`, `Tc2_System`,
   `Tc2_Utilities`, `Tc3_Module`, plus the TwinCAT visualization libraries.
