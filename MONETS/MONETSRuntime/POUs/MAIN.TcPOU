@@ -100,10 +100,7 @@ IF eTelescopeMode = E_TelescopeMode.manual OR eTelescopeMode = E_TelescopeMode.o
 	HydraulicsControl.bOpenBrake := brakeClearing;
 END_IF
 
-// clear errors
-IF CabinetControl.IsResetPushed() OR PendantControl.IbResetButton THEN
-	;
-END_IF
+// clear errors: SafetyHandling.resetRequest drives the Restart/ErrAck toggle internally
 
 // telescope is ready when power available
 PowerMonitoring(phaseOK => ready);
@@ -234,7 +231,7 @@ END_IF
 CabinetControl.SetBlinkPower(E_Blink.on);
 
 // do safety
-SafetyHandling();
+SafetyHandling(resetRequest := CabinetControl.IsResetPushed() OR PendantControl.IbResetButton);
 
 // telemetry
 commTimer(IN:=TRUE);
