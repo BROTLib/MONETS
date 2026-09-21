@@ -100,7 +100,16 @@ IF eTelescopeMode = E_TelescopeMode.manual OR eTelescopeMode = E_TelescopeMode.o
 	HydraulicsControl.bOpenBrake := brakeClearing;
 END_IF
 
-// clear errors: SafetyHandling.resetRequest drives the Restart/ErrAck toggle internally
+// clear errors: SafetyHandling.resetRequest (see call below) toggles Restart/ErrAck,
+// here the cabinet/pendant reset button also resets covers, hydraulics and, in automatic mode, the
+// telescope control (the only way to clear a latched bInterrupted)
+IF CabinetControl.IsResetPushed() OR PendantControl.IbResetButton THEN
+	CoverControl.Reset();
+	HydraulicsControl.Reset();
+	IF eTelescopeMode = E_TelescopeMode.automatic THEN
+		TelescopeControl.Reset();
+	END_IF
+END_IF
 
 // telescope is ready when power available
 PowerMonitoring(phaseOK => ready);
