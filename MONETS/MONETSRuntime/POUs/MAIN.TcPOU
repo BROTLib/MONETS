@@ -117,16 +117,18 @@ PowerMonitoring(phaseOK => ready);
 // only run TelescopeControl in automatic mode
 IF eTelescopeMode = E_TelescopeMode.automatic THEN
 	TelescopeControl(
-		telescopeConfig := telescopeConfig,	
-		fbCovers 		:= CoverControl, 
-		fbBrake 		:= HydraulicsControl, 
-		fbHydraulics 	:= HydraulicsControl, 
-		fbFocus 		:= FocusControl, 
-		fbElevation 	:= ElevationControl, 
-		fbAzimuth 		:= AzimuthControl, 
+		telescopeConfig := telescopeConfig,
+		fbCovers 		:= CoverControl,
+		fbBrake 		:= HydraulicsControl,
+		fbHydraulics 	:= HydraulicsControl,
+		fbFocus 		:= FocusControl,
+		fbElevation 	:= ElevationControl,
+		fbAzimuth 		:= AzimuthControl,
 		fbDerotator 	:= DerotatorControl,
 		fbPointing      := fbPointing,
-		fbPointingInverse := fbPointingInverse
+		fbPointingInverse := fbPointingInverse,
+		bEstopTriggered := SafetyHandling.estop,	// M5: was never wired, see MONETcommon#11
+		bMainReady		:= ready					// M5: was computed and published but never wired, see MONETcommon#11
 	);
 END_IF
 TelescopeAuxiliary();
