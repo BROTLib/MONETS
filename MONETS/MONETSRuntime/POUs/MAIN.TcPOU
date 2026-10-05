@@ -100,9 +100,15 @@ IF eTelescopeMode = E_TelescopeMode.manual OR eTelescopeMode = E_TelescopeMode.o
 	HydraulicsControl.bOpenBrake := brakeClearing;
 END_IF
 
-// clear errors
+// clear errors: SafetyHandling.resetRequest (see call below) toggles Restart/ErrAck,
+// here the cabinet/pendant reset button also resets covers, hydraulics and, in automatic mode, the
+// telescope control (the only way to clear a latched bInterrupted)
 IF CabinetControl.IsResetPushed() OR PendantControl.IbResetButton THEN
-	;
+	CoverControl.Reset();
+	HydraulicsControl.Reset();
+	IF eTelescopeMode = E_TelescopeMode.automatic THEN
+		TelescopeControl.Reset();
+	END_IF
 END_IF
 
 // telescope is ready when power available
@@ -111,16 +117,18 @@ PowerMonitoring(phaseOK => ready);
 // only run TelescopeControl in automatic mode
 IF eTelescopeMode = E_TelescopeMode.automatic THEN
 	TelescopeControl(
-		telescopeConfig := telescopeConfig,	
-		fbCovers 		:= CoverControl, 
-		fbBrake 		:= HydraulicsControl, 
-		fbHydraulics 	:= HydraulicsControl, 
-		fbFocus 		:= FocusControl, 
-		fbElevation 	:= ElevationControl, 
-		fbAzimuth 		:= AzimuthControl, 
+		telescopeConfig := telescopeConfig,
+		fbCovers 		:= CoverControl,
+		fbBrake 		:= HydraulicsControl,
+		fbHydraulics 	:= HydraulicsControl,
+		fbFocus 		:= FocusControl,
+		fbElevation 	:= ElevationControl,
+		fbAzimuth 		:= AzimuthControl,
 		fbDerotator 	:= DerotatorControl,
 		fbPointing      := fbPointing,
-		fbPointingInverse := fbPointingInverse
+		fbPointingInverse := fbPointingInverse,
+		bEstopTriggered := SafetyHandling.estop,	// M5: was never wired, see MONETcommon#11
+		bMainReady		:= ready					// M5: was computed and published but never wired, see MONETcommon#11
 	);
 END_IF
 TelescopeAuxiliary();
@@ -234,7 +242,7 @@ END_IF
 CabinetControl.SetBlinkPower(E_Blink.on);
 
 // do safety
-SafetyHandling();
+SafetyHandling(resetRequest := CabinetControl.IsResetPushed() OR PendantControl.IbResetButton);
 
 // telemetry
 commTimer(IN:=TRUE);
