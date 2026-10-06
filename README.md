@@ -208,3 +208,5 @@ project is `MONETSRuntime` (ADS port 851, symbolic mapping), task `PlcTask`
 10 ms/priority 20; NC-Task 1 SAF 2 ms / SVB 10 ms. MQTT requires the Tc3 IoT
 license. No boot project is checked in; the controller boots from TwinCAT's
 own boot project on the CX.
+
+**CI.** `.github/workflows/tcbuild.yml` builds `MONETS.sln` with TcBuild on every push (self-hosted runner, never on pull requests). A green run means the project compiles; TcBuild exit code 1 (built with warnings) counts as success. It only compiles; no tests run in CI.
