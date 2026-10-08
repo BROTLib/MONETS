@@ -96,16 +96,19 @@ MAIN
 ├── PowerMonitoring    : FB_MonetPowerMonitoring      (MONETcommon)
 ├── RoofControl        : FB_RoofControl               (MONETRoof library)
 ├── CoverControl       : FB_MonetCoverControl         (MONETcommon)
-├── HydraulicsControl  : FB_MonetHydraulicsControl    (MONETcommon)
-├── FocusControl       : FB_MonetFocusControl         (MONETcommon)
+├── HydraulicsControl  : FB_HydraulicsControl         (HalfBROT)
+├── FocusControl       : FB_FocusControl              (HalfBROT)
 ├── DerotatorControl   : FB_DerotatorControl          (HalfBROT)
 ├── ElevationControl   : FB_ElevationControl          (HalfBROT)
 ├── AzimuthControl     : FB_AzimuthControl            (HalfBROT)
 ├── TelescopeControl   : FB_MonetTelescopeControl     (MONETcommon)
 ├── PendantControl     : FB_MonetPendantControl       (MONETcommon)
-├── TelescopeAuxiliary : FB_TelescopeAuxiliary        (site-specific)
-└── WeatherCheck       : FB_WeatherCheck              (site-specific)
+├── MqttWatchdog       : FB_MonetMqttWatchdog         (MONETcommon)
+├── Diagnostics        : FB_MonetDiagnostics          (MONETcommon)
+└── TelescopeAuxiliary : FB_TelescopeAuxiliary        (site-specific)
 ```
+
+`FB_WeatherCheck` is in the project but its instance in `MAIN` is commented out.
 
 `MAIN` wires the site configuration (`ST_TelescopeConfig`:
 `name := 'MONET/S'`, `diameter := 1.2`, `mount := 'ALT_AZ'`, park positions
@@ -146,8 +149,12 @@ telemetry in Influx line protocol:
 | Log topic | `MONETS/Log` |
 
 In addition to the 12-hour auto-park timeout, MONETS runs an **MQTT watchdog**
-(`mqttWatchdog`, 30 s grace period): if the broker connection is lost for more
-than the timeout, the telescope is parked and the roof is closed automatically.
+(`MqttWatchdog : FB_MonetMqttWatchdog` from MONETcommon, 30 s grace period,
+armed after the first connect): if the broker connection is lost for more than
+the timeout, the telescope is parked and the roof is closed automatically.
+`Diagnostics : FB_MonetDiagnostics` (MONETcommon) publishes the
+`diagnostics/base/*` fields (interrupted, axis errors and enables, safety,
+ready/busy/stopped) on change and every 30 s. MONET/N runs the same two blocks.
 
 ## Safety (TwinSAFE)
 
