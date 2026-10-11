@@ -60,7 +60,7 @@ GetHostName(bExecute := executeHostName, sHostName => HostName);
 executeHostName := FALSE;
 
 // run cabinet
-CabinetControl();
+CabinetControl(iTelescope := TelescopeControl);	// parks the telescope while the cabinet is too hot (MONETcommon#32)
 
 // telescope mode
 IF CabinetControl.KeyLocal THEN
