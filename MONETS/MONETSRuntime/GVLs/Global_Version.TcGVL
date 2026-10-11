@@ -12,11 +12,11 @@ VAR_GLOBAL CONSTANT
 	{attribute 'analysis' := '-33'}
 	stLibVersion_MONETSRuntime : ST_LibVersion := (
 		iMajor := 1,
-		iMinor := 3,
+		iMinor := 4,
 		iBuild := 0,
 		iRevision := 0,
 		nFlags := 1,
-		sVersion := '1.3.0'
+		sVersion := '1.4.0'
 	);
 END_VAR]]></Declaration>
   </GVL>
