@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
-  <POU Name="FB_TelescopeAuxiliary" Id="{cb121caa-cba6-4e85-8680-87ba92407bb5}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_TelescopeAuxiliary
+  <POU Name="FB_MonetsTelescopeAuxiliary" Id="{cb121caa-cba6-4e85-8680-87ba92407bb5}" SpecialFunc="None">
+    <Declaration><![CDATA[// MONET/S-specific auxiliary sensors (the sensor set differs from MONET/N). Named apart from HalfBROT's
+// FB_TelescopeAuxiliary, which it used to shadow (HalfBROT#29).
+FUNCTION_BLOCK FB_MonetsTelescopeAuxiliary
 VAR
 	tempSensorM1   		AT%I*: INT;
 	tempSensorM1cell	AT%I*: INT;
@@ -57,15 +59,15 @@ fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[4].VALUE', LREAL_TO_FMTSTR
 fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[4].UNIT', 'C');]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_TelescopeAuxiliary">
+    <LineIds Name="FB_MonetsTelescopeAuxiliary">
       <LineId Id="26" Count="1" />
       <LineId Id="50" Count="1" />
       <LineId Id="9" Count="0" />
     </LineIds>
-    <LineIds Name="FB_TelescopeAuxiliary.FB_Init">
+    <LineIds Name="FB_MonetsTelescopeAuxiliary.FB_Init">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_TelescopeAuxiliary.SendTelemetry">
+    <LineIds Name="FB_MonetsTelescopeAuxiliary.SendTelemetry">
       <LineId Id="7" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="9" Count="0" />

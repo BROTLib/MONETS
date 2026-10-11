@@ -49,7 +49,7 @@ MONETS/
 │   ├── MONETSRuntime/          # PLC project (current)
 │   │   ├── MONETSRuntime.plcproj  # references MONETcommon directly
 │   │   ├── PlcTask.TcTTO       # PLC task (10 ms, priority 20, calls MAIN)
-│   │   ├── POUs/               # MAIN, FB_TelescopeAuxiliary, FB_WeatherCheck
+│   │   ├── POUs/               # MAIN, FB_MonetsTelescopeAuxiliary, FB_WeatherCheck
 │   │   └── VISUs/              # TwinCAT visualizations (11 screens)
 │   └── MONETSTwinSAFE/         # Safety project (TwinSAFE group on EL6910)
 └── README.md
@@ -105,7 +105,7 @@ MAIN
 ├── PendantControl     : FB_MonetPendantControl       (MONETcommon)
 ├── MqttWatchdog       : FB_MonetMqttWatchdog         (MONETcommon)
 ├── Diagnostics        : FB_MonetDiagnostics          (MONETcommon)
-└── TelescopeAuxiliary : FB_TelescopeAuxiliary        (site-specific)
+└── TelescopeAuxiliary : FB_MonetsTelescopeAuxiliary        (site-specific)
 ```
 
 `FB_WeatherCheck` is in the project but its instance in `MAIN` is commented out.
@@ -121,7 +121,7 @@ discovery via `FB_GetHostName`.
 - `FB_WeatherCheck` — polls the site weather station over HTTP and feeds the
   weather data into the control logic (currently disabled in the shipped
   configuration).
-- `FB_TelescopeAuxiliary` — mirror/cell/flange temperature sensors and other
+- `FB_MonetsTelescopeAuxiliary` — mirror/cell/flange temperature sensors and other
   auxiliary telescope functions.
 
 ---
