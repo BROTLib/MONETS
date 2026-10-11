@@ -21,7 +21,7 @@
     <GlobalVersionStructureIncluded>false</GlobalVersionStructureIncluded>
     <Company>IAG</Company>
     <Title>MONETS</Title>
-    <ProjectVersion>1.3.0</ProjectVersion>
+    <ProjectVersion>1.4.0</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GlobalTextList.TcGTLO">
@@ -30,7 +30,7 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_TelescopeAuxiliary.TcPOU">
+    <Compile Include="POUs\FB_MonetsTelescopeAuxiliary.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_WeatherCheck.TcPOU">

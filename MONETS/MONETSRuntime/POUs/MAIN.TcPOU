@@ -26,7 +26,7 @@ VAR
 	ElevationControl	: FB_ElevationControl(comm := fbComm);
 	AzimuthControl		: FB_AzimuthControl(comm := fbComm);
 	TelescopeControl	: FB_MonetTelescopeControl(comm := fbComm);
-	TelescopeAuxiliary  : FB_TelescopeAuxiliary(comm := fbComm);
+	TelescopeAuxiliary  : FB_MonetsTelescopeAuxiliary(comm := fbComm);
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
 	
 	//fbWeather			: FB_WeatherCheck();
