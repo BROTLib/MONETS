@@ -112,6 +112,9 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		bEstopTriggered := SafetyHandling.estop,	// M5: was never wired, see MONETcommon#11
 		bMainReady		:= ready					// M5: was computed and published but never wired, see MONETcommon#11
 	);
+ELSE
+    // Invalidate startup readiness and publish its heartbeat without running automatic motion in manual mode.
+    TelescopeControl.SuspendAutomatic();
 END_IF
 TelescopeAuxiliary();
 
