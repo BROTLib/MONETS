@@ -217,3 +217,20 @@ license. No boot project is checked in; the controller boots from TwinCAT's
 own boot project on the CX.
 
 **CI.** `.github/workflows/tcbuild.yml` builds `MONETS.sln` with TcBuild on every push (self-hosted runner, never on pull requests). A green run means the project compiles; TcBuild exit code 1 (built with warnings) counts as success. It only compiles; no tests run in CI.
+
+## Startup readiness (READY_STATE)
+
+Startup preparation reports 0.7, calibration and automatic startup positioning
+report 0.8, and 1.0 means the complete startup has finished. Internal mechanical
+readiness remains separate. An aborted partial startup is not online (-2 remains
+the existing unknown/not-operational value); errors and parking retain their
+existing values. Normal later slew/tracking remains online.
+
+This application requires MONETcommon with `SuspendAutomatic()` and BROTLib
+with `FB_StartupReadiness`. The manual-mode branch invalidates startup readiness
+and publishes its heartbeat without invoking automatic telescope motion.
+
+Publish readiness on changes and at the existing stationary cadence. The new
+state uses the existing telemetry field and power-on commands. Update Python
+consumers for CALIBRATING/0.8 before firmware rollout. Hardware acceptance and
+firmware deployment are separate from building these changes.
