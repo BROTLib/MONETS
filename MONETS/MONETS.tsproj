@@ -11885,9 +11885,9 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.AzimuthControl.InTorque" VarB="AT^Torque/force feedback value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)">
-				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InDiagnostic" VarB="AT 1^Diagnostic number"/>
-				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InDigitalInputs" VarB="AT 1^Digital inputs, state"/>
-				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InTorque" VarB="AT 1^Torque/force feedback value"/>
+				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InDiagnostic" VarB="AT 2^Diagnostic number"/>
+				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InDigitalInputs" VarB="AT 2^Digital inputs, state"/>
+				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InTorque" VarB="AT 2^Torque/force feedback value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)">
 				<Link VarA="PlcTask Inputs^MAIN.ElevationControl.InDiagnostic" VarB="AT^Diagnostic number"/>
