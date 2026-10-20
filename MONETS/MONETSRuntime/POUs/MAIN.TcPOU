@@ -121,10 +121,10 @@ TelescopeAuxiliary();
 // run all control FBs
 CoverControl();
 HydraulicsControl(
-	nMinPanLevel	:= 3500,
-	nMaxPanLevel	:= 10200,
-	fMinPanPercent	:= 0.0,
-	fMaxPanPercent	:= 50.0, //56.0,
+	nMinPanLevel	:= 900,		// empty pan reads raw ~900..1500
+	nMaxPanLevel	:= 9400,	// raw level where the pan-full float switch trips (100 %)
+	fMinPanPercent	:= 15.0,	// suction stops at raw ~2175 (was raw 3500, 0.0 % with 3500..10200)
+	fMaxPanPercent	:= 70.0,	// suction starts at raw 6850 (was 50.0 with 3500..10200)
 	bBrakeClearing	:= brakeClearing
 );
 ElevationControl(
