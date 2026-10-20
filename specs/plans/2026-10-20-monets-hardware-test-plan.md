@@ -53,8 +53,8 @@ telescope test plan are referenced by its IDs (T0-T15) and not repeated.
 | Focus soft limits | 0 .. 100 (library defaults, not overridden in MAIN) | HalfBROT `FB_FocusControl` |
 | Focus hardware limits | `IbLimitNear`, `IbLimitFar` (far = homing cam) | HalfBROT `FB_FocusControl` |
 | Focus homing / speed / brake delay | 92.02 / 0.2 / T#30S | MAIN |
-| Oil pan sensor scaling | raw 3500 -> 0 %, raw 10200 -> 100 %, no clipping (`cut := FALSE`) | MAIN + HalfBROT |
-| Suction start / stop | level > 50.0 % or pan float switch / level < 0.0 % | MAIN (`fMaxPanPercent := 50.0`, was 56.0) |
+| Oil pan sensor scaling | raw 900 -> 0 % (empty), raw 9400 -> 100 % (pan-full float switch), no clipping (`cut := FALSE`); was 3500 / 10200 before 7596cd1 | MAIN + HalfBROT |
+| Suction start / stop | level > 70.0 % or pan float switch / level < 15.0 % (raw ~6850 / ~2175) | MAIN (`fMaxPanPercent := 70.0`, `fMinPanPercent := 15.0`; was 50.0 / 0.0 on the old scale) |
 | Hydraulics timers | pressure watchdog 30 s, suction watchdog 15 s, pressure-loss brake close 2 s, brake open delay 3 s, auto-off 300 s after brake closed | HalfBROT |
 | Azimuth limit switch input to hydraulics | `bAzimutLimitSwitch` **not wired in MAIN** | see MS-06 |
 | Telemetry period (MAIN) | 5 s (`commTimer`) | MAIN |
@@ -94,13 +94,13 @@ MONETS scaling parameters.
 
 1. ADS read `MAIN.HydraulicsControl.InOilLevel` and `MAIN.HydraulicsControl.fOilLevel` ten times
    over one minute with the hydraulics off.
-2. Compute `(InOilLevel - 3500) / (10200 - 3500) * 100` and compare with `fOilLevel`.
+2. Compute `(InOilLevel - 900) / (9400 - 900) * 100` and compare with `fOilLevel` (REAL, read it as 4 bytes).
 3. Read `bOilPanMaximum`, `bSuctionRunning`, `srSuctionTrigger.Q1` (if exposed).
 
-Expected: `fOilLevel` matches the formula to 0.1 %; values below 0 or above 100 are possible
-because clipping is off. Suction is off while `fOilLevel < 50`.
+Expected: `fOilLevel` matches the formula to 0.1 % (about 5 % with an empty pan); values below 0 or above 100 are possible
+because clipping is off. Suction is off while `fOilLevel < 70` (and the float switch is open).
 Pass: formula matches, readings stable (spread < 2 %). Fail: mismatch, or suction running with
-level < 50 % and no float switch. Abort: none (read only). Restore: nothing changed.
+level < 70 % and no float switch. Abort: none (read only). Restore: nothing changed.
 
 ### MS-01b. Oil pan fill to the float switch, drain by suction (20 min) [REMOTE + USER, M]
 
@@ -108,7 +108,7 @@ Purpose: calibrate the pan level sensor against the pan-full float switch and se
 Telescope parked and unpowered, hydraulics normally off. Someone at the pan is strongly advised.
 
 1. USER: temporary online change, `fMaxPanPercent := 500.0` in `HydraulicsControl(...)` in MAIN, so the
-   analog level cannot start suction (without it suction starts at level > 50 %, before the switch).
+   analog level cannot start suction (without it suction starts at the analog start level, 50 % on the old scale, 70 % on the 900..9400 scale, before the switch).
 2. REMOTE: raise `tonHydraulicsWatchdog.PT` to 240000 ms over ADS (the 140 s watchdog would error out
    before the pan is full). Leave `tonHydraulicsOffTimer.PT` (300 s) as a PLC-side time limit.
 3. REMOTE: write `bEnable := TRUE`; log raw `InOilLevel`, `fOilLevel` (REAL), `bPumpRunning`,
@@ -123,9 +123,9 @@ switch tripped, no suction, or an error. Abort: level >= 85 % without the switch
 
 ### MS-02. Oil level sensor broken / out of range (30 min) [USER (XAE) + REMOTE, M]
 
-Note from MS-01/MS-01b: a negative level (about -38 %) is normal with an empty pan, because the
-configured minimum 3500 is the suction stop point. Only a reading outside the physical range (raw 0 or
-full-scale) indicates a broken sensor.
+Note from MS-01/MS-01b: with the old scaling (minimum 3500) an empty pan read about -38 %. Since 7596cd1
+the scale is 900..9400, so an empty pan reads about 5 %. Only a reading outside the physical range
+(raw 0 or full-scale) indicates a broken sensor.
 
 Purpose: a broken analog wire on the oil level sensor reads 0 (or a fixed value). With
 `cut := FALSE` this gives `fOilLevel` around -52 %, which (a) is published to MQTT/Influx as a real
@@ -377,8 +377,8 @@ exactly one entry on set and one on clear, with a readable text. Pass: no fault 
 
 | ID | Date | Build / commit | Executed by (role) | Status (pass/fail/skip) | Notes / issue |
 |---|---|---|---|---|---|
-| MS-01 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | pass | Raw 883-1085 with the pan empty, published OilLevel -36..-39 % = (raw-3500)/6700*100, ADS fOilLevel (REAL) matches. A negative level is normal for an empty pan: nMinPanLevel 3500 is the suction stop point, not true empty (empty reads raw ~900-1500). Correction: an earlier note of a mismatch was a read error (REAL read as double). |
-| MS-01b | 2026-10-20 | MONETS a86ad06 + temporary fMaxPanPercent 500 (reverted), MONETcommon 0.8.5 | REMOTE (user online change) | pass | Fill: ~0.8 %/s linear. Pan-full float switch tripped at raw 9416 (88.3 %), not at 85.4 %; it started suction. Main pump stop by the switch not observed (script stopped it at 85 %). Suction then ended by itself at level <0 % (raw ~3500) after 73 s. Without the override, suction starts at >50 % (raw ~6850), before the switch. Level fell 18.5 -> 16.4 % in 1 min with all pumps off. |
+| MS-01 | 2026-10-20 | MONETS a86ad06 / 7596cd1, MONETcommon 0.8.5 | REMOTE | pass | Old scale (3500..10200): empty pan raw 883-1085 = -36..-39 %, ADS fOilLevel (REAL) matches (an earlier mismatch note was a read error, REAL read as double). New scale 900..9400 (7596cd1): empty pan raw 1262-1328 = ~5 %, MQTT OilLevel follows the same scale and matches ADS. |
+| MS-01b | 2026-10-20 | MONETS a86ad06 / 7596cd1 (temporary fMaxPanPercent 500 for the first run, reverted), MONETcommon 0.8.5 | REMOTE (user online change) | pass | Fill ~0.8 %/s old scale, ~54 raw/s. Float switch tripped at raw 9416 (88.3 % old scale) and started suction; main pump stop by the switch not observed (script stopped it at 85 %). Without the override suction starts at the analog start level, before the switch. New thresholds: suction START at raw 6887 (70.4 %, unchanged point), STOP at raw 2302 (15.8 %, setting 15.0, within ~1.5 % sensor noise) after ~200 s drain from 70 %. Old stop was raw 3500-3770 (30.6 %). Level fell 18.5 -> 16.4 % in 1 min with all pumps off. |
 | MS-02 | | | | | |
 | MS-03 | | | | | |
 | MS-04 | | | | | |
