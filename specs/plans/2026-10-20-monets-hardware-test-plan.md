@@ -128,7 +128,7 @@ the scale is 900..9400, so an empty pan reads about 5 %. Only a reading outside 
 (raw 0 or full-scale) indicates a broken sensor.
 
 Purpose: a broken analog wire on the oil level sensor reads 0 (or a fixed value). With
-`cut := FALSE` this gives `fOilLevel` around -52 %, which (a) is published to MQTT/Influx as a real
+`cut := FALSE` this gives `fOilLevel` around -10.6 % (new scale), which (a) is published to MQTT/Influx as a real
 value and (b) keeps the suction trigger in reset, so suction only starts on the float switch
 `IbOilpanMaximum`. There is no plausibility check comparable to the temperature wire-break guard.
 
@@ -136,7 +136,7 @@ value and (b) keeps the suction trigger in reset, so suction only starts on the 
 2. USER (XAE): force `MAIN.HydraulicsControl.InOilLevel := 0`.
 3. REMOTE: read `fOilLevel`, `bError`, `bOilWarning`; watch `MONETS/Telemetry` for
    `hydraulics/base/OilLevel` and `MONETS/Log` for any event for 60 s.
-4. USER: force `InOilLevel := 16383` (above max): expect `fOilLevel` about 192 %, suction
+4. USER: force `InOilLevel := 16383` (above max): expect `fOilLevel` about 182 % (new scale), suction
    trigger set, `ObOilSuctionEnable = TRUE`. **Release immediately** after reading (within 5 s) if the
    suction pump actually starts with the hydraulics off; record whether it did.
 5. USER: release all forces.
@@ -379,7 +379,7 @@ exactly one entry on set and one on clear, with a readable text. Pass: no fault 
 |---|---|---|---|---|---|
 | MS-01 | 2026-10-20 | MONETS a86ad06 / 7596cd1, MONETcommon 0.8.5 | REMOTE | pass | Old scale (3500..10200): empty pan raw 883-1085 = -36..-39 %, ADS fOilLevel (REAL) matches (an earlier mismatch note was a read error, REAL read as double). New scale 900..9400 (7596cd1): empty pan raw 1262-1328 = ~5 %, MQTT OilLevel follows the same scale and matches ADS. |
 | MS-01b | 2026-10-20 | MONETS a86ad06 / 7596cd1 (temporary fMaxPanPercent 500 for the first run, reverted), MONETcommon 0.8.5 | REMOTE (user online change) | pass | Fill ~0.8 %/s old scale, ~54 raw/s. Float switch tripped at raw 9416 (88.3 % old scale) and started suction; main pump stop by the switch not observed (script stopped it at 85 %). Without the override suction starts at the analog start level, before the switch. New thresholds: suction START at raw 6887 (70.4 %, unchanged point), STOP at raw 2302 (15.8 %, setting 15.0, within ~1.5 % sensor noise) after ~200 s drain from 70 %. Old stop was raw 3500-3770 (30.6 %). Level fell 18.5 -> 16.4 % in 1 min with all pumps off. |
-| MS-02 | | | | | |
+| MS-02 | 2026-10-20 | MONETS 9bd008b, MONETcommon 0.8.5 | REMOTE + USER (force in XAE) | pass (step 4 skipped) | Force InOilLevel := 0 (broken wire): fOilLevel -10.59 % (= (0-900)/8500*100) in all 8 reads over 24 s; no error, no warning, no oil-low flag, no suction, no pump. MQTT OilLevel=-10.588236 published 8 times in 40 s, OilLow FALSE, StatusWord unchanged. Confirms the finding: an invalid oil level is published as a normal value without any flag. After release: raw ~1030-1090 (2-3 %), no error. Step 4 (over-range 16383) not run: it would start the suction pump on a nearly empty pan. Proposed issue: range guard for InOilLevel like MONETS#17. |
 | MS-03 | | | | | |
 | MS-04 | | | | | |
 | MS-05 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | pass (with deviations) | All 14 fields present (BrakeClearing, BrakeOpen, OilCold, OilFilterDirty, OilHigh, OilHot, OilLevel, OilLow, OilMaximum, OilPressureOK, OilReserve, PumpRunning, StatusWord=256, SuctionRunning), bool vs float types ok. Published every 5 s, not only on StatusWord change. BrakeClearing=TRUE while hydraulics off and brake closed: check. Influx types and ADS comparison not done. |
