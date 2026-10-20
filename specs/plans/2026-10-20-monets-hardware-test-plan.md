@@ -353,12 +353,12 @@ exactly one entry on set and one on clear, with a readable text. Pass: no fault 
 
 | ID | Date | Build / commit | Executed by (role) | Status (pass/fail/skip) | Notes / issue |
 |---|---|---|---|---|---|
-| MS-01 | | | | | |
+| MS-01 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | partial | Raw (InOilLevel) 883-1085, published OilLevel -36..-39 % = (raw-3500)/6700*100, i.e. 0..100 scale; ADS fOilLevel reads 0.00 and does not match (fMaxPanPercent is 50.0 in MAIN, plan formula assumed 100). Invalid (negative) level is published with no warning, as predicted in MS-02. |
 | MS-02 | | | | | |
 | MS-03 | | | | | |
 | MS-04 | | | | | |
-| MS-05 | | | | | |
-| MS-06 | | | | | |
+| MS-05 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | pass (with deviations) | All 14 fields present (BrakeClearing, BrakeOpen, OilCold, OilFilterDirty, OilHigh, OilHot, OilLevel, OilLow, OilMaximum, OilPressureOK, OilReserve, PumpRunning, StatusWord=256, SuctionRunning), bool vs float types ok. Published every 5 s, not only on StatusWord change. BrakeClearing=TRUE while hydraulics off and brake closed: check. Influx types and ADS comparison not done. |
+| MS-06 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | partial | Step 1: symbol MAIN.HydraulicsControl.bAzimutLimitSwitch not readable over ADS (not exposed), so the unwired state could not be read; steps 2-3 need USER. |
 | MS-07 | | | | | |
 | MS-08 | | | | | |
 | MS-09 | | | | | |
@@ -366,7 +366,7 @@ exactly one entry on set and one on clear, with a readable text. Pass: no fault 
 | MS-11 | | | | | |
 | MS-12 | | | | | |
 | MS-13 | | | | | |
-| MS-14 | | | | | |
+| MS-14 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | partial | Step 2 confirmed in source: Focus.TcVIS binds MAIN.AzimuthControl.bCalibrated, fMinPosition and fMaxPosition. Other steps need USER (XAE). |
 | MS-15 | | | | | |
 | MS-16 | | | | | |
 
