@@ -408,3 +408,8 @@ exactly one entry on set and one on clear, with a readable text. Pass: no fault 
   separate procedure.
 - Elevation soft limits 0..90 are hard-coded in the library, not configurable in MONETS.
 - Minimum elevation enforced by telescope control (e.g. for park/covers) is library logic.
+- MS-10 (limit reached during a track) and the azimuth wrap behaviour: wait for the release with the
+  reworked wrap logic. At this site stars cross az 270 going down, so a plain track does not run into
+  the upper limit; a meaningful test is a track to a target beyond the limit (e.g. az ~272, el ~40,
+  which needs an unwind of ~360 deg), with a monitor that stops the telescope outside -274.5..270.5.
+- MS-07 step 5 (focus beyond 0..100) not run: it drives the focus towards its mechanical end.
