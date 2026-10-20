@@ -99,23 +99,23 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="AstroBROT">
-      <DefaultResolution>AstroBROT, * (BROT)</DefaultResolution>
+      <DefaultResolution>AstroBROT, 0.4.5 (BROT)</DefaultResolution>
       <Namespace>AstroBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="BROTLib">
-      <DefaultResolution>BROTLib, * (BROT)</DefaultResolution>
+      <DefaultResolution>BROTLib, 0.8.0 (BROT)</DefaultResolution>
       <Namespace>BROTLib</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="HalfBROT">
-      <DefaultResolution>HalfBROT, * (BROT)</DefaultResolution>
+      <DefaultResolution>HalfBROT, 0.5.5 (BROT)</DefaultResolution>
       <Namespace>HalfBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONET Roof">
-      <DefaultResolution>MONET Roof, * (Georg-August-Universitaet Goettingen)</DefaultResolution>
+      <DefaultResolution>MONET Roof, 1.1.5 (Georg-August-Universitaet Goettingen)</DefaultResolution>
       <Namespace>MONETRoof</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONETcommon">
-      <DefaultResolution>MONETcommon, * (IAG)</DefaultResolution>
+      <DefaultResolution>MONETcommon, 0.8.5 (IAG)</DefaultResolution>
       <Namespace>MONETcommon</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="System_VisuElemEventTable">
