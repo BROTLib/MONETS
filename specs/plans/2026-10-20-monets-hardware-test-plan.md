@@ -384,7 +384,7 @@ exactly one entry on set and one on clear, with a readable text. Pass: no fault 
 | MS-04 | | | | | |
 | MS-05 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | pass (with deviations) | All 14 fields present (BrakeClearing, BrakeOpen, OilCold, OilFilterDirty, OilHigh, OilHot, OilLevel, OilLow, OilMaximum, OilPressureOK, OilReserve, PumpRunning, StatusWord=256, SuctionRunning), bool vs float types ok. Published every 5 s, not only on StatusWord change. BrakeClearing=TRUE while hydraulics off and brake closed: check. Influx types and ADS comparison not done. |
 | MS-06 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | partial | Step 1: symbol MAIN.HydraulicsControl.bAzimutLimitSwitch not readable over ADS (not exposed), so the unwired state could not be read; steps 2-3 need USER. |
-| MS-07 | | | | | |
+| MS-07 | 2026-10-20 | MONETS 9bd008b, MONETcommon 0.8.5, BROTLib 0.8.0 | REMOTE | partial | Step 1: live limits az -274/270, derotator -90/360 (REAL); focus 0..100; ElevationControl.fMaxPosition reads 450 (unused base default), the effective elevation clamp is LIMIT(0,90) in FB_ElevationControl. Step 2: elevation=95 is rejected by the BROTLib MQTT parser (range -90..90), no motion, warning only in the XAE log, nothing visible to the MQTT client. Step 3: elevation=-5 is NOT rejected; the mount drove down; monitor sent stop=1 at 16.1 deg, elevation kept moving and halted at 5.3 deg (horizon guard or stop not acting promptly, cause not separated; abort criterion of 15 deg exceeded by ~10 deg). Step 4: azimuth=280 clamps to 270.00, azimuth=-280 clamps to -274.00, no error, no overshoot. Step 5 (focus 120 / -5) not run: would drive the focus towards its mechanical end, needs a decision. |
 | MS-08 | | | | | |
 | MS-09 | | | | | |
 | MS-10 | | | | | |
@@ -392,7 +392,7 @@ exactly one entry on set and one on clear, with a readable text. Pass: no fault 
 | MS-12 | | | | | |
 | MS-13 | | | | | |
 | MS-14 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | partial | Step 2 confirmed in source: Focus.TcVIS binds MAIN.AzimuthControl.bCalibrated, fMinPosition and fMaxPosition. Other steps need USER (XAE). |
-| MS-15 | | | | | |
+| MS-15 | 2026-10-20 | MONETS 9bd008b, MONETcommon 0.8.5, BROTLib 0.8.0 | REMOTE | partial | Malformed input produced no motion and no error (position unchanged, 8 lines). XAE log (user paste) shows the rejections: elevation=95 and azimuth=1e9 and an empty azimuth= are rejected as out of range, and a slew without a valid azimuth/elevation pair is dropped. azimuth=abc, an unknown verb, an empty payload and a line without the command prefix are not in the pasted excerpt (unverified). Verbs power, park, slew, stop, reset, gohome, track and focus were exercised earlier in the session. Note: power=1 sent while a park was still finishing ends parked (READY_STATE 0.0), not powered. |
 | MS-16 | | | | | |
 
 ## Left open / not testable remotely
