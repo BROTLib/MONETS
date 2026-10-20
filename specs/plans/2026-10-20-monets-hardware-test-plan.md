@@ -68,6 +68,7 @@ H = motion towards a limit or a forced safety-relevant input.
 | ID | Topic | Who executes | Risk |
 |---|---|---|---|
 | MS-01 | Oil level reading and scaling | REMOTE | L |
+| MS-01b | Oil pan fill to the float switch and drain by suction | REMOTE + USER (online change) | M |
 | MS-02 | Oil level sensor broken / out of range | USER (XAE) + REMOTE | M |
 | MS-03 | Oil low / reserve / hot / cold flags and their effect on the telescope | USER (XAE) + REMOTE | H |
 | MS-04 | Oil pressure loss while the brake is open | USER (XAE) + REMOTE | H |
@@ -101,7 +102,30 @@ because clipping is off. Suction is off while `fOilLevel < 50`.
 Pass: formula matches, readings stable (spread < 2 %). Fail: mismatch, or suction running with
 level < 50 % and no float switch. Abort: none (read only). Restore: nothing changed.
 
+### MS-01b. Oil pan fill to the float switch, drain by suction (20 min) [REMOTE + USER, M]
+
+Purpose: calibrate the pan level sensor against the pan-full float switch and see the suction cycle.
+Telescope parked and unpowered, hydraulics normally off. Someone at the pan is strongly advised.
+
+1. USER: temporary online change, `fMaxPanPercent := 500.0` in `HydraulicsControl(...)` in MAIN, so the
+   analog level cannot start suction (without it suction starts at level > 50 %, before the switch).
+2. REMOTE: raise `tonHydraulicsWatchdog.PT` to 240000 ms over ADS (the 140 s watchdog would error out
+   before the pan is full). Leave `tonHydraulicsOffTimer.PT` (300 s) as a PLC-side time limit.
+3. REMOTE: write `bEnable := TRUE`; log raw `InOilLevel`, `fOilLevel` (REAL), `bPumpRunning`,
+   `bOilPanMaximum`, `ObOilSuctionEnable`, `bError`, `bOilLow` every 2 s. The script itself stops the
+   pump on error, oil low, pressure failure, level >= 85 % or 240 s.
+4. After the switch trips, the PLC should stop the main pump and start suction. Log until suction ends.
+5. Restore: `bManualSuction` and `bEnable` FALSE, watchdog PT back to 140000, USER reverts the
+   `fMaxPanPercent` change and activates.
+
+Pass: the switch trips, suction starts, the level falls, suction ends. Fail: pump keeps running with the
+switch tripped, no suction, or an error. Abort: level >= 85 % without the switch, any error.
+
 ### MS-02. Oil level sensor broken / out of range (30 min) [USER (XAE) + REMOTE, M]
+
+Note from MS-01/MS-01b: a negative level (about -38 %) is normal with an empty pan, because the
+configured minimum 3500 is the suction stop point. Only a reading outside the physical range (raw 0 or
+full-scale) indicates a broken sensor.
 
 Purpose: a broken analog wire on the oil level sensor reads 0 (or a fixed value). With
 `cut := FALSE` this gives `fOilLevel` around -52 %, which (a) is published to MQTT/Influx as a real
@@ -353,7 +377,8 @@ exactly one entry on set and one on clear, with a readable text. Pass: no fault 
 
 | ID | Date | Build / commit | Executed by (role) | Status (pass/fail/skip) | Notes / issue |
 |---|---|---|---|---|---|
-| MS-01 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | partial | Raw (InOilLevel) 883-1085, published OilLevel -36..-39 % = (raw-3500)/6700*100, i.e. 0..100 scale; ADS fOilLevel reads 0.00 and does not match (fMaxPanPercent is 50.0 in MAIN, plan formula assumed 100). Invalid (negative) level is published with no warning, as predicted in MS-02. |
+| MS-01 | 2026-10-20 | MONETS a86ad06, MONETcommon 0.8.5 | REMOTE | pass | Raw 883-1085 with the pan empty, published OilLevel -36..-39 % = (raw-3500)/6700*100, ADS fOilLevel (REAL) matches. A negative level is normal for an empty pan: nMinPanLevel 3500 is the suction stop point, not true empty (empty reads raw ~900-1500). Correction: an earlier note of a mismatch was a read error (REAL read as double). |
+| MS-01b | 2026-10-20 | MONETS a86ad06 + temporary fMaxPanPercent 500 (reverted), MONETcommon 0.8.5 | REMOTE (user online change) | pass | Fill: ~0.8 %/s linear. Pan-full float switch tripped at raw 9416 (88.3 %), not at 85.4 %; it started suction. Main pump stop by the switch not observed (script stopped it at 85 %). Suction then ended by itself at level <0 % (raw ~3500) after 73 s. Without the override, suction starts at >50 % (raw ~6850), before the switch. Level fell 18.5 -> 16.4 % in 1 min with all pumps off. |
 | MS-02 | | | | | |
 | MS-03 | | | | | |
 | MS-04 | | | | | |
