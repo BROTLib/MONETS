@@ -35,6 +35,9 @@ VAR
 	Diagnostics			: FB_MonetDiagnostics(comm := fbComm);	// diagnostics/base/* telemetry, on change + 30 s heartbeat (MONETcommon)
 END_VAR
 VAR CONSTANT
+	// MONETS#32: raw counts of the oil level sensor (Reventec LS, 0.25..4.75 V on a 0..10 V EL3164 = 819..15563, 5 V = 16383): below the limit is a cut wire, lost supply (0) or the sensor error output (0.1 V, about 330); above is over-range
+	nOilLevelMinValid	: INT := 600;
+	nOilLevelMaxValid	: INT := 12000;
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
 												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 36.0, 
 												 azimuthHome := 175, elevationHome := 40, derotatorHome := 0,
@@ -121,10 +124,12 @@ TelescopeAuxiliary();
 // run all control FBs
 CoverControl();
 HydraulicsControl(
-	nMinPanLevel	:= 3500,
-	nMaxPanLevel	:= 10200,
-	fMinPanPercent	:= 0.0,
-	fMaxPanPercent	:= 50.0, //56.0,
+	nMinPanLevel	:= 900,		// empty pan reads raw ~900..1500
+	nMaxPanLevel	:= 9400,	// raw level where the pan-full float switch trips (100 %)
+	fMinPanPercent	:= 15.0,	// suction stops at raw ~2175 (was raw 3500, 0.0 % with 3500..10200)
+	fMaxPanPercent	:= 70.0,	// suction starts at raw 6850 (was 50.0 with 3500..10200)
+	nMinValidPanLevel	:= nOilLevelMinValid,	// outside this raw range the level is not published and does not start/stop the suction (HalfBROT 0.5.6)
+	nMaxValidPanLevel	:= nOilLevelMaxValid,
 	bBrakeClearing	:= brakeClearing
 );
 ElevationControl(
@@ -145,6 +150,9 @@ DerotatorControl(
 FocusControl(
 	eTelescopeMode 	:= eTelescopeMode,
 	fHomingPosition	:= 92.02, // 104.02 - 12.00
+	// limit switches at 0 and fHomingPosition; targets stay 0.5 mm inside (MONETcommon#122)
+	fMinPosition	:= 0.5,
+	fMaxPosition	:= 91.5,
 	fVelocity		:= 0.2,
 	ptBrakeDelay	:= T#30S,
 	ptFocusDelay	:= T#100MS
@@ -209,7 +217,7 @@ IF SafetyHandling.error THEN
 	CabinetControl.SetBlinkError(E_Blink.short);
 ELSIF ElevationControl.bError OR AzimuthControl.bError OR DerotatorControl.bError THEN
 	CabinetControl.SetBlinkError(E_Blink.long);
-ELSIF HydraulicsControl.bOilWarning OR HydraulicsControl.bOilHot OR HydraulicsControl.bPressureFailure THEN
+ELSIF HydraulicsControl.bOilWarning OR HydraulicsControl.bOilHot OR HydraulicsControl.bPressureFailure OR HydraulicsControl.bOilLevelInvalid THEN
 	CabinetControl.SetBlinkError(E_Blink.slow);
 ELSIF error THEN
 	CabinetControl.SetBlinkError(E_Blink.on);

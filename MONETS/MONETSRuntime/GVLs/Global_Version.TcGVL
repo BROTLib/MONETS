@@ -13,10 +13,10 @@ VAR_GLOBAL CONSTANT
 	stLibVersion_MONETSRuntime : ST_LibVersion := (
 		iMajor := 1,
 		iMinor := 4,
-		iBuild := 2,
+		iBuild := 3,
 		iRevision := 0,
 		nFlags := 1,
-		sVersion := '1.4.2'
+		sVersion := '1.4.3'
 	);
 END_VAR]]></Declaration>
   </GVL>

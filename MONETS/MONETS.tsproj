@@ -2319,7 +2319,7 @@ External Setpoint Generation:
 					<Name>Elevation</Name>
 					<AxisPara>
 						<General UnitName="°"/>
-						<Dynamic AccelerationMaximum="10" DecelerationMaximum="10" Acceleration="3" Deceleration="3" Jerk="2"/>
+						<Dynamic AccelerationMaximum="10" DecelerationMaximum="10" Acceleration="1" Deceleration="1" Jerk="2"/>
 						<Velo RefSearch="1" RefSync="2" SlowManual="1" FastManual="3" Fast="1425" Maximum="10"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
