@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="FB_SoECommand" Id="{6f0c1d52-3b6e-4d57-9a43-1c2b8e5f7a10}" SpecialFunc="None">
+    <Declaration><![CDATA[// Runs one AX5000 SoE procedure command (e.g. P-0-0166, P-0-0160) on one axis: set and enable the command, poll its
+// state until it is executed (or failed / timed out), then cancel it again (writes 0) so the next run starts clean.
+// UNTESTED draft (MONETS wake&shake helper); the command blocks are from Tc2_MC2_Drive.
+FUNCTION_BLOCK FB_SoECommand
+VAR_INPUT
+	Execute		: BOOL;				// rising edge starts the command
+	Idn			: WORD;				// command IDN, e.g. P_0_IDNs + 160 for P-0-0160
+	Abort		: BOOL;				// TRUE: cancel the running command (writes 0)
+	Timeout		: TIME := T#90S;	// maximum time until the command is executed
+END_VAR
+VAR_IN_OUT
+	Axis		: AXIS_REF;
+END_VAR
+VAR_OUTPUT
+	Busy		: BOOL;
+	Done		: BOOL;
+	Error		: BOOL;
+	sMessage	: STRING(120);
+END_VAR
+VAR
+	nStep		: INT;
+	rtExecute	: R_TRIG;
+	fbWrite		: FB_SoEWriteCommandControl;
+	fbRead		: FB_SoEReadCommandState;
+	eCmd		: E_SoE_CmdControl;
+	bWrite		: BOOL;
+	bRead		: BOOL;
+	tonTimeout	: TON;
+	tonPoll		: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rtExecute(CLK := Execute);
+
+fbWrite(Axis := Axis, Idn := Idn, Execute := bWrite, CmdControl := eCmd, Timeout := T#5S);
+fbRead(Axis := Axis, Idn := Idn, Execute := bRead, Timeout := T#5S);
+tonTimeout(IN := nStep >= 10 AND nStep < 30, PT := Timeout);
+
+// a running command is cancelled on Abort or timeout
+IF nStep >= 10 AND nStep < 30 THEN
+	IF Abort THEN
+		sMessage := 'aborted';
+		Error := TRUE;
+		bRead := FALSE;
+		nStep := 40;
+	ELSIF tonTimeout.Q THEN
+		sMessage := 'timeout';
+		Error := TRUE;
+		bRead := FALSE;
+		nStep := 40;
+	END_IF
+END_IF
+
+CASE nStep OF
+0:	// idle
+	IF rtExecute.Q THEN
+		Done := FALSE;
+		Error := FALSE;
+		sMessage := '';
+		eCmd := E_SoE_CmdControl.eSoE_CmdControl_SetAndEnable;
+		bWrite := TRUE;
+		nStep := 10;
+	END_IF
+
+10:	// command set and enabled
+	IF NOT fbWrite.Busy THEN
+		bWrite := FALSE;
+		IF fbWrite.Error THEN
+			sMessage := CONCAT('write failed, ADS ', UINT_TO_STRING(fbWrite.AdsErrId));
+			Error := TRUE;
+			nStep := 40;
+		ELSE
+			tonPoll(IN := FALSE);
+			nStep := 20;
+		END_IF
+	END_IF
+
+20:	// wait between two state reads
+	tonPoll(IN := TRUE, PT := T#300MS);
+	IF tonPoll.Q THEN
+		tonPoll(IN := FALSE);
+		bRead := TRUE;
+		nStep := 21;
+	END_IF
+
+21:	// read the command state
+	IF NOT fbRead.Busy THEN
+		bRead := FALSE;
+		IF fbRead.Error THEN
+			sMessage := CONCAT('read failed, ADS ', UINT_TO_STRING(fbRead.AdsErrId));
+			Error := TRUE;
+			nStep := 40;
+		ELSIF fbRead.CmdState = E_SoE_CmdState.eSoE_CmdState_Error THEN
+			sMessage := 'command error (state 15)';
+			Error := TRUE;
+			nStep := 40;
+		ELSIF fbRead.CmdState = E_SoE_CmdState.eSoE_CmdState_Executed
+			OR fbRead.CmdState = E_SoE_CmdState.eSoE_CmdState_SetEnabledExecuted THEN
+			nStep := 30;
+		ELSE
+			nStep := 20;	// not executed yet
+		END_IF
+	END_IF
+
+30:	// executed: cancel the command again
+	eCmd := E_SoE_CmdControl.eSoE_CmdControl_Cancel;
+	bWrite := TRUE;
+	nStep := 31;
+
+31:
+	IF NOT fbWrite.Busy THEN
+		bWrite := FALSE;
+		IF fbWrite.Error THEN
+			sMessage := CONCAT('cancel failed, ADS ', UINT_TO_STRING(fbWrite.AdsErrId));
+			Error := TRUE;
+		ELSE
+			Done := TRUE;
+		END_IF
+		nStep := 0;
+	END_IF
+
+40:	// failed or aborted: cancel the command, Error stays TRUE until the next start
+	eCmd := E_SoE_CmdControl.eSoE_CmdControl_Cancel;
+	bWrite := TRUE;
+	nStep := 41;
+
+41:
+	IF NOT fbWrite.Busy THEN
+		bWrite := FALSE;
+		nStep := 0;
+	END_IF
+END_CASE
+
+Busy := nStep <> 0;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

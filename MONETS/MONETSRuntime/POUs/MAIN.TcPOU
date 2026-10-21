@@ -33,6 +33,7 @@ VAR
 	
 	MqttWatchdog		: FB_MonetMqttWatchdog(comm := fbComm);	// park + close roof after 30 s without broker (MONETcommon)
 	Diagnostics			: FB_MonetDiagnostics(comm := fbComm);	// diagnostics/base/* telemetry, on change + 30 s heartbeat (MONETcommon)
+	WakeAndShake		: FB_WakeAndShake;	// manual Wake&Shake after a TwinCAT restart: set WakeAndShake.bStart in XAE (MONETcommon#76 later)
 END_VAR
 VAR CONSTANT
 	// MONETS#32: raw counts of the oil level sensor (Reventec LS, 0.25..4.75 V on a 0..10 V EL3164 = 819..15563, 5 V = 16383): below the limit is a cut wire, lost supply (0) or the sensor error output (0.1 V, about 330); above is over-range
@@ -245,6 +246,15 @@ Diagnostics(
 	fbDerotator	:= DerotatorControl,
 	fbFocus		:= FocusControl,
 	fbSafety	:= SafetyHandling
+);
+
+// Wake&Shake by hand (UNTESTED): covers open, brake released and elevation/azimuth not enabled are required
+WakeAndShake(
+	bCoversOpen			:= CoverControl.Opened,
+	bBrakeOpen			:= HydraulicsControl.brakeOpen,
+	bDrivesDisabled		:= NOT ElevationControl.bEnable AND NOT AzimuthControl.bEnable,
+	refElevation		:= ElevationControl.axisRef,
+	refAzimuth			:= AzimuthControl.axisRef
 );
 
 ]]></ST>

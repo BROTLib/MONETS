@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="FB_WakeAndShake" Id="{b9a7d3e4-5c28-4f61-8d09-72a4c1e6b35f}" SpecialFunc="None">
+    <Declaration><![CDATA[// Wake&Shake for the MONET/S drives after a PLC / TwinCAT restart, started by hand (MONETcommon#76 is the automatic
+// version, later): for elevation, then azimuth: P-0-0166 (motor and feedback connection check), then P-0-0160
+// (calibrate commutation offset, Wake&Shake per P-0-0165). Both move the motor. Nothing runs without bStart
+// (rising edge, set it in XAE). Interlocks, checked at the start and all the time: covers open, brake released, drives
+// not enabled. A lost interlock or bAbort cancels the running command. Sequential, one axis at a time.
+// UNTESTED draft: the first run must be supervised at the telescope / visu, with the pendant stop at hand.
+FUNCTION_BLOCK FB_WakeAndShake
+VAR_INPUT
+	bStart			: BOOL;		// rising edge starts the sequence
+	bAbort			: BOOL;		// cancel
+	bCoversOpen		: BOOL;
+	bBrakeOpen		: BOOL;
+	bDrivesDisabled	: BOOL;		// elevation and azimuth not enabled
+	bElevation		: BOOL := TRUE;
+	bAzimuth		: BOOL := TRUE;
+END_VAR
+VAR_IN_OUT
+	refElevation	: AXIS_REF;
+	refAzimuth		: AXIS_REF;
+END_VAR
+VAR_OUTPUT
+	bBusy			: BOOL;
+	bDone			: BOOL;
+	bError			: BOOL;
+	sMessage		: STRING(120);
+	nStep			: INT;
+END_VAR
+VAR
+	rtStart			: R_TRIG;
+	cmdEl			: FB_SoECommand;
+	cmdAz			: FB_SoECommand;
+	xEl				: BOOL;
+	xAz				: BOOL;
+	nIdn			: WORD;
+	bInterlock		: BOOL;
+END_VAR
+VAR CONSTANT
+	P0166			: WORD := P_0_IDNs + 166;	// P-0-0166 motor and feedback connection check (P_0_IDNs from Tc2_Drive, as in Beckhoff's example)
+	P0160			: WORD := P_0_IDNs + 160;	// P-0-0160 calibrate commutation offset
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rtStart(CLK := bStart);
+bInterlock := bCoversOpen AND bBrakeOpen AND bDrivesDisabled;
+
+cmdEl(Execute := xEl, Idn := nIdn, Abort := bAbort OR (nStep >= 10 AND nStep < 20 AND NOT bInterlock), Timeout := T#90S, Axis := refElevation);
+cmdAz(Execute := xAz, Idn := nIdn, Abort := bAbort OR (nStep >= 20 AND nStep < 30 AND NOT bInterlock), Timeout := T#90S, Axis := refAzimuth);
+
+CASE nStep OF
+0:	// idle
+	IF rtStart.Q THEN
+		bDone := FALSE;
+		bError := FALSE;
+		sMessage := '';
+		IF NOT bInterlock THEN
+			bError := TRUE;
+			sMessage := 'interlock: covers open, brake released and drives disabled are required';
+		ELSIF bElevation THEN
+			nStep := 10;
+		ELSIF bAzimuth THEN
+			nStep := 20;
+		ELSE
+			bDone := TRUE;
+		END_IF
+	END_IF
+
+// ---- elevation
+10:	nIdn := P0166;
+	xEl := TRUE;
+	nStep := 11;
+11:	xEl := FALSE;
+	IF NOT cmdEl.Busy THEN
+		IF cmdEl.Done THEN
+			nStep := 12;
+		ELSE
+			bError := TRUE;
+			sMessage := CONCAT('elevation P-0-0166: ', cmdEl.sMessage);
+			nStep := 0;
+		END_IF
+	END_IF
+12:	nIdn := P0160;
+	xEl := TRUE;
+	nStep := 13;
+13:	xEl := FALSE;
+	IF NOT cmdEl.Busy THEN
+		IF cmdEl.Done THEN
+			IF bAzimuth THEN
+				nStep := 20;
+			ELSE
+				nStep := 90;
+			END_IF
+		ELSE
+			bError := TRUE;
+			sMessage := CONCAT('elevation P-0-0160: ', cmdEl.sMessage);
+			nStep := 0;
+		END_IF
+	END_IF
+
+// ---- azimuth
+20:	nIdn := P0166;
+	xAz := TRUE;
+	nStep := 21;
+21:	xAz := FALSE;
+	IF NOT cmdAz.Busy THEN
+		IF cmdAz.Done THEN
+			nStep := 22;
+		ELSE
+			bError := TRUE;
+			sMessage := CONCAT('azimuth P-0-0166: ', cmdAz.sMessage);
+			nStep := 0;
+		END_IF
+	END_IF
+22:	nIdn := P0160;
+	xAz := TRUE;
+	nStep := 23;
+23:	xAz := FALSE;
+	IF NOT cmdAz.Busy THEN
+		IF cmdAz.Done THEN
+			nStep := 90;
+		ELSE
+			bError := TRUE;
+			sMessage := CONCAT('azimuth P-0-0160: ', cmdAz.sMessage);
+			nStep := 0;
+		END_IF
+	END_IF
+
+90:	bDone := TRUE;
+	sMessage := 'done';
+	nStep := 0;
+END_CASE
+
+bBusy := nStep <> 0;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
