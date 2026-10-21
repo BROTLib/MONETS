@@ -103,11 +103,11 @@
       <Namespace>AstroBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="BROTLib">
-      <DefaultResolution>BROTLib, 0.9.0 (BROT)</DefaultResolution>
+      <DefaultResolution>BROTLib, 0.10.0 (BROT)</DefaultResolution>
       <Namespace>BROTLib</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="HalfBROT">
-      <DefaultResolution>HalfBROT, 0.5.7 (BROT)</DefaultResolution>
+      <DefaultResolution>HalfBROT, 0.6.0 (BROT)</DefaultResolution>
       <Namespace>HalfBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONET Roof">
@@ -115,7 +115,7 @@
       <Namespace>MONETRoof</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONETcommon">
-      <DefaultResolution>MONETcommon, 0.9.3 (IAG)</DefaultResolution>
+      <DefaultResolution>MONETcommon, 0.9.4 (IAG)</DefaultResolution>
       <Namespace>MONETcommon</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="System_VisuElemEventTable">
