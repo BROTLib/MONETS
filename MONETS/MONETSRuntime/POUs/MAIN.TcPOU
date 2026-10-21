@@ -150,6 +150,9 @@ DerotatorControl(
 FocusControl(
 	eTelescopeMode 	:= eTelescopeMode,
 	fHomingPosition	:= 92.02, // 104.02 - 12.00
+	// limit switches at 0 and fHomingPosition; targets stay 0.5 mm inside (MONETcommon#122)
+	fMinPosition	:= 0.5,
+	fMaxPosition	:= 91.5,
 	fVelocity		:= 0.2,
 	ptBrakeDelay	:= T#30S,
 	ptFocusDelay	:= T#100MS
