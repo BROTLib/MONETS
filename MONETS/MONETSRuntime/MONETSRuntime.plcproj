@@ -21,7 +21,7 @@
     <GlobalVersionStructureIncluded>false</GlobalVersionStructureIncluded>
     <Company>IAG</Company>
     <Title>MONETS</Title>
-    <ProjectVersion>1.4.5</ProjectVersion>
+    <ProjectVersion>1.4.6</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GlobalTextList.TcGTLO">
@@ -103,11 +103,11 @@
       <Namespace>AstroBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="BROTLib">
-      <DefaultResolution>BROTLib, 0.10.4 (BROT)</DefaultResolution>
+      <DefaultResolution>BROTLib, 0.11.0 (BROT)</DefaultResolution>
       <Namespace>BROTLib</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="HalfBROT">
-      <DefaultResolution>HalfBROT, 0.7.1 (BROT)</DefaultResolution>
+      <DefaultResolution>HalfBROT, 0.8.0 (BROT)</DefaultResolution>
       <Namespace>HalfBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONET Roof">
@@ -115,7 +115,7 @@
       <Namespace>MONETRoof</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONETcommon">
-      <DefaultResolution>MONETcommon, 0.9.8 (IAG)</DefaultResolution>
+      <DefaultResolution>MONETcommon, 0.9.10 (IAG)</DefaultResolution>
       <Namespace>MONETcommon</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="System_VisuElemEventTable">
