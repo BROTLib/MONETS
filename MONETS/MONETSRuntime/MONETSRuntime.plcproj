@@ -103,11 +103,11 @@
       <Namespace>AstroBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="BROTLib">
-      <DefaultResolution>BROTLib, 0.10.4 (BROT)</DefaultResolution>
+      <DefaultResolution>BROTLib, 0.11.0 (BROT)</DefaultResolution>
       <Namespace>BROTLib</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="HalfBROT">
-      <DefaultResolution>HalfBROT, 0.7.3 (BROT)</DefaultResolution>
+      <DefaultResolution>HalfBROT, 0.8.0 (BROT)</DefaultResolution>
       <Namespace>HalfBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONET Roof">
