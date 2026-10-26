@@ -156,9 +156,7 @@ FocusControl(
 	fMaxPosition	:= 91.5,
 	fVelocity		:= 0.2,
 	ptBrakeDelay	:= T#30S,
-	ptFocusDelay	:= T#100MS,
-	// stopgap for HalfBROT#85: spindle settles 5-13 um off, the default 0.005 keeps restarting moves; remove with the hold-band release
-	fTolerance		:= 0.02
+	ptFocusDelay	:= T#100MS
 );
 RoofControl(
 	min_speed		:= 10000,
