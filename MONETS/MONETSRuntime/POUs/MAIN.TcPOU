@@ -35,8 +35,8 @@ VAR
 	Diagnostics			: FB_MonetDiagnostics(comm := fbComm);	// diagnostics/base/* telemetry, on change + 30 s heartbeat (MONETcommon)
 END_VAR
 VAR CONSTANT
-	// MONETS#32: raw counts of the oil level sensor (Reventec LS, 0.25..4.75 V on a 0..10 V EL3164 = 819..15563, 5 V = 16383): below the limit is a cut wire, lost supply (0) or the sensor error output (0.1 V, about 330); above is over-range
-	nOilLevelMinValid	: INT := 600;
+	// MONETS#32: raw counts of the oil level sensor (Reventec LS, 0.25..4.75 V on a 0..10 V EL3164 = 819..15563, 5 V = 16383): below the limit is a cut wire, lost supply (0) or the sensor error output (0.1 V, about 330); above is over-range. MONETS#58: the oversized pan is never drained completely, so a working sensor reads 550..1160 (below its 819 range) when nearly empty; the limit lies between that and the error output
+	nOilLevelMinValid	: INT := 450;
 	nOilLevelMaxValid	: INT := 12000;
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
 												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 36.0, 
