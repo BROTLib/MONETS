@@ -19,7 +19,7 @@ VAR
 	CabinetControl		: FB_MonetCabinetControl(comm := fbComm);
 	PowerMonitoring		: FB_MonetPowerMonitoring(comm := fbComm);
 	RoofControl			: FB_RoofControl(comm := fbComm);
-	CoverControl		: FB_MonetCoverControl(comm := fbComm);
+	CoverControl		: HalfBROT.FB_CoverControl(comm := fbComm);	// mirror covers (HalfBROT; was MONETcommon FB_MonetCoverControl)
 	HydraulicsControl	: FB_HydraulicsControl(comm := fbComm);
 	FocusControl		: FB_FocusControl(comm := fbComm);
 	DerotatorControl	: FB_DerotatorControl(comm := fbComm);
@@ -113,6 +113,7 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		fbPointing      := fbPointing,
 		fbPointingInverse := fbPointingInverse,
 		bEstopTriggered := SafetyHandling.estop,	// M5: was never wired, see MONETcommon#11
+		bSafetyError	:= SafetyHandling.error,		// MONETcommon#155: closes the brake opened in the Wake&Shake window; FALSE = not enforced
 		fElevationMoveVelocity := 3.0,				// deg/s for every elevation move (home, park, slew); must not exceed the NC maximum velocity of the elevation axis (3.0), MONETS#40
 		bMainReady		:= ready					// M5: was computed and published but never wired, see MONETcommon#11
 	);
@@ -236,8 +237,8 @@ SafetyHandling(resetRequest := CabinetControl.IsResetPushed() OR PendantControl.
 commTimer(IN:=TRUE);
 IF commTimer.Q THEN
 	commTimer(IN:=FALSE);
-	fbComm.Publish('electronics', 'base', 'MainReady', BOOL_TO_STRING(ready));
-	fbComm.Publish('electronics', 'base', 'MasterError', BOOL_TO_STRING(error));
+	fbComm.PublishBOOL('electronics', 'base', 'MainReady', ready);
+	fbComm.PublishBOOL('electronics', 'base', 'MasterError', error);
 	TelescopeAuxiliary.SendTelemetry();
 END_IF
 
