@@ -19,7 +19,7 @@ VAR
 	CabinetControl		: FB_MonetCabinetControl(comm := fbComm);
 	PowerMonitoring		: FB_MonetPowerMonitoring(comm := fbComm);
 	RoofControl			: FB_RoofControl(comm := fbComm);
-	CoverControl		: FB_MonetCoverControl(comm := fbComm);
+	CoverControl		: HalfBROT.FB_CoverControl(comm := fbComm);	// mirror covers (HalfBROT; was MONETcommon FB_MonetCoverControl)
 	HydraulicsControl	: FB_HydraulicsControl(comm := fbComm);
 	FocusControl		: FB_FocusControl(comm := fbComm);
 	DerotatorControl	: FB_DerotatorControl(comm := fbComm);

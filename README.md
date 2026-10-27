@@ -95,7 +95,7 @@ MAIN
 ├── CabinetControl     : FB_MonetCabinetControl       (MONETcommon)
 ├── PowerMonitoring    : FB_MonetPowerMonitoring      (MONETcommon)
 ├── RoofControl        : FB_RoofControl               (MONETRoof library)
-├── CoverControl       : FB_MonetCoverControl         (MONETcommon)
+├── CoverControl       : HalfBROT.FB_CoverControl     (HalfBROT, I_MirrorCovers)
 ├── HydraulicsControl  : FB_HydraulicsControl         (HalfBROT)
 ├── FocusControl       : FB_FocusControl              (HalfBROT)
 ├── DerotatorControl   : FB_DerotatorControl          (HalfBROT)
