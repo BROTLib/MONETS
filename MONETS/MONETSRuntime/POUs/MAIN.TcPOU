@@ -113,6 +113,7 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		fbPointing      := fbPointing,
 		fbPointingInverse := fbPointingInverse,
 		bEstopTriggered := SafetyHandling.estop,	// M5: was never wired, see MONETcommon#11
+		bSafetyError	:= SafetyHandling.error,		// MONETcommon#155: closes the brake opened in the Wake&Shake window; FALSE = not enforced
 		fElevationMoveVelocity := 3.0,				// deg/s for every elevation move (home, park, slew); must not exceed the NC maximum velocity of the elevation axis (3.0), MONETS#40
 		bMainReady		:= ready					// M5: was computed and published but never wired, see MONETcommon#11
 	);
