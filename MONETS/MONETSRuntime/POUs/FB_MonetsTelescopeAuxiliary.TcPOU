@@ -64,22 +64,22 @@ END_VAR
       <Implementation>
         <ST><![CDATA[fbComm.PublishString('telescope', 'dome', 'AUXILIARY.SENSOR[1].NAME', 'TEMP_M1');
 IF validM1 THEN
-	fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[1].VALUE', LREAL_TO_FMTSTR(tempM1, 2, TRUE));
+	fbComm.PublishLREAL('telescope', 'dome', 'AUXILIARY.SENSOR[1].VALUE', tempM1);
 END_IF
 fbComm.PublishString('telescope', 'dome', 'AUXILIARY.SENSOR[1].UNIT', 'C');
 fbComm.PublishString('telescope', 'dome', 'AUXILIARY.SENSOR[2].NAME', 'TEMP_M2');
 IF validM2 THEN
-	fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[2].VALUE', LREAL_TO_FMTSTR(tempM2, 2, TRUE));
+	fbComm.PublishLREAL('telescope', 'dome', 'AUXILIARY.SENSOR[2].VALUE', tempM2);
 END_IF
 fbComm.PublishString('telescope', 'dome', 'AUXILIARY.SENSOR[2].UNIT', 'C');
 fbComm.PublishString('telescope', 'dome', 'AUXILIARY.SENSOR[3].NAME', 'TEMP_M1_CELL');
 IF validM1cell THEN
-	fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[3].VALUE', LREAL_TO_FMTSTR(tempM1cell, 2, TRUE));
+	fbComm.PublishLREAL('telescope', 'dome', 'AUXILIARY.SENSOR[3].VALUE', tempM1cell);
 END_IF
 fbComm.PublishString('telescope', 'dome', 'AUXILIARY.SENSOR[3].UNIT', 'C');
 fbComm.PublishString('telescope', 'dome', 'AUXILIARY.SENSOR[4].NAME', 'TEMP_FLANGE');
 IF validFlange THEN
-	fbComm.Publish('telescope', 'dome', 'AUXILIARY.SENSOR[4].VALUE', LREAL_TO_FMTSTR(tempFlange, 2, TRUE));
+	fbComm.PublishLREAL('telescope', 'dome', 'AUXILIARY.SENSOR[4].VALUE', tempFlange);
 END_IF
 fbComm.PublishString('telescope', 'dome', 'AUXILIARY.SENSOR[4].UNIT', 'C');]]></ST>
       </Implementation>
