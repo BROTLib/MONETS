@@ -236,8 +236,8 @@ SafetyHandling(resetRequest := CabinetControl.IsResetPushed() OR PendantControl.
 commTimer(IN:=TRUE);
 IF commTimer.Q THEN
 	commTimer(IN:=FALSE);
-	fbComm.Publish('electronics', 'base', 'MainReady', BOOL_TO_STRING(ready));
-	fbComm.Publish('electronics', 'base', 'MasterError', BOOL_TO_STRING(error));
+	fbComm.PublishBOOL('electronics', 'base', 'MainReady', ready);
+	fbComm.PublishBOOL('electronics', 'base', 'MasterError', error);
 	TelescopeAuxiliary.SendTelemetry();
 END_IF
 
