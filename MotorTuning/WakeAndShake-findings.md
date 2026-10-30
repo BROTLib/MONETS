@@ -178,7 +178,13 @@ Imbalance = (up + down) / 2, friction = (up − down) / 2. Positive torque = tow
   63 % torque with Kp 0.04).
 - Why did the azimuth run normally with a 0166 result of 146.58°?
 - What triggered F123 (P-0-0166 failed) 18 s after brake opening?
-- Are the repo startup lists applied anywhere, or just stale exports?
+- ~~Are the repo startup lists applied anywhere, or just stale exports?~~ Answered
+  2026-10-30: the `Startup List.csv` files in the repo root are **not** what the PLC
+  project applies. `MONETS.tsproj` (committed and local) has its own startup list per drive
+  (188 InitCmds); it contains P-0-0057 = 27000 (270.00°, both axes) but **no P-0-0165 and
+  no P-0-0167**, and the `DriveManager/*.tcdmdrv` files have none either. So the P-0-0165
+  values (Wake&Shake settings, Activation) live only in the drives' own memory, written by
+  the Drive Manager. They are not applied on activation and not in git.
 
 ## Current settings (end of 2026-10-30)
 
@@ -199,8 +205,12 @@ Imbalance = (up + down) / 2, friction = (up − down) / 2. Positive torque = tow
 1. **Repeat the realistic cycle several times:** `park=1` (now at 40°, covers closed) →
    activation (drive restart) → `power=1` → check W&S swing, takeover lag, homing torque.
    Also check that parking at 40° closes the covers correctly.
-2. Once it holds: write the elevation P-0-0165 values (60 %, 500 ms, Kp 0, On enable
-   request) into `Elevation Startup List.csv`.
+2. **Persist the P-0-0165 values.** They are only in the drive (see open questions): a
+   drive replacement or reset would lose them. Options: add P-0-0165 (IDN 32933) as an
+   InitCmd (PS) to the Elevation slave's startup list in `MONETS.tsproj`, or keep
+   `Elevation Startup List.csv` as the documented reference. The CSV's P-0-0165 bytes are
+   outdated; the working values are in the table "Current settings". Test: a full power
+   cycle of the drive, then a power-up.
 3. Azimuth: export P-0-0165 and consider Kp = 0 there too (no failures so far).
 4. Look up ECD2; ask Beckhoff about Kp 0.04 vs 0 (wrong commutation, large second-phase
    swing), 0160 vs 0166, and the scattering 0166 results.
