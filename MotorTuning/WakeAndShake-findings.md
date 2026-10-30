@@ -8,6 +8,12 @@ Statements marked *(inference)* are interpretations of the data, not confirmed b
 
 ## Summary
 
+- **Update 2026-10-30 afternoon: first fully successful automatic cold start** with
+  elevation P-0-0165 at 60 % (both phases), 500 ms waiting time, **Kp = 0**, start near the
+  balanced elevation (~30–35°). Kp 0.04 made the second phase swing 6–8° and left a wrong
+  commutation (0166: 162.56°, axis stalled at 63 % torque). One run only: repeat before
+  making it permanent.
+
 - **Manual route works:** Wake&Shake in the Drive Manager, then `reset=1` + `power=1` → both
   axes home normally. On elevation, P-0-0160 usually fails with F616 unless P-0-0166 is run
   first (sometimes 0166 twice).
@@ -57,6 +63,14 @@ Statements marked *(inference)* are interpretations of the data, not confirmed b
 | 10-30 | reset + `power=1` (no restart) | No W&S motion on elevation. **Azimuth NC 0x4260** during homing at 2°/s, torque spike ‑99.8 % (meaning not looked up, unexplained) |
 | 10-30 | Activation = Manual, after activation | Elevation **F107** 3 s after brake open, no motion (meaning not looked up; expected "no commutation") |
 | 10-30 | manual W&S (see 0166 table) + reset + `power=1` | **Homing OK**, ready after 235 s at el 40° / az 175°, el peak torque 45.7 %, max 3.0°/s |
+| 10-30 12:19 | automatic, **60 %** torque, 1500 ms, from park (el ~60°) | **No F616.** First phase 8 s of small steps, second phase 3 s at exactly 60 % moved the axis **+6.3°**, then ~2 s with 0 reported torque while it dropped 2.5°. PLC `bReady` came at brake + 9 s, during the second phase, so homing started too early → following error 0x4550 (5.011° > 5.0°) |
+| 10-30 12:23 | automatic, 60 %, **500 ms**, from where the last error left the axis | **F616** (+F601, F10B) 3.8 s after brake open; the axis sagged steadily 0.40° downwards with no reported torque. Start position differed from the 1500 ms run |
+| 10-30 12:41 | automatic, 60 %, 500 ms, from **el 35°** (balanced) | **No F616.** First phase 5 s with tiny motion (≤ 0.08°); second phase 3.3 s at 60 % swung the axis **−8.2°** (up to 4.4°/s). W&S ended at brake + 8.6 s, `bReady` at brake + 9 s; the NC set position was still at the start → following error 8.28° > 5.0° (0x4550) right away. Azimuth W&S had just started |
+| 10-30 12:45 | automatic, 60 %, 500 ms, from ~27° (estimated), NC lag limit and range window **15°** | No F616; second phase swung +6.7°. After `bReady` the NC pulled back at −100 %, then from brake + 14 s the axis **stood still while the drive held a constant ~63 % torque**, lag growing at ~1°/s until 15.02° > 15° (0x4550). Drive warning **ECD2** at exactly that moment. Azimuth 0x4260 "lost controller enable while executing" = consequence of the elevation error (PLC disabled all axes during azimuth homing). The 60 % / 1500 ms run showed the same 63 % plateau |
+| 10-30 12:5x | automatic, 60 %, 500 ms, **Kp = 0**, from ~31–33° (estimated), NC limits 15° | **Full success.** First phase no motion, second phase swing only −2.5° (returned to −0.3° by itself). NC took over with max lag 0.016°, homing torque 4–16 % (peak 71 % at start). Both axes homed, ready after 240 s at el 40° / az 175° |
+| 10-30 13:0x | same, from **40°**, NC limits back at **5°** | **Success.** Second phase swing +4.05°, back to +0.9°. Max lag after takeover 0.071°, homing torque peak 82 % at start. Ready after 246 s at el 40° / az 175° |
+| 10-30 13:1x | same, from **60°** (park elevation), NC limits 5° | **Passed, but marginal.** First phase sagged −0.13°, second phase swing +6.1°, axis still moving at `bReady`. Takeover at ±100 % torque, max lag **3.2°** (limit 5°), brief 63 % plateau; > 55 % torque in 360 samples spread over the whole homing (the two balanced runs: 3 samples each). Ready after 244 s. Suggests a worse commutation from the unbalanced start *(inference)* → park lower (`elevationPark` 60 → 40 = `elevationHome`, MAIN.TcPOU) |
+| 10-30 | manual W&S at 60 % | PLC warning "Elevation torque is high" (|torque| > 50 % for > 1 s, harmless); elevation moved ~10° during the manual W&S |
 
 ## P-0-0166 results (10-30, manual)
 
@@ -67,6 +81,7 @@ Statements marked *(inference)* are interpretations of the data, not confirmed b
 | El | 270° | before (0160 failed again) | Yes | 289.97° (‑70°) |
 | El | 270° | **after** | Yes | 329.84° (‑30°) |
 | El | 240° | after | Yes | 204.74° (‑155°) |
+| El | 270° | after the **automatic** W&S at 60 % (12:45 run, axis stuck at 63 % torque) | Yes | **162.56°** |
 
 - Changing P-0-0057 by 30° moved the result by ~125° → the check is not reproducible
   enough on elevation; the 240° idea (startup-list value) did not help. Offset is back at 270°.
@@ -104,6 +119,29 @@ not verified. Units: % and ° in 0.1 steps.
 - Fields marked (?) don't match the drive under the assumed units, so the decoding of
   those words is uncertain.
 
+## Elevation balance (2026-10-30, covers open, az 175°)
+
+Holding torque (`ActTorque`, % ) at standstill, 5 s after each slew, averaged over 3 s
+(20 Hz, std ≤ 0.2 %). Positions approached from below (up) and from above (down).
+Imbalance = (up + down) / 2, friction = (up − down) / 2. Positive torque = towards zenith.
+
+| Elevation | Up | Down | Imbalance | Friction |
+|---|---|---|---|---|
+| 25° | +4.45 | −8.21 | −1.9 | 6.3 |
+| 35° | +7.41 | −4.67 | +1.4 | 6.0 |
+| 45° | +8.03 | −3.57 | +2.2 | 5.8 |
+| 55° | +8.47 | −3.16 | +2.7 | 5.8 |
+| 65° | +10.99 | −0.56 | +5.2 | 5.8 |
+| 75° | +12.10 | −0.11 | +6.0 | 6.1 |
+| 85° | +12.37 | – | – | – |
+
+- Friction is about 6 % and nearly constant.
+- The axis is balanced at about 30–35°. Above that, gravity pulls it towards the horizon,
+  rising to about +6 % at 75°; below it, slightly towards the zenith.
+- At the park elevation (~60°) the imbalance is about +4 %, so with the brake open the
+  axis tends to sag downwards, as seen in the failed 60 % / 500 ms run *(inference)*.
+  Static friction is larger, but the Wake&Shake steps may break it loose.
+
 ## Hypotheses (unconfirmed)
 
 1. *F616 = too little motion in the first search step.* The axis then moved < ~0.03°.
@@ -116,7 +154,9 @@ not verified. Units: % and ° in 0.1 steps.
 3. *F616 comes from the first-phase position monitoring.* "First phase pos monitoring
    limit" is 0.5°; in the failing runs the axis barely moved. Whether F616 is tied to this
    limit or to "Error monitoring (range of motion)" (90°) is not confirmed.
-4. Other levers: Kp (commutation pos control) = 0 (Beckhoff), "Static current vector"
+4. *Imbalance disturbs the search.* See the balance table: start the Wake&Shake near
+   30–35°, where the axis is balanced, instead of the park elevation (~60°).
+5. Other levers: Kp (commutation pos control) = 0 (Beckhoff), "Static current vector"
    mode, 1–3 s waiting time, balanced axis, same start position, 40–60 % current, repeat
    3× and verify the angle (Potsdam colleague).
 
@@ -134,11 +174,13 @@ not verified. Units: % and ° in 0.1 steps.
 
 | Item | Value | Note |
 |---|---|---|
-| P-0-0165 Activation | **Manual** (both axes) | Startup lists unchanged |
-| El W&S waiting time | 1500 ms | default 150 ms, changed for test |
+| P-0-0165 Activation | **On enable request** (elevation); azimuth unchanged | Startup lists unchanged |
+| El W&S first/second phase torque | 60 % | default 50 % |
+| El W&S Kp | 0 | default 0.04 |
+| El W&S waiting time | 500 ms | default 150 ms |
+| El NC max position lag / position range window | 15° / 15° | originally 5.0° / 5.0° |
 | P-0-0057 elevation | 270° | Startup list says 240°, azimuth list 280° |
 | P-0-0167 current elevation | 50 % | Startup list says 20 % |
-| NC lag / position range limits | changed for tests | originally 5.0° on elevation; restore |
 | `tBrakeSettle` | 3 s (default) | 8 s test reverted, activation downloaded the revert |
 
 ## Next steps
