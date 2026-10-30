@@ -28,6 +28,13 @@ VAR
 	TelescopeControl	: FB_MonetTelescopeControl(comm := fbComm);
 	TelescopeAuxiliary  : FB_MonetsTelescopeAuxiliary(comm := fbComm);
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
+
+	// MONETS#72: Start buttons of the axis Visus. The Visu sets the bit, the body starts the homing through the HomeAxis property
+	// and clears the bit. The Visu must not write bHomeAxis: that sets the level only and no homing starts.
+	bVisuHomeElevation	: BOOL;
+	bVisuHomeAzimuth	: BOOL;
+	bVisuHomeDerotator	: BOOL;
+	bVisuHomeFocus		: BOOL;
 	
 	//fbWeather			: FB_WeatherCheck();
 	
@@ -94,6 +101,24 @@ IF CabinetControl.IsResetPushed() OR PendantControl.IbResetButton THEN
 	IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		TelescopeControl.Reset();
 	END_IF
+END_IF
+
+// Visu Start buttons (MONETS#72): HomeAxis starts the homing on its rising edge, a direct write of bHomeAxis would not
+IF bVisuHomeElevation THEN
+	bVisuHomeElevation := FALSE;
+	ElevationControl.HomeAxis := TRUE;
+END_IF
+IF bVisuHomeAzimuth THEN
+	bVisuHomeAzimuth := FALSE;
+	AzimuthControl.HomeAxis := TRUE;
+END_IF
+IF bVisuHomeDerotator THEN
+	bVisuHomeDerotator := FALSE;
+	DerotatorControl.HomeAxis := TRUE;
+END_IF
+IF bVisuHomeFocus THEN
+	bVisuHomeFocus := FALSE;
+	FocusControl.HomeAxis := TRUE;
 END_IF
 
 // telescope is ready when power available
