@@ -166,7 +166,11 @@ Imbalance = (up + down) / 2, friction = (up − down) / 2. Positive torque = tow
 - Why do 0166 results scatter by ≥ 35° and stay ~30° off after a successful 0160?
   Should a good 0160 give ≈ 0°? (→ Beckhoff)
 - Azimuth 0166 "EqualDirections = No" with 146.58°: wiring/direction, or meaningless?
-- Meaning of NC 0x4260 (azimuth, homing) and drive F107 (elevation, Manual mode).
+- Meaning of drive F107 (elevation, Manual mode). NC 0x4260 on azimuth is explained: "lost
+  controller enable while executing" = knock-on of an elevation error during azimuth homing.
+- Meaning of elevation drive warning **ECD2** (12:45 run, exactly when the axis stalled at
+  63 % torque with Kp 0.04).
+- Why did the azimuth run normally with a 0166 result of 146.58°?
 - What triggered F123 (P-0-0166 failed) 18 s after brake opening?
 - Are the repo startup lists applied anywhere, or just stale exports?
 
@@ -178,21 +182,27 @@ Imbalance = (up + down) / 2, friction = (up − down) / 2. Positive torque = tow
 | El W&S first/second phase torque | 60 % | default 50 % |
 | El W&S Kp | 0 | default 0.04 |
 | El W&S waiting time | 500 ms | default 150 ms |
-| El NC max position lag / position range window | 15° / 15° | originally 5.0° / 5.0° |
+| El NC max position lag / position range window | 5.0° / 5.0° | raised to 15° for two runs, restored |
+| `elevationPark` (MAIN.TcPOU) | 40° (= `elevationHome`) | was 60°; commit 6cb8c1f, active after the next activation |
 | P-0-0057 elevation | 270° | Startup list says 240°, azimuth list 280° |
 | P-0-0167 current elevation | 50 % | Startup list says 20 % |
 | `tBrakeSettle` | 3 s (default) | 8 s test reverted, activation downloaded the revert |
 
 ## Next steps
 
-1. Export P-0-0165 for azimuth too, to confirm its 60 % (elevation is done, see table).
-2. Raise the elevation Wake&Shake first/second phase torque from 50 % step by step
-   (e.g. 60 %, 75 %), cold start each time,
-   record success / F616 and the motion. Change one parameter at a time; then try Kp = 0 or
-   Static current vector.
-3. Ask Beckhoff about 0160 vs 0166 and the scattering 0166 results (data above).
-4. Once a setting holds over several cold starts: write P-0-0165 into both startup lists.
-5. Restore NC lag / range limits and decide on the waiting time.
+1. **Repeat the realistic cycle several times:** `park=1` (now at 40°, covers closed) →
+   activation (drive restart) → `power=1` → check W&S swing, takeover lag, homing torque.
+   Also check that parking at 40° closes the covers correctly.
+2. Once it holds: write the elevation P-0-0165 values (60 %, 500 ms, Kp 0, On enable
+   request) into `Elevation Startup List.csv`.
+3. Azimuth: export P-0-0165 and consider Kp = 0 there too (no failures so far).
+4. Look up ECD2; ask Beckhoff about Kp 0.04 vs 0 (wrong commutation, large second-phase
+   swing), 0160 vs 0166, and the scattering 0166 results.
+5. Long term: balance the elevation axis better (imbalance up to 6 % at 75°).
+6. PLC: `bReady` is still brake + 3 s + 6 s fixed; the W&S now ends at about brake + 8.6 s,
+   so there is little margin. Consider waiting for the drive (HalfBROT).
+
+Superseded steps (done): raise torque to 60 %, try Kp = 0, restore NC limits.
 
 ## Data and tools
 
