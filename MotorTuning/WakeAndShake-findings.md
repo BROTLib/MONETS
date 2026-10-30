@@ -8,6 +8,11 @@ Statements marked *(inference)* are interpretations of the data, not confirmed b
 
 ## Summary
 
+- **Result (end of 2026-10-30): confirmed.** After the change of `elevationPark` to 40°,
+  three consecutive power-ups (one from 40° with open covers, two from fully parked with an
+  activation in between) all passed with the same W&S swing (+4.0°) and a lag of ~0.11°.
+  Not yet tested: a real power cycle of the drives (only XAE activations), several
+  consecutive days, the winter/cold case, azimuth with Kp 0.
 - **Update 2026-10-30 afternoon: first fully successful automatic cold start** with
   elevation P-0-0165 at 60 % (both phases), 500 ms waiting time, **Kp = 0**, start near the
   balanced elevation (~30–35°). Kp 0.04 made the second phase swing 6–8° and left a wrong
@@ -70,6 +75,7 @@ Statements marked *(inference)* are interpretations of the data, not confirmed b
 | 10-30 12:5x | automatic, 60 %, 500 ms, **Kp = 0**, from ~31–33° (estimated), NC limits 15° | **Full success.** First phase no motion, second phase swing only −2.5° (returned to −0.3° by itself). NC took over with max lag 0.016°, homing torque 4–16 % (peak 71 % at start). Both axes homed, ready after 240 s at el 40° / az 175° |
 | 10-30 13:0x | same, from **40°**, NC limits back at **5°** | **Success.** Second phase swing +4.05°, back to +0.9°. Max lag after takeover 0.071°, homing torque peak 82 % at start. Ready after 246 s at el 40° / az 175° |
 | 10-30 13:1x | same, from **60°** (park elevation), NC limits 5° | **Passed, but marginal.** First phase sagged −0.13°, second phase swing +6.1°, axis still moving at `bReady`. Takeover at ±100 % torque, max lag **3.2°** (limit 5°), brief 63 % plateau; > 55 % torque in 360 samples spread over the whole homing (the two balanced runs: 3 samples each). Ready after 244 s. Suggests a worse commutation from the unbalanced start *(inference)* → park lower (`elevationPark` 60 → 40 = `elevationHome`, MAIN.TcPOU) |
+| 10-30 afternoon | **Repeat cycles** with Kp 0 / 60 % / 500 ms, NC limits 5°, `elevationPark` 40°: rep1 from 40° with open covers; rep2 and rep3 from fully parked (covers closed, `park=1` → activation → `power=1`) | **3 of 3 OK.** W&S swing −0.04…+4.10° / −0.02…+4.04° / −0.02…+4.04°, position at `bReady` ≈ 1.8°, max lag after takeover 0.115 / 0.108 / 0.119°, > 55 % torque in 4 / 4 / 6 samples, ready after 250 / 289 / 292 s (covers open first from parked: enable at ~43 s, brake +5 s, `bReady` brake + 9 s). `park=1` ends at 40.01° with covers closed in ~40 s |
 | 10-30 | manual W&S at 60 % | PLC warning "Elevation torque is high" (|torque| > 50 % for > 1 s, harmless); elevation moved ~10° during the manual W&S |
 
 ## P-0-0166 results (10-30, manual)
