@@ -46,6 +46,9 @@ VAR
 	//fbWeather			: FB_WeatherCheck();
 	
 	MqttWatchdog		: FB_MonetMqttWatchdog(comm := fbComm);	// park + close roof after 30 s without broker (MONETcommon)
+	// MONETcommon#24 step 7 (D9): close the roof on TelescopeControl.bCloseRoofRequest (serious errors) in automatic mode.
+	// TRUE = enabled; set FALSE via ADS for test runs. Not persistent: back to TRUE at every PLC start (the safe default).
+	bRoofCloseOnErrorEnable	: BOOL := TRUE;
 	Diagnostics			: FB_MonetDiagnostics(comm := fbComm);	// diagnostics/base/* telemetry, on change + 30 s heartbeat (MONETcommon)
 END_VAR
 VAR CONSTANT
@@ -234,6 +237,18 @@ PendantControl(
 // starts FALSE until the initial hostname/connect/subscribe sequence completes) would
 // trip this on every restart, not just real outages.
 MqttWatchdog(bConnected := fbComm.bConnected, iTelescope := TelescopeControl, iRoof := RoofControl);
+
+// Roof close on serious telescope errors (MONETcommon#24 step 7, D9): axis error, hydraulics error, E-stop, safety error,
+// power failure. TelescopeControl.bCloseRoofRequest is latched in MONETcommon and cleared by a telescope reset once no cause
+// is active. Only in automatic mode (cabinet selector), the same condition as the TelescopeControl call above, and only
+// while bRoofCloseOnErrorEnable. Called every scan while requested, like the watchdog: Close() only sets the roof target
+// speed (nothing when already closed), so repeating it is harmless, and it re-issues the close after a roof reset.
+// E-stop: the E-stop circuit also cuts the roof drives, so the close cannot act during the E-stop; the request stays
+// latched and the close takes effect after the release and restart of the roof drives (a roof error latched meanwhile
+// needs a roof reset first).
+IF bRoofCloseOnErrorEnable AND eTelescopeMode = E_TelescopeMode.automatic AND TelescopeControl.bCloseRoofRequest THEN
+	RoofControl.Close();
+END_IF
 
 // and fbComm
 fbComm(	
