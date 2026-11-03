@@ -28,6 +28,10 @@ VAR
 	TelescopeControl	: FB_MonetTelescopeControl(comm := fbComm);
 	TelescopeAuxiliary  : FB_MonetsTelescopeAuxiliary(comm := fbComm);
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
+	// MONETcommon#24 step 2c: motion limits of the telescope; the other fields keep the BROTLib defaults.
+	// fElevationMoveVelocity: deg/s for every elevation move (home, park, slew); must not exceed the NC maximum velocity of
+	// the elevation axis (3.0), MONETS#40. Was the deprecated input TelescopeControl.fElevationMoveVelocity up to MONETcommon 0.14.
+	stTelescopeMotion	: BROTLib.ST_MotionConfig := (fElevationMoveVelocity := 3.0);
 
 	// MONETS#72: Start buttons of the axis Visus. The Visu sets the bit, the body starts the homing through the HomeAxis property
 	// (the focus through bManualHome, HalfBROT#138) and clears the bit. The Visu must not write bHomeAxis: that sets the level only and no homing starts.
@@ -169,7 +173,7 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		fbPointingInverse := fbPointingInverse,
 		bEstopTriggered := SafetyHandling.estop,	// M5: was never wired, see MONETcommon#11
 		bSafetyError	:= SafetyHandling.error,		// MONETcommon#155: closes the brake opened in the Wake&Shake window; FALSE = not enforced
-		fElevationMoveVelocity := 3.0,				// deg/s for every elevation move (home, park, slew); must not exceed the NC maximum velocity of the elevation axis (3.0), MONETS#40
+		stMotion		:= stTelescopeMotion,		// elevation move velocity 3.0 deg/s, MONETS#40 (see declaration)
 		bMainReady		:= ready					// M5: was computed and published but never wired, see MONETcommon#11
 	);
 ELSE
@@ -225,8 +229,6 @@ RoofControl(
 );
 PendantControl(
 	fbCovers 		:= CoverControl, 
-	fbBrake 		:= HydraulicsControl, 
-	fbHydraulics 	:= HydraulicsControl, 
 	fbFocus 		:= FocusControl, 
 	fbElevation 	:= ElevationControl, 
 	fbAzimuth 		:= AzimuthControl, 
