@@ -30,7 +30,7 @@ VAR
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
 
 	// MONETS#72: Start buttons of the axis Visus. The Visu sets the bit, the body starts the homing through the HomeAxis property
-	// and clears the bit. The Visu must not write bHomeAxis: that sets the level only and no homing starts.
+	// (the focus through bManualHome, HalfBROT#138) and clears the bit. The Visu must not write bHomeAxis: that sets the level only and no homing starts.
 	bVisuHomeElevation	: BOOL;
 	bVisuHomeAzimuth	: BOOL;
 	bVisuHomeDerotator	: BOOL;
@@ -128,7 +128,8 @@ IF bVisuHomeDerotator THEN
 END_IF
 IF bVisuHomeFocus THEN
 	bVisuHomeFocus := FALSE;
-	FocusControl.HomeAxis := TRUE;
+	FocusControl.bManualHome := TRUE;	// HalfBROT#138: cam homing, calibrated or not; HomeAxis is a no-op on a calibrated focus.
+	// The result (refusal reason, e.g. manual mode) is FocusControl.eManualHome.
 END_IF
 
 // Telescope Visu switches (MONETcommon#24 step 5): one method call per click, like an MQTT command. The targets are the
