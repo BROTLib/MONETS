@@ -6,7 +6,7 @@
 FUNCTION_BLOCK FB_MonetsTelescopeAuxiliary
 VAR
 	tempSensorM1   		AT%I*: INT;
-	tempSensorM1cell	AT%I*: INT;
+	tempSensorM1cell	AT%I*: INT;	// deliberately unlinked: the sensor exists, but the EL3164 has no free input (MONETS#16)
 	tempSensorM2   		AT%I*: INT;
 	tempSensorFlange	AT%I*: INT;
 	fbComm				: I_Comm;

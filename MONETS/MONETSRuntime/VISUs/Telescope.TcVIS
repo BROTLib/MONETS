@@ -663,7 +663,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.TelescopeControl.bPower"</v>
+                          <v n="Value">"MAIN.bVisuTelescopePower"</v>
                         </o>
                         <o>
                           <v n="Id">2597686782L</v>
@@ -765,7 +765,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.TelescopeControl.bPark"</v>
+                          <v n="Value">"MAIN.bVisuTelescopePark"</v>
                         </o>
                         <o>
                           <v n="Id">2597686782L</v>
@@ -1089,7 +1089,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.TelescopeControl.bPark"</v>
+                          <v n="Value">"MAIN.bVisuTelescopePark"</v>
                         </o>
                         <o>
                           <v n="Id">2597686782L</v>
@@ -2076,7 +2076,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.TelescopeControl.bSlew"</v>
+                          <v n="Value">"MAIN.bVisuTelescopeSlew"</v>
                         </o>
                         <o>
                           <v n="Id">2597686782L</v>
@@ -6574,7 +6574,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.TelescopeControl.bGoto"</v>
+                          <v n="Value">"MAIN.bVisuTelescopeGoto"</v>
                         </o>
                         <o>
                           <v n="Id">2597686782L</v>

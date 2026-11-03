@@ -3411,14 +3411,6 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>
-					<UnrestoredVarLinks ImportTime="2025-08-31T07:44:04">
-						<OwnerA Name="InputDst" Prefix="TIPC^MONETSRuntime^MONETSRuntime Instance" Type="1">
-							<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 21 (EK1200)^Mirror Temperature IN (EL3164)">
-								<Link VarA="MAIN.TelescopeControl.TelescopeAuxiliary.tempSensorM1" TypeA="INT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000006}" VarB="TempM1^MAIN.TelescopeControl.TelescopeAuxiliary.tempSensorM1" RestoreInfo="ANotFound"/>
-								<Link VarA="MAIN.TelescopeControl.TelescopeAuxiliary.tempSensorM2" TypeA="INT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000006}" VarB="TempM2^MAIN.TelescopeControl.TelescopeAuxiliary.tempSensorM2" RestoreInfo="ANotFound"/>
-							</OwnerB>
-						</OwnerA>
-					</UnrestoredVarLinks>
 					<Contexts>
 						<Context>
 							<Id>0</Id>

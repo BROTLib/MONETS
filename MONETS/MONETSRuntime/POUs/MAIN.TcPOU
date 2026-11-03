@@ -28,10 +28,27 @@ VAR
 	TelescopeControl	: FB_MonetTelescopeControl(comm := fbComm);
 	TelescopeAuxiliary  : FB_MonetsTelescopeAuxiliary(comm := fbComm);
 	PendantControl		: FB_MonetPendantControl(comm := fbComm);
-	
+
+	// MONETS#72: Start buttons of the axis Visus. The Visu sets the bit, the body starts the homing through the HomeAxis property
+	// (the focus through bManualHome, HalfBROT#138) and clears the bit. The Visu must not write bHomeAxis: that sets the level only and no homing starts.
+	bVisuHomeElevation	: BOOL;
+	bVisuHomeAzimuth	: BOOL;
+	bVisuHomeDerotator	: BOOL;
+	bVisuHomeFocus		: BOOL;
+
+	// MONETcommon#24 step 5: Power/Park/Slew/Goto switches of the Telescope Visu, same pattern. The Visu sets the bit, the body
+	// calls the method and clears the bit. The Visu must not write bPower/bPark/bSlew/bGoto: they become edge-triggered inputs.
+	bVisuTelescopePower	: BOOL;	// Init()
+	bVisuTelescopePark	: BOOL;	// Park()
+	bVisuTelescopeSlew	: BOOL;	// Slew() to the fAzimuth/fElevation the Visu wrote
+	bVisuTelescopeGoto	: BOOL;	// Track() to the fRightAscension/fDeclination the Visu wrote (sets bGoto, like bGoto did)
+
 	//fbWeather			: FB_WeatherCheck();
 	
 	MqttWatchdog		: FB_MonetMqttWatchdog(comm := fbComm);	// park + close roof after 30 s without broker (MONETcommon)
+	// MONETcommon#24 step 7 (D9): close the roof on TelescopeControl.bCloseRoofRequest (serious errors) in automatic mode.
+	// TRUE = enabled; set FALSE via ADS for test runs. Not persistent: back to TRUE at every PLC start (the safe default).
+	bRoofCloseOnErrorEnable	: BOOL := TRUE;
 	Diagnostics			: FB_MonetDiagnostics(comm := fbComm);	// diagnostics/base/* telemetry, on change + 30 s heartbeat (MONETcommon)
 END_VAR
 VAR CONSTANT
@@ -39,7 +56,7 @@ VAR CONSTANT
 	nOilLevelMinValid	: INT := 450;
 	nOilLevelMaxValid	: INT := 12000;
 	telescopeConfig		: ST_TelescopeConfig := (longitude := 20.810808, latitude := -32.375823, altitude := 1798.0, 
-												 azimuthPark := 175, elevationPark := 60, derotatorPark := 0, focusPark := 36.0, 
+												 azimuthPark := 175, elevationPark := 40, derotatorPark := 0, focusPark := 36.0, 
 												 azimuthHome := 175, elevationHome := 40, derotatorHome := 0,
 												 name := 'MONET/S', diameter := 1.2, cabinet := 'Beckhoff', manufacturer := 'Halfmann, Haidenhain, Beckhoff',
 												 mountOptions := 'ALT-AZ', mount := 'ALT_AZ');
@@ -94,6 +111,44 @@ IF CabinetControl.IsResetPushed() OR PendantControl.IbResetButton THEN
 	IF eTelescopeMode = E_TelescopeMode.automatic THEN
 		TelescopeControl.Reset();
 	END_IF
+END_IF
+
+// Visu Start buttons (MONETS#72): HomeAxis starts the homing on its rising edge, a direct write of bHomeAxis would not
+IF bVisuHomeElevation THEN
+	bVisuHomeElevation := FALSE;
+	ElevationControl.HomeAxis := TRUE;
+END_IF
+IF bVisuHomeAzimuth THEN
+	bVisuHomeAzimuth := FALSE;
+	AzimuthControl.HomeAxis := TRUE;
+END_IF
+IF bVisuHomeDerotator THEN
+	bVisuHomeDerotator := FALSE;
+	DerotatorControl.HomeAxis := TRUE;
+END_IF
+IF bVisuHomeFocus THEN
+	bVisuHomeFocus := FALSE;
+	FocusControl.bManualHome := TRUE;	// HalfBROT#138: cam homing, calibrated or not; HomeAxis is a no-op on a calibrated focus.
+	// The result (refusal reason, e.g. manual mode) is FocusControl.eManualHome.
+END_IF
+
+// Telescope Visu switches (MONETcommon#24 step 5): one method call per click, like an MQTT command. The targets are the
+// inputs the Visu text fields write; the method writes them back unchanged (or nothing if it rejects the move).
+IF bVisuTelescopePower THEN
+	bVisuTelescopePower := FALSE;
+	TelescopeControl.Init();
+END_IF
+IF bVisuTelescopePark THEN
+	bVisuTelescopePark := FALSE;
+	TelescopeControl.Park();
+END_IF
+IF bVisuTelescopeSlew THEN
+	bVisuTelescopeSlew := FALSE;
+	TelescopeControl.Slew(fAzimuth := TelescopeControl.fAzimuth, fAltitude := TelescopeControl.fElevation);
+END_IF
+IF bVisuTelescopeGoto THEN
+	bVisuTelescopeGoto := FALSE;
+	TelescopeControl.Track(fRightAscension := TelescopeControl.fRightAscension, fDeclination := TelescopeControl.fDeclination);
 END_IF
 
 // telescope is ready when power available
@@ -183,6 +238,18 @@ PendantControl(
 // starts FALSE until the initial hostname/connect/subscribe sequence completes) would
 // trip this on every restart, not just real outages.
 MqttWatchdog(bConnected := fbComm.bConnected, iTelescope := TelescopeControl, iRoof := RoofControl);
+
+// Roof close on serious telescope errors (MONETcommon#24 step 7, D9): axis error, hydraulics error, E-stop, safety error,
+// power failure. TelescopeControl.bCloseRoofRequest is latched in MONETcommon and cleared by a telescope reset once no cause
+// is active. Only in automatic mode (cabinet selector), the same condition as the TelescopeControl call above, and only
+// while bRoofCloseOnErrorEnable. Called every scan while requested, like the watchdog: Close() only sets the roof target
+// speed (nothing when already closed), so repeating it is harmless, and it re-issues the close after a roof reset.
+// E-stop: the E-stop circuit also cuts the roof drives, so the close cannot act during the E-stop; the request stays
+// latched and the close takes effect after the release and restart of the roof drives (a roof error latched meanwhile
+// needs a roof reset first).
+IF bRoofCloseOnErrorEnable AND eTelescopeMode = E_TelescopeMode.automatic AND TelescopeControl.bCloseRoofRequest THEN
+	RoofControl.Close();
+END_IF
 
 // and fbComm
 fbComm(	

@@ -1398,7 +1398,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.DerotatorControl.bHomeAxis"</v>
+                          <v n="Value">"MAIN.DerotatorControl.fbAxis.HomeActive"</v>
                         </o>
                       </l>
                     </o>
@@ -1629,7 +1629,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.DerotatorControl.bHomeAxis"</v>
+                          <v n="Value">"MAIN.bVisuHomeDerotator"</v>
                         </o>
                       </l>
                     </o>
