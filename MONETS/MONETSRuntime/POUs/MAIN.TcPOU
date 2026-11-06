@@ -232,6 +232,7 @@ RoofControl(
 	limit_slowdown	:= 5
 );
 PendantControl(
+	eTelescopeMode	:= eTelescopeMode,	// MONETcommon#177: unwired it is off; the pendant gates on it from MONETcommon 0.18.0
 	fbCovers 		:= CoverControl, 
 	fbFocus 		:= FocusControl, 
 	fbElevation 	:= ElevationControl, 
