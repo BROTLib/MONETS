@@ -178,7 +178,11 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 	);
 ELSE
     // Invalidate startup readiness and publish its heartbeat without running automatic motion in manual mode.
-    TelescopeControl.SuspendAutomatic();
+    // MONETcommon#168: E-stop, safety error and power failure reach the manual READY_STATE (telemetry only, no axis write).
+    TelescopeControl.SuspendAutomatic(
+        bEstopIn		:= SafetyHandling.estop,
+        bSafetyErrorIn	:= SafetyHandling.error,
+        bMainReadyIn	:= ready);
 END_IF
 TelescopeAuxiliary();
 
