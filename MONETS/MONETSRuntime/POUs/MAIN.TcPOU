@@ -40,6 +40,17 @@ VAR
 	bVisuHomeDerotator	: BOOL;
 	bVisuHomeFocus		: BOOL;
 
+	// HalfBROT#31: switches of the Visus that used to write inputs of the HalfBROT blocks. The blocks keep those request flags in VAR,
+	// so the Visu sets a variable here and the body calls the block (see the two sections around the scan).
+	// Switches that show a state (enable, move) follow the block at the end of the scan; push buttons are cleared by the body.
+	bVisuHydraulicsEnable	: BOOL;		// HydraulicsControl.Enable
+	bVisuHydraulicsReset	: BOOL;		// HydraulicsControl.Reset()
+	bVisuBrakeClose			: BOOL;		// HydraulicsControl.CloseBrake()
+	bVisuBrakeOpen			: BOOL;		// shows HydraulicsControl.BrakeOpen only: the brake is opened by the cabinet switch (brakeClearing)
+	bVisuMoveAzimuth		: BOOL;		// AzimuthControl.MoveAxis
+	bVisuMoveElevation		: BOOL;		// ElevationControl.MoveAxis
+	bVisuMoveDerotator		: BOOL;		// DerotatorControl.MoveAxis
+
 	// MONETcommon#24 step 5: Power/Park/Slew/Goto switches of the Telescope Visu, same pattern. The Visu sets the bit, the body
 	// calls the method and clears the bit. The Visu must not write bPower/bPark/bSlew/bGoto: they become edge-triggered inputs.
 	bVisuTelescopePower	: BOOL;	// Init()
@@ -82,6 +93,29 @@ Main control loop
 // get hostname for MQTT connection
 GetHostName(bExecute := executeHostName, sHostName => HostName);
 executeHostName := FALSE;
+
+// Visu switches of the HalfBROT blocks (HalfBROT#31). First in the scan: a state switch differs from the block only when the
+// operator changed it since the end of the last scan (see the end of this program), so a change by the block is never written back.
+IF bVisuHydraulicsEnable <> HydraulicsControl.Enable THEN
+	HydraulicsControl.Enable := bVisuHydraulicsEnable;
+END_IF
+IF bVisuHydraulicsReset THEN
+	bVisuHydraulicsReset := FALSE;
+	HydraulicsControl.Reset();
+END_IF
+IF bVisuBrakeClose THEN
+	bVisuBrakeClose := FALSE;
+	HydraulicsControl.CloseBrake();
+END_IF
+IF bVisuMoveAzimuth <> AzimuthControl.MoveAxis THEN
+	AzimuthControl.MoveAxis := bVisuMoveAzimuth;
+END_IF
+IF bVisuMoveElevation <> ElevationControl.MoveAxis THEN
+	ElevationControl.MoveAxis := bVisuMoveElevation;
+END_IF
+IF bVisuMoveDerotator <> DerotatorControl.MoveAxis THEN
+	DerotatorControl.MoveAxis := bVisuMoveDerotator;
+END_IF
 
 // run cabinet
 CabinetControl(iTelescope := TelescopeControl);	// parks the telescope while the cabinet is too hot (MONETcommon#32)
@@ -257,6 +291,13 @@ MqttWatchdog(bConnected := fbComm.bConnected, iTelescope := TelescopeControl, iR
 IF bRoofCloseOnErrorEnable AND eTelescopeMode = E_TelescopeMode.automatic AND TelescopeControl.bCloseRoofRequest THEN
 	RoofControl.Close();
 END_IF
+
+// Visu switches follow the blocks (HalfBROT#31), last in the scan: the next scan applies only what the operator changed.
+bVisuHydraulicsEnable := HydraulicsControl.Enable;
+bVisuBrakeOpen := HydraulicsControl.BrakeOpen;
+bVisuMoveAzimuth := AzimuthControl.MoveAxis;
+bVisuMoveElevation := ElevationControl.MoveAxis;
+bVisuMoveDerotator := DerotatorControl.MoveAxis;
 
 // and fbComm
 fbComm(	
