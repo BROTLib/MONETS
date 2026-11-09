@@ -137,7 +137,7 @@ IF eTelescopeMode = E_TelescopeMode.manual OR eTelescopeMode = E_TelescopeMode.o
 		HydraulicsControl.Enable := FALSE;
 	END_IF
 	brakeClearing := CabinetControl.AreBreakesCleared();
-	HydraulicsControl.bOpenBrake := brakeClearing;
+	HydraulicsControl.ManualBrake(brakeClearing);	// HalfBROT#31: one open request per rising edge of the switch, no re-open after the brake dropped
 END_IF
 
 // clear errors: SafetyHandling.resetRequest (see call below) toggles Restart/ErrAck,
@@ -166,7 +166,7 @@ IF bVisuHomeDerotator THEN
 END_IF
 IF bVisuHomeFocus THEN
 	bVisuHomeFocus := FALSE;
-	FocusControl.bManualHome := TRUE;	// HalfBROT#138: cam homing, calibrated or not; HomeAxis is a no-op on a calibrated focus.
+	FocusControl.ManualHome();	// HalfBROT#138: cam homing, calibrated or not; HomeAxis is a no-op on a calibrated focus.
 	// The result (refusal reason, e.g. manual mode) is FocusControl.eManualHome.
 END_IF
 
@@ -221,8 +221,13 @@ END_IF
 TelescopeAuxiliary();
 
 // run all control FBs
-CoverControl();
+CoverControl(
+	stIn	:= GVL_IO.stCoverIn,
+	stOut	:= GVL_IO.stCoverOut
+);
 HydraulicsControl(
+	stIn			:= GVL_IO.stHydraulicsIn,
+	stOut			:= GVL_IO.stHydraulicsOut,
 	nMinPanLevel	:= 900,		// empty pan reads raw ~900..1500
 	nMaxPanLevel	:= 9400,	// raw level where the pan-full float switch trips (100 %)
 	fMinPanPercent	:= 15.0,	// suction stops at raw ~2175 (was raw 3500, 0.0 % with 3500..10200)
@@ -232,21 +237,26 @@ HydraulicsControl(
 	bBrakeClearing	:= brakeClearing
 );
 ElevationControl(
+	stIn			:= GVL_IO.stElevationIn,
 	fCalibPosition 	:= 60.567917554230512,
 	fbCovers 		:= CoverControl, 
 	fbBrake 		:= HydraulicsControl
 );
 AzimuthControl(
+	stIn			:= GVL_IO.stAzimuthIn,
 	fCalibPosition	:= 1.1466144421902693,
 	fMinPosition	:= -274.0,
 	fMaxPosition	:= 270.0,
 	bBrakeOpen		:= HydraulicsControl.brakeOpen,
 );
 DerotatorControl(
+	stIn			:= GVL_IO.stDerotatorIn,
 	fMinPosition		:= -90.0,
 	fMaxPosition		:= 360.0
 );	//
 FocusControl(
+	stIn			:= GVL_IO.stFocusIn,
+	stOut			:= GVL_IO.stFocusOut,
 	eTelescopeMode 	:= eTelescopeMode,
 	fHomingPosition	:= 92.02, // 104.02 - 12.00
 	// limit switches at 0 and fHomingPosition; targets stay 0.5 mm inside (MONETcommon#122)

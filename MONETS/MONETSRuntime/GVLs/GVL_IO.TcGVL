@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <GVL Name="GVL_IO" Id="{d144429c-9091-41c7-b3ad-d8a3c2b576eb}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+// Process image of the HalfBROT blocks (HalfBROT#30, #31): the application owns the I/O, the blocks get the structs.
+// Linked to the terminals in MONETS.tsproj. The input structs are passed to the blocks as copies (VAR_INPUT), the output
+// structs as VAR_IN_OUT: only the block that gets one writes it (convention, not enforced).
+VAR_GLOBAL
+	stHydraulicsIn AT %I* : ST_HydraulicsIn;
+	stHydraulicsOut AT %Q* : ST_HydraulicsOut;
+	stFocusIn AT %I* : ST_FocusIn;
+	stFocusOut AT %Q* : ST_FocusOut;
+	stAzimuthIn AT %I* : ST_AxisIn;
+	stElevationIn AT %I* : ST_AxisIn;
+	stDerotatorIn AT %I* : ST_AxisIn;
+	stCoverIn AT %I* : ST_CoverIn;
+	stCoverOut AT %Q* : ST_CoverOut;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
