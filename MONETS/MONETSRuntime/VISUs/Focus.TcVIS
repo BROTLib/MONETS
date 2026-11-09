@@ -2760,7 +2760,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.FocusControl.IbLimitNear"</v>
+                          <v n="Value">"GVL_IO.stFocusIn.bLimitNear"</v>
                         </o>
                       </l>
                     </o>
@@ -2983,7 +2983,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.FocusControl.IbLimitFar"</v>
+                          <v n="Value">"GVL_IO.stFocusIn.bLimitFar"</v>
                         </o>
                       </l>
                     </o>

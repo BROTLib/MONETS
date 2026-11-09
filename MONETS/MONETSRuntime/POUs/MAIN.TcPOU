@@ -40,6 +40,17 @@ VAR
 	bVisuHomeDerotator	: BOOL;
 	bVisuHomeFocus		: BOOL;
 
+	// HalfBROT#31: switches of the Visus that used to write inputs of the HalfBROT blocks. The blocks keep those request flags in VAR,
+	// so the Visu sets a variable here and the body calls the block (see the two sections around the scan).
+	// Switches that show a state (enable, move) follow the block at the end of the scan; push buttons are cleared by the body.
+	bVisuHydraulicsEnable	: BOOL;		// HydraulicsControl.Enable
+	bVisuHydraulicsReset	: BOOL;		// HydraulicsControl.Reset()
+	bVisuBrakeClose			: BOOL;		// HydraulicsControl.CloseBrake()
+	bVisuBrakeOpen			: BOOL;		// shows HydraulicsControl.BrakeOpen only: the brake is opened by the cabinet switch (brakeClearing)
+	bVisuMoveAzimuth		: BOOL;		// AzimuthControl.MoveAxis
+	bVisuMoveElevation		: BOOL;		// ElevationControl.MoveAxis
+	bVisuMoveDerotator		: BOOL;		// DerotatorControl.MoveAxis
+
 	// MONETcommon#24 step 5: Power/Park/Slew/Goto switches of the Telescope Visu, same pattern. The Visu sets the bit, the body
 	// calls the method and clears the bit. The Visu must not write bPower/bPark/bSlew/bGoto: they become edge-triggered inputs.
 	bVisuTelescopePower	: BOOL;	// Init()
@@ -83,6 +94,29 @@ Main control loop
 GetHostName(bExecute := executeHostName, sHostName => HostName);
 executeHostName := FALSE;
 
+// Visu switches of the HalfBROT blocks (HalfBROT#31). First in the scan: a state switch differs from the block only when the
+// operator changed it since the end of the last scan (see the end of this program), so a change by the block is never written back.
+IF bVisuHydraulicsEnable <> HydraulicsControl.Enable THEN
+	HydraulicsControl.Enable := bVisuHydraulicsEnable;
+END_IF
+IF bVisuHydraulicsReset THEN
+	bVisuHydraulicsReset := FALSE;
+	HydraulicsControl.Reset();
+END_IF
+IF bVisuBrakeClose THEN
+	bVisuBrakeClose := FALSE;
+	HydraulicsControl.CloseBrake();
+END_IF
+IF bVisuMoveAzimuth <> AzimuthControl.MoveAxis THEN
+	AzimuthControl.MoveAxis := bVisuMoveAzimuth;
+END_IF
+IF bVisuMoveElevation <> ElevationControl.MoveAxis THEN
+	ElevationControl.MoveAxis := bVisuMoveElevation;
+END_IF
+IF bVisuMoveDerotator <> DerotatorControl.MoveAxis THEN
+	DerotatorControl.MoveAxis := bVisuMoveDerotator;
+END_IF
+
 // run cabinet
 CabinetControl(iTelescope := TelescopeControl);	// parks the telescope while the cabinet is too hot (MONETcommon#32)
 
@@ -103,7 +137,7 @@ IF eTelescopeMode = E_TelescopeMode.manual OR eTelescopeMode = E_TelescopeMode.o
 		HydraulicsControl.Enable := FALSE;
 	END_IF
 	brakeClearing := CabinetControl.AreBreakesCleared();
-	HydraulicsControl.bOpenBrake := brakeClearing;
+	HydraulicsControl.ManualBrake(brakeClearing);	// HalfBROT#31: one open request per rising edge of the switch, no re-open after the brake dropped
 END_IF
 
 // clear errors: SafetyHandling.resetRequest (see call below) toggles Restart/ErrAck,
@@ -132,7 +166,7 @@ IF bVisuHomeDerotator THEN
 END_IF
 IF bVisuHomeFocus THEN
 	bVisuHomeFocus := FALSE;
-	FocusControl.bManualHome := TRUE;	// HalfBROT#138: cam homing, calibrated or not; HomeAxis is a no-op on a calibrated focus.
+	FocusControl.ManualHome();	// HalfBROT#138: cam homing, calibrated or not; HomeAxis is a no-op on a calibrated focus.
 	// The result (refusal reason, e.g. manual mode) is FocusControl.eManualHome.
 END_IF
 
@@ -178,13 +212,22 @@ IF eTelescopeMode = E_TelescopeMode.automatic THEN
 	);
 ELSE
     // Invalidate startup readiness and publish its heartbeat without running automatic motion in manual mode.
-    TelescopeControl.SuspendAutomatic();
+    // MONETcommon#168: E-stop, safety error and power failure reach the manual READY_STATE (telemetry only, no axis write).
+    TelescopeControl.SuspendAutomatic(
+        bEstopIn		:= SafetyHandling.estop,
+        bSafetyErrorIn	:= SafetyHandling.error,
+        bMainReadyIn	:= ready);
 END_IF
 TelescopeAuxiliary();
 
 // run all control FBs
-CoverControl();
+CoverControl(
+	stIn	:= GVL_IO.stCoverIn,
+	stOut	:= GVL_IO.stCoverOut
+);
 HydraulicsControl(
+	stIn			:= GVL_IO.stHydraulicsIn,
+	stOut			:= GVL_IO.stHydraulicsOut,
 	nMinPanLevel	:= 900,		// empty pan reads raw ~900..1500
 	nMaxPanLevel	:= 9400,	// raw level where the pan-full float switch trips (100 %)
 	fMinPanPercent	:= 15.0,	// suction stops at raw ~2175 (was raw 3500, 0.0 % with 3500..10200)
@@ -194,21 +237,26 @@ HydraulicsControl(
 	bBrakeClearing	:= brakeClearing
 );
 ElevationControl(
+	stIn			:= GVL_IO.stElevationIn,
 	fCalibPosition 	:= 60.567917554230512,
 	fbCovers 		:= CoverControl, 
 	fbBrake 		:= HydraulicsControl
 );
 AzimuthControl(
+	stIn			:= GVL_IO.stAzimuthIn,
 	fCalibPosition	:= 1.1466144421902693,
 	fMinPosition	:= -274.0,
 	fMaxPosition	:= 270.0,
 	bBrakeOpen		:= HydraulicsControl.brakeOpen,
 );
 DerotatorControl(
+	stIn			:= GVL_IO.stDerotatorIn,
 	fMinPosition		:= -90.0,
 	fMaxPosition		:= 360.0
 );	//
 FocusControl(
+	stIn			:= GVL_IO.stFocusIn,
+	stOut			:= GVL_IO.stFocusOut,
 	eTelescopeMode 	:= eTelescopeMode,
 	fHomingPosition	:= 92.02, // 104.02 - 12.00
 	// limit switches at 0 and fHomingPosition; targets stay 0.5 mm inside (MONETcommon#122)
@@ -228,6 +276,7 @@ RoofControl(
 	limit_slowdown	:= 5
 );
 PendantControl(
+	eTelescopeMode	:= eTelescopeMode,	// MONETcommon#177: unwired it is off; the pendant gates on it from MONETcommon 0.18.0
 	fbCovers 		:= CoverControl, 
 	fbFocus 		:= FocusControl, 
 	fbElevation 	:= ElevationControl, 
@@ -252,6 +301,13 @@ MqttWatchdog(bConnected := fbComm.bConnected, iTelescope := TelescopeControl, iR
 IF bRoofCloseOnErrorEnable AND eTelescopeMode = E_TelescopeMode.automatic AND TelescopeControl.bCloseRoofRequest THEN
 	RoofControl.Close();
 END_IF
+
+// Visu switches follow the blocks (HalfBROT#31), last in the scan: the next scan applies only what the operator changed.
+bVisuHydraulicsEnable := HydraulicsControl.Enable;
+bVisuBrakeOpen := HydraulicsControl.BrakeOpen;
+bVisuMoveAzimuth := AzimuthControl.MoveAxis;
+bVisuMoveElevation := ElevationControl.MoveAxis;
+bVisuMoveDerotator := DerotatorControl.MoveAxis;
 
 // and fbComm
 fbComm(	
