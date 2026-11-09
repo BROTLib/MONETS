@@ -213,7 +213,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"MAIN.AzimuthControl.IbSTO"</v>
+                      <v n="Value">"GVL_IO.stAzimuthIn.bSTO"</v>
                     </o>
                   </l>
                 </o>
@@ -436,7 +436,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"MAIN.ElevationControl.IbSTO"</v>
+                      <v n="Value">"GVL_IO.stElevationIn.bSTO"</v>
                     </o>
                   </l>
                 </o>
@@ -659,7 +659,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"MAIN.DerotatorControl.IbSTO"</v>
+                      <v n="Value">"GVL_IO.stDerotatorIn.bSTO"</v>
                     </o>
                   </l>
                 </o>

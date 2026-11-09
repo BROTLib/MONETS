@@ -3008,151 +3008,16 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CoverControl.IabCoverOpen</Name>
-							<Comment><![CDATA[ limit coper 1 open switch]]></Comment>
-							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CoverControl.IabCoverClosed</Name>
-							<Comment><![CDATA[ limit coper 1 closed switch]]></Comment>
-							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilLow</Name>
-							<Comment><![CDATA[ 2.1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilHigh</Name>
-							<Comment><![CDATA[ ?]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilPressureOK</Name>
-							<Comment><![CDATA[ 2.3]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilHot</Name>
-							<Comment><![CDATA[ 2.4]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilCold</Name>
-							<Comment><![CDATA[ 2.5]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilFilterDirty</Name>
-							<Comment><![CDATA[ 2.6]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbPumpRunning</Name>
-							<Comment><![CDATA[ 2.7]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbSuctionRunning</Name>
-							<Comment><![CDATA[ 2.8]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.InOilLevel</Name>
-							<Comment><![CDATA[BT2]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilpanMaximum</Name>
-							<Comment><![CDATA[DIN39 4.6]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.IbOilReserve</Name>
-							<Comment><![CDATA[DIN40 4.7]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.FocusControl.IbLimitNear</Name>
-							<Comment><![CDATA[ DIN29 3.4]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.FocusControl.IbLimitFar</Name>
-							<Comment><![CDATA[ DIN30 3.5]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.FocusControl.refAxis.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.InDigitalInputs</Name>
-							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
-							<Type>WORD</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.InDiagnostic</Name>
-							<Comment><![CDATA[ diagnostic number]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.InTorque</Name>
-							<Comment><![CDATA[ derotator torque feedback]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.DerotatorControl.IbSTO</Name>
-							<Comment><![CDATA[ STO]]></Comment>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.DerotatorControl.axisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.ElevationControl.InDigitalInputs</Name>
-							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
-							<Type>WORD</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.InDiagnostic</Name>
-							<Comment><![CDATA[ diagnostic number]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.InTorque</Name>
-							<Comment><![CDATA[ derotator torque feedback]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ElevationControl.IbSTO</Name>
-							<Comment><![CDATA[ STO]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.ElevationControl.axisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.InDigitalInputs</Name>
-							<Comment><![CDATA[ digitale inputs der Endlagen]]></Comment>
-							<Type>WORD</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.InDiagnostic</Name>
-							<Comment><![CDATA[ diagnostic number]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.InTorque</Name>
-							<Comment><![CDATA[ derotator torque feedback]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.AzimuthControl.IbSTO</Name>
-							<Comment><![CDATA[ STO]]></Comment>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.AzimuthControl.axisRef.NcToPlc</Name>
@@ -3334,44 +3199,6 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.RoofControl.roofs[2].motors[2].direction_close</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CoverControl.OabOpenCover</Name>
-							<Comment><![CDATA[ open cover1-3 command]]></Comment>
-							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CoverControl.OabCloseCover</Name>
-							<Comment><![CDATA[ close cover1-3 command]]></Comment>
-							<Type GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}">ARRAY [1..3] OF BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.ObOilPumpEnable</Name>
-							<Comment><![CDATA[DOUT4 0.3]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.ObOilSuctionEnable</Name>
-							<Comment><![CDATA[DOUT5 0.4	]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.ObBrakeAzEl</Name>
-							<Comment><![CDATA[ brake set]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.ObResetOilPump</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HydraulicsControl.ObResetSuctionPump</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.FocusControl.ObFocusUnlock</Name>
-							<Comment><![CDATA[ whether focus is unlocked]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -11749,7 +11576,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 		</OwnerA>
 		<OwnerA Name="TIPC^MONETSRuntime^MONETSRuntime Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Brake AzEl (EL2004)">
-				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObBrakeAzEl" VarB="Channel 2^MAIN.HydraulicsControl.ObBrakeAzEl"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bBrakeAzEl" VarB="Channel 2^MAIN.HydraulicsControl.ObBrakeAzEl"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Front Panel IN (EL1008)">
 				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inButtonReset" VarB="Channel 3^MAIN.CabinetControl.inButtonReset"/>
@@ -11764,48 +11591,48 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Outputs^MAIN.CabinetControl.outLampPower" VarB="Channel 1^MAIN.CabinetControl.outLampPower"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics Focus IN (EL1008)">
-				<Link VarA="PlcTask Inputs^MAIN.FocusControl.IbLimitFar" VarB="Channel 5^MAIN.FocusControl.IbLimitFar"/>
-				<Link VarA="PlcTask Inputs^MAIN.FocusControl.IbLimitNear" VarB="Channel 4^MAIN.FocusControl.IbLimitNear"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbPumpRunning" VarB="Channel 1^MAIN.HydraulicsControl.IbPumpRunning"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbSuctionRunning" VarB="Channel 2^MAIN.HydraulicsControl.IbSuctionRunning"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stFocusIn.bLimitFar" VarB="Channel 5^MAIN.FocusControl.IbLimitFar"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stFocusIn.bLimitNear" VarB="Channel 4^MAIN.FocusControl.IbLimitNear"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bPumpRunning" VarB="Channel 1^MAIN.HydraulicsControl.IbPumpRunning"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bSuctionRunning" VarB="Channel 2^MAIN.HydraulicsControl.IbSuctionRunning"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics IN2 (EL1008)">
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilCold" VarB="Channel 5^MAIN.HydraulicsControl.IbOilCold"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilFilterDirty" VarB="Channel 6^MAIN.HydraulicsControl.IbOilFilterDirty"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilHigh" VarB="Channel 2^MAIN.HydraulicsControl.IbOilHigh"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilHot" VarB="Channel 4^MAIN.HydraulicsControl.IbOilHot"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilLow" VarB="Channel 1^MAIN.HydraulicsControl.IbOilLow"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilPressureOK" VarB="Channel 3^MAIN.HydraulicsControl.IbOilPressureOK"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilReserve" VarB="Channel 8^MAIN.HydraulicsControl.IbOilReserve"/>
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.IbOilpanMaximum" VarB="Channel 7^MAIN.HydraulicsControl.IbOilpanMaximum"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilCold" VarB="Channel 5^MAIN.HydraulicsControl.IbOilCold"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilFilterDirty" VarB="Channel 6^MAIN.HydraulicsControl.IbOilFilterDirty"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilHigh" VarB="Channel 2^MAIN.HydraulicsControl.IbOilHigh"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilHot" VarB="Channel 4^MAIN.HydraulicsControl.IbOilHot"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilLow" VarB="Channel 1^MAIN.HydraulicsControl.IbOilLow"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilPressureOK" VarB="Channel 3^MAIN.HydraulicsControl.IbOilPressureOK"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilReserve" VarB="Channel 8^MAIN.HydraulicsControl.IbOilReserve"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilPanMaximum" VarB="Channel 7^MAIN.HydraulicsControl.IbOilpanMaximum"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics OUT (EL2008)">
-				<Link VarA="PlcTask Outputs^MAIN.FocusControl.ObFocusUnlock" VarB="Channel 7^MAIN.FocusControl.ObFocusUnlock"/>
-				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObOilPumpEnable" VarB="Channel 1^MAIN.HydraulicsControl.ObOilPumpEnable"/>
-				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObOilSuctionEnable" VarB="Channel 3^MAIN.HydraulicsControl.ObOilSuctionEnable"/>
-				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObResetOilPump" VarB="Channel 2^MAIN.HydraulicsControl.ObResetOilPump"/>
-				<Link VarA="PlcTask Outputs^MAIN.HydraulicsControl.ObResetSuctionPump" VarB="Channel 4^MAIN.HydraulicsControl.ObResetSuctionPump"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stFocusOut.bUnlock" VarB="Channel 7^MAIN.FocusControl.ObFocusUnlock"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bOilPumpEnable" VarB="Channel 1^MAIN.HydraulicsControl.ObOilPumpEnable"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bOilSuctionEnable" VarB="Channel 3^MAIN.HydraulicsControl.ObOilSuctionEnable"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bResetOilPump" VarB="Channel 2^MAIN.HydraulicsControl.ObResetOilPump"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bResetSuctionPump" VarB="Channel 4^MAIN.HydraulicsControl.ObResetSuctionPump"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover IN (EL1008)">
-				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverClosed[1]" VarB="Channel 2^MAIN.CoverControl.IabCoverClosed[1]"/>
-				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverClosed[2]" VarB="Channel 4^MAIN.CoverControl.IabCoverClosed[2]"/>
-				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverClosed[3]" VarB="Channel 6^MAIN.CoverControl.IabCoverClosed[3]"/>
-				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverOpen[1]" VarB="Channel 1^MAIN.CoverControl.IabCoverOpen[1]"/>
-				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverOpen[2]" VarB="Channel 3^MAIN.CoverControl.IabCoverOpen[2]"/>
-				<Link VarA="PlcTask Inputs^MAIN.CoverControl.IabCoverOpen[3]" VarB="Channel 5^MAIN.CoverControl.IabCoverOpen[3]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abClosed[1]" VarB="Channel 2^MAIN.CoverControl.IabCoverClosed[1]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abClosed[2]" VarB="Channel 4^MAIN.CoverControl.IabCoverClosed[2]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abClosed[3]" VarB="Channel 6^MAIN.CoverControl.IabCoverClosed[3]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abOpen[1]" VarB="Channel 1^MAIN.CoverControl.IabCoverOpen[1]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abOpen[2]" VarB="Channel 3^MAIN.CoverControl.IabCoverOpen[2]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abOpen[3]" VarB="Channel 5^MAIN.CoverControl.IabCoverOpen[3]"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover OUT1 (EL2004)">
-				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabCloseCover[1]" VarB="Channel 2^MAIN.CoverControl.OabCloseCover[1]"/>
-				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabCloseCover[2]" VarB="Channel 4^MAIN.CoverControl.OabCloseCover[2]"/>
-				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabOpenCover[1]" VarB="Channel 1^MAIN.CoverControl.OabOpenCover[1]"/>
-				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabOpenCover[2]" VarB="Channel 3^MAIN.CoverControl.OabOpenCover[2]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abClose[1]" VarB="Channel 2^MAIN.CoverControl.OabCloseCover[1]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abClose[2]" VarB="Channel 4^MAIN.CoverControl.OabCloseCover[2]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abOpen[1]" VarB="Channel 1^MAIN.CoverControl.OabOpenCover[1]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abOpen[2]" VarB="Channel 3^MAIN.CoverControl.OabOpenCover[2]"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover OUT2 (EL2004)">
-				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabCloseCover[3]" VarB="Channel 2^MAIN.CoverControl.OabCloseCover[3]"/>
-				<Link VarA="PlcTask Outputs^MAIN.CoverControl.OabOpenCover[3]" VarB="Channel 1^MAIN.CoverControl.OabOpenCover[3]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abClose[3]" VarB="Channel 2^MAIN.CoverControl.OabCloseCover[3]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abOpen[3]" VarB="Channel 1^MAIN.CoverControl.OabOpenCover[3]"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Temperature IN (EL3164)">
-				<Link VarA="PlcTask Inputs^MAIN.HydraulicsControl.InOilLevel" VarB="OilLevel^MAIN.HydraulicsControl.InOilLevel"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.nOilLevel" VarB="OilLevel^MAIN.HydraulicsControl.InOilLevel"/>
 				<Link VarA="PlcTask Inputs^MAIN.TelescopeAuxiliary.tempSensorFlange" VarB="AI Standard Channel 2^MAIN.TelescopeAuxiliary.tempSensorFlange"/>
 				<Link VarA="PlcTask Inputs^MAIN.TelescopeAuxiliary.tempSensorM1" VarB="AI Standard Channel 4^MAIN.TelescopeAuxiliary.tempSensorM1"/>
 				<Link VarA="PlcTask Inputs^MAIN.TelescopeAuxiliary.tempSensorM2" VarB="AI Standard Channel 1^MAIN.TelescopeAuxiliary.tempSensorM2"/>
@@ -11854,9 +11681,9 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.PowerMonitoring.UnbalanceGuardWarning" VarB="Total Advanced^Unbalance Guard Warning"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Safety Logic (EL6910)">
-				<Link VarA="PlcTask Inputs^MAIN.AzimuthControl.IbSTO" VarB="StandardInputs^Standard Out Var 18"/>
-				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.IbSTO" VarB="StandardInputs^Standard Out Var 20"/>
-				<Link VarA="PlcTask Inputs^MAIN.ElevationControl.IbSTO" VarB="StandardInputs^Standard Out Var 19"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn.bSTO" VarB="StandardInputs^Standard Out Var 18"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn.bSTO" VarB="StandardInputs^Standard Out Var 20"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn.bSTO" VarB="StandardInputs^Standard Out Var 19"/>
 				<Link VarA="PlcTask Inputs^MAIN.SafetyHandling.stInfoEStop1" VarB="Function Block Info Data^TwinSafeGroup1.Network1.FBEstop1 Info Data"/>
 				<Link VarA="PlcTask Inputs^MAIN.SafetyHandling.stInfoGroup1" VarB="TwinSAFE Group Info Data^TwinSafeGroup1 Info Data"/>
 				<Link VarA="PlcTask Inputs^MAIN.SafetyHandling.stInfoSafetyIn" VarB="Connection Info Data^Message_7 Info Data"/>
@@ -11872,19 +11699,19 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inCabinetTemp" VarB="RTD Inputs Channel 1^MAIN.CabinetControl.inCabinetTemp"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Azimuth (AX5125-0000-0214)">
-				<Link VarA="PlcTask Inputs^MAIN.AzimuthControl.InDiagnostic" VarB="AT^Diagnostic number"/>
-				<Link VarA="PlcTask Inputs^MAIN.AzimuthControl.InDigitalInputs" VarB="AT^Digital inputs, state"/>
-				<Link VarA="PlcTask Inputs^MAIN.AzimuthControl.InTorque" VarB="AT^Torque/force feedback value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn.nDiagnostic" VarB="AT^Diagnostic number"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn.nDigitalInputs" VarB="AT^Digital inputs, state"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn.nTorque" VarB="AT^Torque/force feedback value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)">
-				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InDiagnostic" VarB="AT 2^Diagnostic number"/>
-				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InDigitalInputs" VarB="AT 2^Digital inputs, state"/>
-				<Link VarA="PlcTask Inputs^MAIN.DerotatorControl.InTorque" VarB="AT 2^Torque/force feedback value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn.nDiagnostic" VarB="AT 2^Diagnostic number"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn.nDigitalInputs" VarB="AT 2^Digital inputs, state"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn.nTorque" VarB="AT 2^Torque/force feedback value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)">
-				<Link VarA="PlcTask Inputs^MAIN.ElevationControl.InDiagnostic" VarB="AT^Diagnostic number"/>
-				<Link VarA="PlcTask Inputs^MAIN.ElevationControl.InDigitalInputs" VarB="AT^Digital inputs, state"/>
-				<Link VarA="PlcTask Inputs^MAIN.ElevationControl.InTorque" VarB="AT^Torque/force feedback value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn.nDiagnostic" VarB="AT^Diagnostic number"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn.nDigitalInputs" VarB="AT^Digital inputs, state"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn.nTorque" VarB="AT^Torque/force feedback value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Roof IN 1 (EL1008)">
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.automatic" VarB="Channel 6^MAIN.RoofControl.automatic"/>

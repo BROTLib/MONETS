@@ -90,6 +90,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\GVL_IO.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
@@ -107,7 +111,7 @@
       <Namespace>BROTLib</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="HalfBROT">
-      <DefaultResolution>HalfBROT, 0.13.0 (BROT)</DefaultResolution>
+      <DefaultResolution>HalfBROT, 0.14.0 (BROT)</DefaultResolution>
       <Namespace>HalfBROT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONET Roof">
@@ -115,7 +119,7 @@
       <Namespace>MONETRoof</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="MONETcommon">
-      <DefaultResolution>MONETcommon, 0.17.0 (IAG)</DefaultResolution>
+      <DefaultResolution>MONETcommon, 0.18.0 (IAG)</DefaultResolution>
       <Namespace>MONETcommon</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="System_VisuElemEventTable">
