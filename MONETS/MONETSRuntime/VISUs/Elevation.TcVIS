@@ -2894,7 +2894,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.ElevationControl.bMoveAxis"</v>
+                          <v n="Value">"MAIN.bVisuMoveElevation"</v>
                         </o>
                       </l>
                     </o>
