@@ -71,3 +71,6 @@ VSSettings/
 
 # IntelliJ/PyCharm module files
 *.iml
+
+# TwinCAT Scope recordings (results); the scope projects (*.tcscopex) are tracked
+*.svdx

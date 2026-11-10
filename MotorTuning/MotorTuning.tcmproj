@@ -22,8 +22,5 @@
     <Content Include="WakeAndShake.tcscopex">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="YT Scope Project.tcscopex">
-      <SubType>Content</SubType>
-    </Content>
   </ItemGroup>
 </Project>
