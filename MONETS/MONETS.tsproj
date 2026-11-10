@@ -1484,13 +1484,244 @@ External Setpoint Generation:
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{FCC357D1-7124-E2AD-B3F6-8EAA3F7F80C9}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..3] OF BOOL</Name>
-			<BitSize>24</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
-			<ArrayInfo>
-				<LBound>1</LBound>
-				<Elements>3</Elements>
-			</ArrayInfo>
+			<Name GUID="{4C89A5CB-7B39-8818-3119-59F1AD62924E}" Namespace="HalfBROT" AutoDeleteType="true">ST_FocusIn</Name>
+			<Comment><![CDATA[ Process inputs of FB_FocusControl, linked in the application (GVL_IO) (#30, #31).]]></Comment>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>bLimitNear</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ DIN29 3.4]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bLimitFar</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ DIN30 3.5]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{FF93FB78-3880-0524-0C18-49D1D806F22F}" Namespace="HalfBROT" AutoDeleteType="true">ST_HydraulicsIn</Name>
+			<Comment><![CDATA[ Process inputs of FB_HydraulicsControl, linked in the application (GVL_IO). Passed as VAR_INPUT: the block gets a copy (#30, #31).]]></Comment>
+			<BitSize>96</BitSize>
+			<SubItem>
+				<Name>bOilLow</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ 2.1]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bOilHigh</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ ?]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bOilPressureOK</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ 2.3]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bOilHot</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ 2.4]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bOilCold</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ 2.5]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bOilFilterDirty</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ 2.6]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bPumpRunning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ 2.7]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bSuctionRunning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ 2.8]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>56</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>nOilLevel</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<Comment><![CDATA[ BT2]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bOilPanMaximum</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ DIN39 4.6]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bOilReserve</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ DIN40 4.7]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>88</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{5D7EFE34-C2E1-52E1-E6C0-9C1E6E966235}" Namespace="HalfBROT" AutoDeleteType="true">ST_AxisIn</Name>
+			<Comment><![CDATA[ Process inputs of an axis block (FB_AzimuthControl, FB_ElevationControl, FB_DerotatorControl), linked in the application (GVL_IO) (#30, #31).]]></Comment>
+			<BitSize>96</BitSize>
+			<SubItem>
+				<Name>nDigitalInputs</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ digital inputs of the end positions]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>nDiagnostic</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<Comment><![CDATA[ diagnostic number]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>nTorque</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<Comment><![CDATA[ torque feedback of the drive in 0.1 %]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bSTO</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ STO state of the drive (shown in the Safety Visu, not used by the axis logic)]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{639D03A5-3531-5E94-7903-D8D7871C890A}" Namespace="HalfBROT" AutoDeleteType="true">ST_CoverIn</Name>
+			<Comment><![CDATA[ Process inputs of FB_CoverControl, linked in the application (GVL_IO) (#30, #31).]]></Comment>
+			<BitSize>48</BitSize>
+			<SubItem>
+				<Name>abOpen</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<ArrayInfo>
+					<LBound>1</LBound>
+					<Elements>3</Elements>
+				</ArrayInfo>
+				<Comment><![CDATA[ limit switch open, cover 1-3]]></Comment>
+				<BitSize>24</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>abClosed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<ArrayInfo>
+					<LBound>1</LBound>
+					<Elements>3</Elements>
+				</ArrayInfo>
+				<Comment><![CDATA[ limit switch closed, cover 1-3]]></Comment>
+				<BitSize>24</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{E84D78DE-BAF0-DC51-FE4C-4BCFFFE8E0B1}" Namespace="HalfBROT" AutoDeleteType="true">ST_FocusOut</Name>
+			<Comment><![CDATA[ Process outputs of FB_FocusControl, linked in the application (GVL_IO) (#30, #31).]]></Comment>
+			<BitSize>8</BitSize>
+			<SubItem>
+				<Name>bUnlock</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ whether the focus is unlocked]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{5CB2F57B-9A60-6B79-FB05-3212E3224D3A}" Namespace="HalfBROT" AutoDeleteType="true">ST_HydraulicsOut</Name>
+			<Comment><![CDATA[ Process outputs of FB_HydraulicsControl, linked in the application (GVL_IO). Passed as VAR_IN_OUT: the block writes it (#30, #31).]]></Comment>
+			<BitSize>40</BitSize>
+			<SubItem>
+				<Name>bOilPumpEnable</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ DOUT4 0.3]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bOilSuctionEnable</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ DOUT5 0.4]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bBrakeAzEl</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ brake set]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bResetOilPump</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ reset of the pump starter]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bResetSuctionPump</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ reset of the suction pump starter]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{6076569C-624F-2FD6-459B-6CE73E06E024}" Namespace="HalfBROT" AutoDeleteType="true">ST_CoverOut</Name>
+			<Comment><![CDATA[ Process outputs of FB_CoverControl, linked in the application (GVL_IO) (#30, #31).]]></Comment>
+			<BitSize>48</BitSize>
+			<SubItem>
+				<Name>abOpen</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<ArrayInfo>
+					<LBound>1</LBound>
+					<Elements>3</Elements>
+				</ArrayInfo>
+				<Comment><![CDATA[ open cover 1-3]]></Comment>
+				<BitSize>24</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>abClose</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<ArrayInfo>
+					<LBound>1</LBound>
+					<Elements>3</Elements>
+				</ArrayInfo>
+				<Comment><![CDATA[ close cover 1-3]]></Comment>
+				<BitSize>24</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
 		</DataType>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
@@ -2771,7 +3002,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{6DADE760-7FAC-4830-92BA-478C8595D673}" Name="MONETSRuntime" PrjFilePath="MONETSRuntime\MONETSRuntime.plcproj" TmcFilePath="MONETSRuntime\MONETSRuntime.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MONETSRuntime\MONETSRuntime.tmc" TmcHash="{AC22E8A2-60FD-920E-7804-7BAB940CBE50}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MONETSRuntime\MONETSRuntime.tmc" TmcHash="{39601711-949E-1821-D8F3-D8A4BE8F8AF8}">
 					<Name>MONETSRuntime Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -2829,6 +3060,8 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.PowerMonitoring.FrequencyGuardWarning</Name>
+							<Comment><![CDATA[ AT%I*/AT%Q* below are mapped directly on this FB: only one instance per PLC is
+ supported, a second instance would collide on the same physical hardware.]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2910,7 +3143,7 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.RoofControl.ups_fail</Name>
-							<Comment><![CDATA[ UPS failure]]></Comment>
+							<Comment><![CDATA[ UPS failure: linked to the UPS input in the consumer projects (tsproj), not evaluated yet]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2938,7 +3171,7 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.RoofControl.roofs[1].motors[1].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Comment><![CDATA[ inductive sensor for counting rotation]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2957,7 +3190,7 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.RoofControl.roofs[1].motors[2].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Comment><![CDATA[ inductive sensor for counting rotation]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2985,7 +3218,7 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.RoofControl.roofs[2].motors[1].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Comment><![CDATA[ inductive sensor for counting rotation]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -3004,8 +3237,12 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.RoofControl.roofs[2].motors[2].counter</Name>
-							<Comment><![CDATA[ hall sensor for counting rotation]]></Comment>
+							<Comment><![CDATA[ inductive sensor for counting rotation]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.FocusControl.axisRef.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.FocusControl.refAxis.NcToPlc</Name>
@@ -3029,6 +3266,7 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.TelescopeAuxiliary.tempSensorM1cell</Name>
+							<Comment><![CDATA[ deliberately unlinked: the sensor exists, but the EL3164 has no free input (MONETS#16)]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
@@ -3041,7 +3279,9 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.PendantControl.IbBCD0</Name>
-							<Comment><![CDATA[DIN17 2.0]]></Comment>
+							<Comment><![CDATA[DIN17 2.0
+ AT%I*/AT%Q* below are mapped directly on this FB: only one instance per PLC is
+ supported, a second instance would collide on the same physical hardware.]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -3083,6 +3323,30 @@ External Setpoint Generation:
 						<Var>
 							<Name>MAIN.PendantControl.IbDirectionRight</Name>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stFocusIn</Name>
+							<Type GUID="{4C89A5CB-7B39-8818-3119-59F1AD62924E}" Namespace="HalfBROT">ST_FocusIn</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stHydraulicsIn</Name>
+							<Type GUID="{FF93FB78-3880-0524-0C18-49D1D806F22F}" Namespace="HalfBROT">ST_HydraulicsIn</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stAzimuthIn</Name>
+							<Type GUID="{5D7EFE34-C2E1-52E1-E6C0-9C1E6E966235}" Namespace="HalfBROT">ST_AxisIn</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stElevationIn</Name>
+							<Type GUID="{5D7EFE34-C2E1-52E1-E6C0-9C1E6E966235}" Namespace="HalfBROT">ST_AxisIn</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stDerotatorIn</Name>
+							<Type GUID="{5D7EFE34-C2E1-52E1-E6C0-9C1E6E966235}" Namespace="HalfBROT">ST_AxisIn</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stCoverIn</Name>
+							<Type GUID="{639D03A5-3531-5E94-7903-D8D7871C890A}" Namespace="HalfBROT">ST_CoverIn</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -3202,6 +3466,10 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.FocusControl.axisRef.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.FocusControl.refAxis.PlcToNc</Name>
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
@@ -3236,6 +3504,18 @@ External Setpoint Generation:
 						<Var>
 							<Name>MAIN.PendantControl.ObLampError</Name>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stFocusOut</Name>
+							<Type GUID="{E84D78DE-BAF0-DC51-FE4C-4BCFFFE8E0B1}" Namespace="HalfBROT">ST_FocusOut</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stHydraulicsOut</Name>
+							<Type GUID="{5CB2F57B-9A60-6B79-FB05-3212E3224D3A}" Namespace="HalfBROT">ST_HydraulicsOut</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stCoverOut</Name>
+							<Type GUID="{6076569C-624F-2FD6-459B-6CE73E06E024}" Namespace="HalfBROT">ST_CoverOut</Type>
 						</Var>
 					</Vars>
 					<Contexts>
@@ -3424,7 +3704,7 @@ External Setpoint Generation:
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.ObBrakeAzEl" Index="#x7010" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsOut.bBrakeAzEl" Index="#x7010" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ brake set]]></Comment>
 								</Entry>
@@ -3764,24 +4044,24 @@ External Setpoint Generation:
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.ObOilPumpEnable" Index="#x7000" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsOut.bOilPumpEnable" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[DOUT4 0.3]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.ObResetOilPump" Index="#x7010" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsOut.bResetOilPump" Index="#x7010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.ObOilSuctionEnable" Index="#x7020" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsOut.bOilSuctionEnable" Index="#x7020" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[DOUT5 0.4	]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.ObResetSuctionPump" Index="#x7030" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsOut.bResetSuctionPump" Index="#x7030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -3796,7 +4076,7 @@ External Setpoint Generation:
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 7" Index="#x1606" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.FocusControl.ObFocusUnlock" Index="#x7060" Sub="#x01">
+								<Entry Name="GVL_IO.stFocusOut.bUnlock" Index="#x7060" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ whether focus is unlocked]]></Comment>
 								</Entry>
@@ -3815,13 +4095,13 @@ External Setpoint Generation:
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbPumpRunning" Index="#x6000" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bPumpRunning" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ 2.7]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbSuctionRunning" Index="#x6010" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bSuctionRunning" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ 2.8]]></Comment>
 								</Entry>
@@ -3832,13 +4112,13 @@ External Setpoint Generation:
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.FocusControl.IbLimitNear" Index="#x6030" Sub="#x01">
+								<Entry Name="GVL_IO.stFocusIn.bLimitNear" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ DIN29 3.4]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.FocusControl.IbLimitFar" Index="#x6040" Sub="#x01">
+								<Entry Name="GVL_IO.stFocusIn.bLimitFar" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ DIN30 3.5]]></Comment>
 								</Entry>
@@ -3867,49 +4147,49 @@ External Setpoint Generation:
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbOilLow" Index="#x6000" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bOilLow" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ 2.1]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbOilHigh" Index="#x6010" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bOilHigh" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ ?]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbOilPressureOK" Index="#x6020" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bOilPressureOK" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ 2.3]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbOilHot" Index="#x6030" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bOilHot" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ 2.4]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbOilCold" Index="#x6040" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bOilCold" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ 2.5]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbOilFilterDirty" Index="#x6050" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bOilFilterDirty" Index="#x6050" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[ 2.6]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbOilpanMaximum" Index="#x6060" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bOilPanMaximum" Index="#x6060" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[DIN39 4.6]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.HydraulicsControl.IbOilReserve" Index="#x6070" Sub="#x01">
+								<Entry Name="GVL_IO.stHydraulicsIn.bOilReserve" Index="#x6070" Sub="#x01">
 									<Type>BIT</Type>
 									<Comment><![CDATA[DIN40 4.7]]></Comment>
 								</Entry>
@@ -5039,7 +5319,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" BitLen="1" Index="#x6020" Sub="#x10" Flags="#x00020000">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="MAIN.HydraulicsControl.InOilLevel" BitLen="16" Index="#x6020" Sub="#x11" Flags="#x00020000">
+								<Entry Name="GVL_IO.stHydraulicsIn.nOilLevel" BitLen="16" Index="#x6020" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 									<Comment><![CDATA[BT2]]></Comment>
 								</Entry>
@@ -5284,22 +5564,22 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.OabOpenCover[1]" Index="#x7000" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverOut.abOpen[1]" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.OabCloseCover[1]" Index="#x7010" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverOut.abClose[1]" Index="#x7010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.OabOpenCover[2]" Index="#x7020" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverOut.abOpen[2]" Index="#x7020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.OabCloseCover[2]" Index="#x7030" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverOut.abClose[2]" Index="#x7030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -5312,12 +5592,12 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.OabOpenCover[3]" Index="#x7000" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverOut.abOpen[3]" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.OabCloseCover[3]" Index="#x7010" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverOut.abClose[3]" Index="#x7010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -5340,32 +5620,32 @@ Bit1: Value smaller than Limit2]]></Comment>
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.IabCoverOpen[1]" Index="#x6000" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverIn.abOpen[1]" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.IabCoverClosed[1]" Index="#x6010" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverIn.abClosed[1]" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.IabCoverOpen[2]" Index="#x6020" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverIn.abOpen[2]" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.IabCoverClosed[2]" Index="#x6030" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverIn.abClosed[2]" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.IabCoverOpen[3]" Index="#x6040" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverIn.abOpen[3]" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
-								<Entry Name="MAIN.CoverControl.IabCoverClosed[3]" Index="#x6050" Sub="#x01">
+								<Entry Name="GVL_IO.stCoverIn.abClosed[3]" Index="#x6050" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -11428,7 +11708,6 @@ Bit1: Value smaller than Limit2]]></Comment>
 		<MappingInfo Identifier="{00000000-0010-0304-3000-040310000403}" Id="#x02030030"/>
 		<MappingInfo Identifier="{00000000-0050-0304-3000-040350000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-0060-0304-3000-040362000403}" Id="#x02030090"/>
-		<MappingInfo Identifier="{08502001-0050-0304-0020-500850000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{05000010-2001-0850-3000-040300205008}" Id="#x02030070" Watchdog="14000000040000000400000004000000"/>
 		<MappingInfo Identifier="{03040040-0040-0304-4000-040340000403}" Id="#x02030040" Watchdog="04000000040000000400000004000000"/>
 		<MappingInfo Identifier="{03040040-0070-0304-4000-040370000403}" Id="#x02030020" Watchdog="04000000040000000400000004000000"/>
@@ -11576,7 +11855,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 		</OwnerA>
 		<OwnerA Name="TIPC^MONETSRuntime^MONETSRuntime Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Brake AzEl (EL2004)">
-				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bBrakeAzEl" VarB="Channel 2^MAIN.HydraulicsControl.ObBrakeAzEl"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut^bBrakeAzEl" VarB="Channel 2^GVL_IO.stHydraulicsOut.bBrakeAzEl"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Front Panel IN (EL1008)">
 				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inButtonReset" VarB="Channel 3^MAIN.CabinetControl.inButtonReset"/>
@@ -11591,48 +11870,48 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Outputs^MAIN.CabinetControl.outLampPower" VarB="Channel 1^MAIN.CabinetControl.outLampPower"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics Focus IN (EL1008)">
-				<Link VarA="PlcTask Inputs^GVL_IO.stFocusIn.bLimitFar" VarB="Channel 5^MAIN.FocusControl.IbLimitFar"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stFocusIn.bLimitNear" VarB="Channel 4^MAIN.FocusControl.IbLimitNear"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bPumpRunning" VarB="Channel 1^MAIN.HydraulicsControl.IbPumpRunning"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bSuctionRunning" VarB="Channel 2^MAIN.HydraulicsControl.IbSuctionRunning"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stFocusIn^bLimitFar" VarB="Channel 5^GVL_IO.stFocusIn.bLimitFar"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stFocusIn^bLimitNear" VarB="Channel 4^GVL_IO.stFocusIn.bLimitNear"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bPumpRunning" VarB="Channel 1^GVL_IO.stHydraulicsIn.bPumpRunning"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bSuctionRunning" VarB="Channel 2^GVL_IO.stHydraulicsIn.bSuctionRunning"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics IN2 (EL1008)">
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilCold" VarB="Channel 5^MAIN.HydraulicsControl.IbOilCold"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilFilterDirty" VarB="Channel 6^MAIN.HydraulicsControl.IbOilFilterDirty"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilHigh" VarB="Channel 2^MAIN.HydraulicsControl.IbOilHigh"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilHot" VarB="Channel 4^MAIN.HydraulicsControl.IbOilHot"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilLow" VarB="Channel 1^MAIN.HydraulicsControl.IbOilLow"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilPressureOK" VarB="Channel 3^MAIN.HydraulicsControl.IbOilPressureOK"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilReserve" VarB="Channel 8^MAIN.HydraulicsControl.IbOilReserve"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.bOilPanMaximum" VarB="Channel 7^MAIN.HydraulicsControl.IbOilpanMaximum"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bOilCold" VarB="Channel 5^GVL_IO.stHydraulicsIn.bOilCold"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bOilFilterDirty" VarB="Channel 6^GVL_IO.stHydraulicsIn.bOilFilterDirty"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bOilHigh" VarB="Channel 2^GVL_IO.stHydraulicsIn.bOilHigh"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bOilHot" VarB="Channel 4^GVL_IO.stHydraulicsIn.bOilHot"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bOilLow" VarB="Channel 1^GVL_IO.stHydraulicsIn.bOilLow"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bOilPanMaximum" VarB="Channel 7^GVL_IO.stHydraulicsIn.bOilPanMaximum"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bOilPressureOK" VarB="Channel 3^GVL_IO.stHydraulicsIn.bOilPressureOK"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^bOilReserve" VarB="Channel 8^GVL_IO.stHydraulicsIn.bOilReserve"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Hydraulics OUT (EL2008)">
-				<Link VarA="PlcTask Outputs^GVL_IO.stFocusOut.bUnlock" VarB="Channel 7^MAIN.FocusControl.ObFocusUnlock"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bOilPumpEnable" VarB="Channel 1^MAIN.HydraulicsControl.ObOilPumpEnable"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bOilSuctionEnable" VarB="Channel 3^MAIN.HydraulicsControl.ObOilSuctionEnable"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bResetOilPump" VarB="Channel 2^MAIN.HydraulicsControl.ObResetOilPump"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut.bResetSuctionPump" VarB="Channel 4^MAIN.HydraulicsControl.ObResetSuctionPump"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stFocusOut^bUnlock" VarB="Channel 7^GVL_IO.stFocusOut.bUnlock"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut^bOilPumpEnable" VarB="Channel 1^GVL_IO.stHydraulicsOut.bOilPumpEnable"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut^bOilSuctionEnable" VarB="Channel 3^GVL_IO.stHydraulicsOut.bOilSuctionEnable"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut^bResetOilPump" VarB="Channel 2^GVL_IO.stHydraulicsOut.bResetOilPump"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stHydraulicsOut^bResetSuctionPump" VarB="Channel 4^GVL_IO.stHydraulicsOut.bResetSuctionPump"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover IN (EL1008)">
-				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abClosed[1]" VarB="Channel 2^MAIN.CoverControl.IabCoverClosed[1]"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abClosed[2]" VarB="Channel 4^MAIN.CoverControl.IabCoverClosed[2]"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abClosed[3]" VarB="Channel 6^MAIN.CoverControl.IabCoverClosed[3]"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abOpen[1]" VarB="Channel 1^MAIN.CoverControl.IabCoverOpen[1]"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abOpen[2]" VarB="Channel 3^MAIN.CoverControl.IabCoverOpen[2]"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn.abOpen[3]" VarB="Channel 5^MAIN.CoverControl.IabCoverOpen[3]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn^abClosed[1]" VarB="Channel 2^GVL_IO.stCoverIn.abClosed[1]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn^abClosed[2]" VarB="Channel 4^GVL_IO.stCoverIn.abClosed[2]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn^abClosed[3]" VarB="Channel 6^GVL_IO.stCoverIn.abClosed[3]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn^abOpen[1]" VarB="Channel 1^GVL_IO.stCoverIn.abOpen[1]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn^abOpen[2]" VarB="Channel 3^GVL_IO.stCoverIn.abOpen[2]"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stCoverIn^abOpen[3]" VarB="Channel 5^GVL_IO.stCoverIn.abOpen[3]"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover OUT1 (EL2004)">
-				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abClose[1]" VarB="Channel 2^MAIN.CoverControl.OabCloseCover[1]"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abClose[2]" VarB="Channel 4^MAIN.CoverControl.OabCloseCover[2]"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abOpen[1]" VarB="Channel 1^MAIN.CoverControl.OabOpenCover[1]"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abOpen[2]" VarB="Channel 3^MAIN.CoverControl.OabOpenCover[2]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut^abClose[1]" VarB="Channel 2^GVL_IO.stCoverOut.abClose[1]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut^abClose[2]" VarB="Channel 4^GVL_IO.stCoverOut.abClose[2]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut^abOpen[1]" VarB="Channel 1^GVL_IO.stCoverOut.abOpen[1]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut^abOpen[2]" VarB="Channel 3^GVL_IO.stCoverOut.abOpen[2]"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Cover OUT2 (EL2004)">
-				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abClose[3]" VarB="Channel 2^MAIN.CoverControl.OabCloseCover[3]"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut.abOpen[3]" VarB="Channel 1^MAIN.CoverControl.OabOpenCover[3]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut^abClose[3]" VarB="Channel 2^GVL_IO.stCoverOut.abClose[3]"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stCoverOut^abOpen[3]" VarB="Channel 1^GVL_IO.stCoverOut.abOpen[3]"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Mirror Temperature IN (EL3164)">
-				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn.nOilLevel" VarB="OilLevel^MAIN.HydraulicsControl.InOilLevel"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stHydraulicsIn^nOilLevel" VarB="OilLevel^GVL_IO.stHydraulicsIn.nOilLevel"/>
 				<Link VarA="PlcTask Inputs^MAIN.TelescopeAuxiliary.tempSensorFlange" VarB="AI Standard Channel 2^MAIN.TelescopeAuxiliary.tempSensorFlange"/>
 				<Link VarA="PlcTask Inputs^MAIN.TelescopeAuxiliary.tempSensorM1" VarB="AI Standard Channel 4^MAIN.TelescopeAuxiliary.tempSensorM1"/>
 				<Link VarA="PlcTask Inputs^MAIN.TelescopeAuxiliary.tempSensorM2" VarB="AI Standard Channel 1^MAIN.TelescopeAuxiliary.tempSensorM2"/>
@@ -11681,9 +11960,9 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.PowerMonitoring.UnbalanceGuardWarning" VarB="Total Advanced^Unbalance Guard Warning"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Safety Logic (EL6910)">
-				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn.bSTO" VarB="StandardInputs^Standard Out Var 18"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn.bSTO" VarB="StandardInputs^Standard Out Var 20"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn.bSTO" VarB="StandardInputs^Standard Out Var 19"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn^bSTO" VarB="StandardInputs^Standard Out Var 18"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn^bSTO" VarB="StandardInputs^Standard Out Var 20"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn^bSTO" VarB="StandardInputs^Standard Out Var 19"/>
 				<Link VarA="PlcTask Inputs^MAIN.SafetyHandling.stInfoEStop1" VarB="Function Block Info Data^TwinSafeGroup1.Network1.FBEstop1 Info Data"/>
 				<Link VarA="PlcTask Inputs^MAIN.SafetyHandling.stInfoGroup1" VarB="TwinSAFE Group Info Data^TwinSafeGroup1 Info Data"/>
 				<Link VarA="PlcTask Inputs^MAIN.SafetyHandling.stInfoSafetyIn" VarB="Connection Info Data^Message_7 Info Data"/>
@@ -11699,19 +11978,19 @@ Bit1: Value smaller than Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.CabinetControl.inCabinetTemp" VarB="RTD Inputs Channel 1^MAIN.CabinetControl.inCabinetTemp"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Azimuth (AX5125-0000-0214)">
-				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn.nDiagnostic" VarB="AT^Diagnostic number"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn.nDigitalInputs" VarB="AT^Digital inputs, state"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn.nTorque" VarB="AT^Torque/force feedback value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn^nDiagnostic" VarB="AT^Diagnostic number"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn^nDigitalInputs" VarB="AT^Digital inputs, state"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stAzimuthIn^nTorque" VarB="AT^Torque/force feedback value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Derotator (AX5206-0000-0215)">
-				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn.nDiagnostic" VarB="AT 2^Diagnostic number"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn.nDigitalInputs" VarB="AT 2^Digital inputs, state"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn.nTorque" VarB="AT 2^Torque/force feedback value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn^nDiagnostic" VarB="AT 2^Diagnostic number"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn^nDigitalInputs" VarB="AT 2^Digital inputs, state"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stDerotatorIn^nTorque" VarB="AT 2^Torque/force feedback value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Elevation (AX5125-0000-0214)">
-				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn.nDiagnostic" VarB="AT^Diagnostic number"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn.nDigitalInputs" VarB="AT^Digital inputs, state"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn.nTorque" VarB="AT^Torque/force feedback value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn^nDiagnostic" VarB="AT^Diagnostic number"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn^nDigitalInputs" VarB="AT^Digital inputs, state"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stElevationIn^nTorque" VarB="AT^Torque/force feedback value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 11 (EK1100)^Roof IN 1 (EL1008)">
 				<Link VarA="PlcTask Inputs^MAIN.RoofControl.automatic" VarB="Channel 6^MAIN.RoofControl.automatic"/>
