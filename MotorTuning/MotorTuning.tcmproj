@@ -10,6 +10,18 @@
     <Content Include="ElevationFriction.tcscopex">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="FocusEnable.tcscopex">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Roof.tcscopex">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SlewTrace.tcscopex">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="WakeAndShake.tcscopex">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="YT Scope Project.tcscopex">
       <SubType>Content</SubType>
     </Content>
