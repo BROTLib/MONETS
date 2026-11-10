@@ -6407,7 +6407,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 														<IDN>100</IDN>
 														<Elements>64</Elements>
 														<Attribute>0</Attribute>
-														<Data>DB930400</Data>
+														<Data>000E2707</Data>
 													</InitCmd>
 													<InitCmd>
 														<Transition>PS</Transition>
@@ -6418,7 +6418,18 @@ Bit1: Value smaller than Limit2]]></Comment>
 														<IDN>101</IDN>
 														<Elements>64</Elements>
 														<Attribute>0</Attribute>
-														<Data>5000</Data>
+														<Data>2C01</Data>
+													</InitCmd>
+													<InitCmd>
+														<Transition>PS</Transition>
+														<Comment>Position loop Kv-factor</Comment>
+														<Timeout>0</Timeout>
+														<OpCode>3</OpCode>
+														<DriveNo>0</DriveNo>
+														<IDN>104</IDN>
+														<Elements>64</Elements>
+														<Attribute>0</Attribute>
+														<Data>0800</Data>
 													</InitCmd>
 													<InitCmd>
 														<Transition>PS</Transition>
@@ -7881,7 +7892,7 @@ Bit1: Value smaller than Limit2]]></Comment>
 														<IDN>100</IDN>
 														<Elements>64</Elements>
 														<Attribute>0</Attribute>
-														<Data>A7120100</Data>
+														<Data>002D3101</Data>
 													</InitCmd>
 													<InitCmd>
 														<Transition>PS</Transition>
@@ -7892,7 +7903,18 @@ Bit1: Value smaller than Limit2]]></Comment>
 														<IDN>101</IDN>
 														<Elements>64</Elements>
 														<Attribute>0</Attribute>
-														<Data>5000</Data>
+														<Data>6400</Data>
+													</InitCmd>
+													<InitCmd>
+														<Transition>PS</Transition>
+														<Comment>Position loop Kv-factor</Comment>
+														<Timeout>0</Timeout>
+														<OpCode>3</OpCode>
+														<DriveNo>0</DriveNo>
+														<IDN>104</IDN>
+														<Elements>64</Elements>
+														<Attribute>0</Attribute>
+														<Data>0800</Data>
 													</InitCmd>
 													<InitCmd>
 														<Transition>PS</Transition>
