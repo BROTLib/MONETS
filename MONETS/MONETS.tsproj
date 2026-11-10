@@ -7984,6 +7984,32 @@ Bit1: Value smaller than Limit2]]></Comment>
 												<SoE>
 													<InitCmd>
 														<Transition>PS</Transition>
+														<Comment>Commutation offset calibration parameter (Wake and Shake, set 2026-11-09, verified in the export of 2026-11-10)</Comment>
+														<Timeout>0</Timeout>
+														<OpCode>3</OpCode>
+														<DriveNo>0</DriveNo>
+														<IDN>32933</IDN>
+														<Elements>64</Elements>
+														<Attribute>0</Attribute>
+														<Data>3C003C000100010064000000F401B80B0000000000000000580264005802F40100000500E100F401B80B84030000000000000000000000000000000000000000</Data>
+														<SubItemPath>eMode</SubItemPath>
+														<SubItemPath>eActivation</SubItemPath>
+														<SubItemPath>nMaxCurrentDeviation_percent</SubItemPath>
+														<SubItemPath>stStaticCurrentVec.nCurrentLevel_percent</SubItemPath>
+														<SubItemPath>stStaticCurrentVec.nDuration_ms</SubItemPath>
+														<SubItemPath>stWakeAndShake.nFirstPhaseCurrentLevel</SubItemPath>
+														<SubItemPath>stWakeAndShake.nFirstPhaseRampUpTime_ms</SubItemPath>
+														<SubItemPath>stWakeAndShake.nScdPhaseCurrentLevel</SubItemPath>
+														<SubItemPath>stWakeAndShake.nScdPhaseRampUpTime_ms</SubItemPath>
+														<SubItemPath>stWakeAndShake.nCommutationPosCtrl_Kp</SubItemPath>
+														<SubItemPath>stWakeAndShake.stWakeAndShakeExpert.nFirstPhasePosMonitoringLimit_deg</SubItemPath>
+														<SubItemPath>stWakeAndShake.stWakeAndShakeExpert.nFirstPhaseStepWidth_deg</SubItemPath>
+														<SubItemPath>stWakeAndShake.stWakeAndShakeExpert.nFirstWaitingTimeAfterStep_ms</SubItemPath>
+														<SubItemPath>stWakeAndShake.stWakeAndShakeExpert.nScdPhaseDuration_ms</SubItemPath>
+														<SubItemPath>stWakeAndShake.stWakeAndShakeExpert.nErrorMonitoring_deg</SubItemPath>
+													</InitCmd>
+													<InitCmd>
+														<Transition>PS</Transition>
 														<Comment>Feedback 1 type</Comment>
 														<Timeout>0</Timeout>
 														<OpCode>3</OpCode>
