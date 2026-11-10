@@ -63,3 +63,18 @@ Kp **0.00**, first phase waiting time after step **500 ms**, step width 22.5 deg
 error monitoring 90.0 deg, static current vector 50 % / 3000 ms. Set value and actual value are the same.
 So the activations of 2026-11-10 did not reset P-0-0165 either (on 2026-11-09 at 17:11 it was found at the factory defaults after the update of that day).
 Still only in the drive: no project file holds P-0-0165, so a drive replacement or a reset to defaults would lose it.
+
+## Correction and resolution, 2026-11-10 evening (read this before the sections above)
+
+Where the XAE Startup list really lives: in `MONETS/MONETS.tsproj` as `<MBoxUserCmdData>` hex blobs (385 of them; layout `... 03 40 <IDN LE16> 00000000 <data> <comment>`;
+elevation group around line 8584-8619, azimuth group around line 7119-7156). The `<Calc><SoE><InitCmd>` blocks quoted above are secondary copies; the S-0-0100/0101
+values in them were aligned with the drive in #102, but the blobs are what the Startup tab shows. The statement above that P-0-0165 is "in no project file" was wrong:
+the blobs held P-0-0165 with **factory defaults**, and it is written at every `PS` transition. So each activation of a project built from develop reset the Wake&Shake
+parameters (the loss of 2026-11-09 17:11); the local XAE project had the tuned values, which is why 2026-11-10 activations from it kept them.
+
+Fix on develop (direct commits, no PR): 0fa8790 sets the elevation P-0-0165 blob to the tuned bytes (Wake and Shake, activation On enable request, 60 % / 60 %, ramps 100 / 500 ms,
+Kp 0.00, waiting 500 ms); c6edef5 sets the azimuth blob's activation to On enable request (other fields unchanged: 50 %, Kp 0.04, 150 ms). After c6edef5 all 385 blobs equal the
+local XAE tsproj. Verified on 2026-11-10 17:53 after an activation of this project: parameter lists unchanged against 17:04 (el, az, derotator), P-0-0165 read in the Drive Manager
+as intended, power-on / slew / gohome / park without error (results MS-179 in the IAG test plan).
+
+Still open: the derotator drive has untuned velocity-loop defaults (0.097 / 8 ms); P-0-0165 cannot be compared from the CSV export (read it in the Drive Manager).
