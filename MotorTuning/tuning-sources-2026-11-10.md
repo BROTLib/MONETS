@@ -54,3 +54,12 @@ Exports of elevation, azimuth and derotator at 17:04, diffed against the 2026-11
 Conclusion for now: the activation by itself did not reset the elevation/azimuth loop tuning on 2026-11-10. What was lost earlier (and on
 2026-11-09 17:11 P-0-0165) is not explained by this; the exports of 2026-11-09 17:16 and 2026-11-10 17:04 are the reference from which a loss can be detected from now on.
 Next check: read P-0-0165 in the Drive Manager before and after the next activation, and keep an export per activation day.
+
+## P-0-0165 on the elevation drive, 2026-11-10 17:09 (separate export of the parameter, Downloads)
+
+Read after the activations of 2026-11-10 and before the next power-on: **all Wake&Shake settings are intact** and equal to the values set on 2026-11-09:
+command mode Wake and Shake (1), activation **On enable request (1)**, first and second phase torque 60.0 %, ramp up 100 ms / 500 ms, commutation position control
+Kp **0.00**, first phase waiting time after step **500 ms**, step width 22.5 deg, position monitoring limit 0.5 deg, second phase duration 3000 ms,
+error monitoring 90.0 deg, static current vector 50 % / 3000 ms. Set value and actual value are the same.
+So the activations of 2026-11-10 did not reset P-0-0165 either (on 2026-11-09 at 17:11 it was found at the factory defaults after the update of that day).
+Still only in the drive: no project file holds P-0-0165, so a drive replacement or a reset to defaults would lose it.
