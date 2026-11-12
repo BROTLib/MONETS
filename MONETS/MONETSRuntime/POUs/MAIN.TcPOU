@@ -196,6 +196,7 @@ PowerMonitoring(phaseOK => ready);
 IF eTelescopeMode = E_TelescopeMode.automatic THEN
 	TelescopeControl(
 		telescopeConfig := telescopeConfig,
+		sTelescopeName	:= 'MONET/S',				// log: "MONET/S startup finished"
 		fbCovers 		:= CoverControl,
 		fbBrake 		:= HydraulicsControl,
 		fbHydraulics 	:= HydraulicsControl,
