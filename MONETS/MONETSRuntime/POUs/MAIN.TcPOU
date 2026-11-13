@@ -31,7 +31,14 @@ VAR
 	// MONETcommon#24 step 2c: motion limits of the telescope; the other fields keep the BROTLib defaults.
 	// fElevationMoveVelocity: deg/s for every elevation move (home, park, slew); must not exceed the NC maximum velocity of
 	// the elevation axis (3.0), MONETS#40. Was the deprecated input TelescopeControl.fElevationMoveVelocity up to MONETcommon 0.14.
-	stTelescopeMotion	: BROTLib.ST_MotionConfig := (fElevationMoveVelocity := 3.0);
+	// MONETcommon#272 (0.24.0): an axis error under motion stops the healthy axes with their drives (MC_Stop) at the fast-stop
+	// dynamics, while the shared brake clamps for a faulty Az/El. 0.0 = the NC parameters of the axis (Az 3 deg/s^2, jerk 1;
+	// El 1, jerk 2; Der 17.6, jerk 52.75), too soft against the brake for Az/El. Within the NC maximum deceleration (Az/El 10).
+	// Same values as MONET/N; to be confirmed with the scope in checklist 4.5. The derotator keeps its (fast) NC parameters.
+	stTelescopeMotion	: BROTLib.ST_MotionConfig := (fElevationMoveVelocity := 3.0,
+		fAzimuthFastStopDeceleration	:= 6.0,	fAzimuthFastStopJerk	:= 20.0,
+		fElevationFastStopDeceleration	:= 6.0,	fElevationFastStopJerk	:= 20.0,
+		fDerotatorFastStopDeceleration	:= 0.0,	fDerotatorFastStopJerk	:= 0.0);
 
 	// MONETS#72: Start buttons of the axis Visus. The Visu sets the bit, the body starts the homing through the HomeAxis property
 	// (the focus through bManualHome, HalfBROT#138) and clears the bit. The Visu must not write bHomeAxis: that sets the level only and no homing starts.
