@@ -72,8 +72,18 @@ VAR
 	// TRUE = enabled; set FALSE via ADS for test runs. Not persistent: back to TRUE at every PLC start (the safe default).
 	bRoofCloseOnErrorEnable	: BOOL := TRUE;
 	Diagnostics			: FB_MonetDiagnostics(comm := fbComm);	// diagnostics/base/* telemetry, on change + 30 s heartbeat (MONETcommon)
+	Hmi					: BROTLib.FB_HmiGateway;	// BROTLib X10: the only symbol of the HMI (BROTweb), fixed path MAIN.Hmi
 END_VAR
 VAR CONSTANT
+	// Axis descriptors of the HMI gateway (contract 5.3). Names, roles and units only: fMin/fMax are the ONLY limit of HMI jog and
+	// MoveAxisTo (no horizon or pole check), so they and the bCan* rights need a reviewed choice inside the NC soft limits and a
+	// check on site (target just outside each limit rejected, jog stops at each limit). Until then all rights are FALSE and the
+	// HMI cannot jog, home, enable or move an axis. Candidates from this file: azimuth -274..270 (AzimuthControl), derotator
+	// -90..360 (DerotatorControl), elevation 0..90 (hard limit in FB_ElevationControl).
+	stAzimuthInfo		: BROTLib.ST_HmiAxisInfo := (sName := 'axis.azimuth', eRole := BROTLib.E_HmiAxisRole.azimuth, sUnit := 'deg');
+	stElevationInfo		: BROTLib.ST_HmiAxisInfo := (sName := 'axis.elevation', eRole := BROTLib.E_HmiAxisRole.altitude, sUnit := 'deg');
+	stDerotatorInfo		: BROTLib.ST_HmiAxisInfo := (sName := 'axis.derotator', eRole := BROTLib.E_HmiAxisRole.derotator, sUnit := 'deg');
+	stFocusInfo			: BROTLib.ST_HmiAxisInfo := (sName := 'axis.focus', eRole := BROTLib.E_HmiAxisRole.focus, sUnit := 'mm');	// fMin/fMax come from I_Focus
 	// MONETS#32: raw counts of the oil level sensor (Reventec LS, 0.25..4.75 V on a 0..10 V EL3164 = 819..15563, 5 V = 16383): below the limit is a cut wire, lost supply (0) or the sensor error output (0.1 V, about 330); above is over-range. MONETS#58: the oversized pan is never drained completely, so a working sensor reads 550..1160 (below its 819 range) when nearly empty; the limit lies between that and the error output
 	nOilLevelMinValid	: INT := 450;
 	nOilLevelMaxValid	: INT := 12000;
@@ -125,7 +135,15 @@ IF bVisuMoveDerotator <> DerotatorControl.MoveAxis THEN
 END_IF
 
 // run cabinet
-CabinetControl(iTelescope := TelescopeControl);	// parks the telescope while the cabinet is too hot (MONETcommon#32)
+// The four signals are the read-only I_Cabinet view for the MQTT comm layer and the HMI gateway (BROTLib X1, MONETcommon 0.28.0).
+// SafetyHandling runs at the end of the scan, so they are one scan old. The pendant enable key counts as pendant active (conservative).
+CabinetControl(
+	iTelescope			:= TelescopeControl,	// parks the telescope while the cabinet is too hot (MONETcommon#32)
+	bEstop				:= SafetyHandling.estop,
+	bSafetyError		:= SafetyHandling.error,
+	bSafetyAckPending	:= SafetyHandling.RestartPending,
+	bPendantActive		:= PendantControl.bEnable
+);
 
 // telescope mode
 IF CabinetControl.KeyLocal THEN
@@ -228,6 +246,31 @@ ELSE
 END_IF
 TelescopeAuxiliary();
 
+// HMI gateway (BROTLib X10, contract specs/design/ui-tiers-and-hmi-gateway.md, 5.1 and 7.5): called once per scan, unconditionally
+// (no IF, no RETURN above it), after the telescope call and before the axis blocks, because the HMI jog dead-man lives in it.
+// Axis slots in this order: azimuth, elevation, derotator; the focus follows as slot 4. Not wired, on purpose: ipFilter, ipNasmyth,
+// ipDome (not on MONET/S). bTelescopeRunsInLocal is FALSE because Local suspends the telescope control (SuspendAutomatic), but
+// ipTelescopeStatus is wired, so the gateway uses NOT Suspended instead. The axis descriptors (limits and rights) are not reviewed yet.
+Hmi.aipAxes[1] := AzimuthControl;
+Hmi.aipAxes[2] := ElevationControl;
+Hmi.aipAxes[3] := DerotatorControl;
+Hmi.astAxisInfo[1] := stAzimuthInfo;
+Hmi.astAxisInfo[2] := stElevationInfo;
+Hmi.astAxisInfo[3] := stDerotatorInfo;
+Hmi(
+	ipAltAz				:= TelescopeControl,
+	ipCabinet			:= CabinetControl,
+	ipFocus				:= FocusControl,
+	stFocusInfo			:= stFocusInfo,
+	ipCovers			:= CoverControl,
+	ipHydraulics		:= HydraulicsControl,
+	ipBrake				:= HydraulicsControl,
+	ipRoof				:= RoofControl,
+	ipTelescopeStatus	:= TelescopeControl,
+	ipSafety			:= SafetyHandling,
+	bTelescopeRunsInLocal	:= FALSE
+);
+
 // run all control FBs
 CoverControl(
 	stIn	:= GVL_IO.stCoverIn,
@@ -327,6 +370,7 @@ fbComm(
 	sTopicLog		:= 'MONETS/Log',
 	Telescope		:= TelescopeControl,
 	AltAzTelescope  := TelescopeControl,
+	Cabinet			:= CabinetControl,	// BROTLib X9: with the key on Local the motion and reset verbs are refused, stop passes
 	Focus			:= FocusControl,
 	Roof			:= RoofControl
 );
