@@ -125,7 +125,15 @@ IF bVisuMoveDerotator <> DerotatorControl.MoveAxis THEN
 END_IF
 
 // run cabinet
-CabinetControl(iTelescope := TelescopeControl);	// parks the telescope while the cabinet is too hot (MONETcommon#32)
+// The four signals are the read-only I_Cabinet view for the MQTT comm layer and the HMI gateway (BROTLib X1, MONETcommon 0.28.0).
+// SafetyHandling runs at the end of the scan, so they are one scan old. The pendant enable key counts as pendant active (conservative).
+CabinetControl(
+	iTelescope			:= TelescopeControl,	// parks the telescope while the cabinet is too hot (MONETcommon#32)
+	bEstop				:= SafetyHandling.estop,
+	bSafetyError		:= SafetyHandling.error,
+	bSafetyAckPending	:= SafetyHandling.RestartPending,
+	bPendantActive		:= PendantControl.bEnable
+);
 
 // telescope mode
 IF CabinetControl.KeyLocal THEN
@@ -327,6 +335,7 @@ fbComm(
 	sTopicLog		:= 'MONETS/Log',
 	Telescope		:= TelescopeControl,
 	AltAzTelescope  := TelescopeControl,
+	Cabinet			:= CabinetControl,	// BROTLib X9: with the key on Local the motion and reset verbs are refused, stop passes
 	Focus			:= FocusControl,
 	Roof			:= RoofControl
 );
