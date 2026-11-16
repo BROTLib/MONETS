@@ -259,6 +259,7 @@ Hmi.astAxisInfo[2] := stElevationInfo;
 Hmi.astAxisInfo[3] := stDerotatorInfo;
 Hmi(
 	ipAltAz				:= TelescopeControl,
+	sTelescopeName		:= 'MONET/S',
 	ipCabinet			:= CabinetControl,
 	ipFocus				:= FocusControl,
 	stFocusInfo			:= stFocusInfo,
