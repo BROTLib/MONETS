@@ -95,7 +95,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.CoverControl.bOpen"</v>
+                          <v n="Value">"MAIN.bVisuCoverOpen"</v>
                         </o>
                       </l>
                     </o>
@@ -197,7 +197,7 @@
                         </o>
                         <o>
                           <v n="Id">743958181L</v>
-                          <v n="Value">"MAIN.CoverControl.bClose"</v>
+                          <v n="Value">"MAIN.bVisuCoverClose"</v>
                         </o>
                       </l>
                     </o>

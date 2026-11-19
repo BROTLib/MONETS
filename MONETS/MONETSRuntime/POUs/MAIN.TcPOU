@@ -52,6 +52,8 @@ VAR
 	// Switches that show a state (enable, move) follow the block at the end of the scan; push buttons are cleared by the body.
 	bVisuHydraulicsEnable	: BOOL;		// HydraulicsControl.Enable
 	bVisuHydraulicsReset	: BOOL;		// HydraulicsControl.Reset()
+	bVisuCoverOpen			: BOOL;		// CoverControl.Open() (MONETN#83: the Visu cannot write the outputs bOpen/bClose since HalfBROT 0.15.0)
+	bVisuCoverClose			: BOOL;		// CoverControl.Close()
 	bVisuBrakeClose			: BOOL;		// HydraulicsControl.CloseBrake()
 	bVisuBrakeOpen			: BOOL;		// shows HydraulicsControl.BrakeOpen only: the brake is opened by the cabinet switch (brakeClearing)
 	bVisuMoveAzimuth		: BOOL;		// AzimuthControl.MoveAxis
@@ -119,6 +121,14 @@ END_IF
 IF bVisuHydraulicsReset THEN
 	bVisuHydraulicsReset := FALSE;
 	HydraulicsControl.Reset();
+END_IF
+IF bVisuCoverOpen THEN
+	bVisuCoverOpen := FALSE;
+	CoverControl.Open();
+END_IF
+IF bVisuCoverClose THEN
+	bVisuCoverClose := FALSE;
+	CoverControl.Close();
 END_IF
 IF bVisuBrakeClose THEN
 	bVisuBrakeClose := FALSE;
